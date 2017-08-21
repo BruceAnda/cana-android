@@ -17,6 +17,7 @@ import cn.ac.ict.cana.newversion.modules.tremor.TremorMainActivity
 import cn.ac.ict.cana.newversion.modules.upload.UploadActivity
 import cn.ac.ict.cana.newversion.provider.HistoryProvider
 import cn.ac.ict.cana.newversion.utils.FileUtils
+import cn.ac.ict.cana.newversion.utils.GzipUtil
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.alibaba.fastjson.JSON
 import com.lovearthstudio.duasdk.Dua
@@ -77,12 +78,12 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                             FileUtils.score_righthand_motion = score
                             Log.i(TAG, "插入${modelName}数据")
                             val data = "{\"score\":\"${FileUtils.score_lefthand_still},${FileUtils.score_lefthand_motion},${FileUtils.score_righthand_still},${FileUtils.score_righthand_motion}\"," +
-                                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
-                                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                                            "\"patient_medicine\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                                            "\"file\":\"${fileName}\"}"
+                                    "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                                    "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
+                                    "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
+                                    "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
+                                    "\"patient_medicine\":\"${FileUtils.PATIENT_MEDICINE}\"," +
+                                    "\"file\":\"${fileName}\"}"
                             insertDB(data)
                         }
                     }
@@ -105,6 +106,9 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                     val toString = jo.toString()
                     println("countData:" + toString)
                     FileUtils.writeToFile(toString)
+
+                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入震颤测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         startActivity(Intent(this, ModelGuideActivity2::class.java))
                         finish()
@@ -119,6 +123,8 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                     jo.put("data", data.toString())
                     FileUtils.writeToFile(jo.toString())
 
+                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage(mTermorsTitle[grade - 1]).setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         if (grade < 4) {
                             val intent = Intent(this, TremorMainActivity::class.java)
@@ -130,6 +136,8 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                         finish()
                     }).setCancelable(false).show()
                 } else if (ModuleHelper.MODULE_SOUND.equals(modelName)) {
+
+                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入站立平衡检测").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         startActivity(Intent(this, ModelGuideActivity4::class.java))
                         finish()
@@ -146,6 +154,8 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                     jo.put("data", data.toString())
                     FileUtils.writeToFile(jo.toString())
 
+                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入行走平衡测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         startActivity(Intent(this, ModelGuideActivity5::class.java))
                     }).setCancelable(false).show()
@@ -158,6 +168,9 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                     jo.put("data", data.toString())
                     FileUtils.writeToFile(jo.toString())
 
+                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+
+
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入手指灵敏测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         startActivity(Intent(this, ModelGuideActivity6::class.java))
                         finish()
@@ -169,6 +182,8 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                     jo.put("type", mTappers[1])
                     jo.put("data", JSON.toJSONString(FileUtils.tapperRDatas))
                     FileUtils.writeToFile(jo.toString())
+
+                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
 
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("恭喜你完成了测试，请上传数据我们会对您的康复情况进行分析。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         startActivity(Intent(this, UploadActivity::class.java))
@@ -184,7 +199,7 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
     fun insertDB(mark: String) {
         Log.i(TAG, "insertDB${mark}")
         val historyProvider = HistoryProvider(DataBaseHelper.getInstance(this))
-        val history = History(Dua.getInstance().currentDuaId, modelName, FileUtils.filePath, mark)
+        val history = History(Dua.getInstance().currentDuaId, modelName, FileUtils.filePath + ".gz", mark)
         historyProvider.InsertHistory(history)
     }
 
