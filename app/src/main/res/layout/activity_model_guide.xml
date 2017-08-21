@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:background="@color/freebie_9"
+    tools:context="cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="1.数字记忆测试，测试共分为四个等级，分别是3个数字记忆测试、4个数字记忆测试、5个数字记忆测试、6个数字记忆测试。每个等级您的回答机会有两次，打错则继续进行本等级测试，答对就可以继续进行测试。请您记住接下来屏幕上出现的数字"
+        android:textSize="28sp" />
+
+
+    <Button
+        android:id="@+id/btn_next_test"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@color/freebie_2"
+        android:text="跳过本项测试"
+        android:onClick="next"
+        android:textColor="@color/material_light_white" />
+
+    <Button
+        android:id="@+id/btn_start_test"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@id/btn_next_test"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:background="@color/freebie_2"
+        android:onClick="start"
+        android:text="开始检测"
+        android:textColor="@color/material_light_white" />
+</RelativeLayout>

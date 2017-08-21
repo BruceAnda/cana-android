@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:flatui="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    android:background="@color/freebie_9"
+    android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingTop="@dimen/material_component_cards_primary_title_top_padding">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:text="@string/module_stride"
+        android:textColor="@color/freebie_4"
+        android:textSize="@dimen/material_component_text_title_text_size" />
+
+    <com.cengalabs.flatui.views.FlatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/module_main_page"
+        android:text="@string/stride_main_tip"
+        />
+
+    <ImageView
+        android:contentDescription="@string/stride_image_description"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:src="@drawable/iv_info"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/bt_begin"
+        android:text="@string/btn_begin"
+        style="@style/PrimaryButton"/>
+
+
+</LinearLayout>
+

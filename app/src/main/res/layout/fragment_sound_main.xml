@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:keepScreenOn="true"
+    tools:context=".modules.sound.MainFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:text="@string/module_sound"
+        android:textColor="@color/freebie_4"
+        android:textSize="@dimen/material_component_text_title_text_size" />
+
+    <TextView
+        style="@style/module_main_page"
+        android:text="@string/sound_task_1"
+        />
+
+    <ImageView
+        style="@style/module_images"
+        android:src="@drawable/yuyin2"/>
+
+    <Button
+        android:id="@+id/btn_start_recorder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PrimaryButton"
+        android:text="@string/btn_start_record" />
+
+</LinearLayout>

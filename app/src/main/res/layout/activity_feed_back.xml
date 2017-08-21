@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:keepScreenOn="true"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:flatui="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/freebie_9"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+        android:paddingEnd="@dimen/material_component_button_text_left_and_right_padding"
+        android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+        android:paddingTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
+        <!--Title-->
+        <TextView
+            android:id="@+id/tv_module_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:textColor="@color/freebie_4"
+            android:textSize="@dimen/material_component_text_title_text_size" />
+        <!--Info of user-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/freebie_1"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+            android:paddingEnd="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
+            <!--First info of user-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/test_user"
+                    android:textColor="@color/freebie_2" />
+
+                <TextView
+                    android:id="@+id/tv_fb_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+                    android:textColor="@color/freebie_6" />
+            </LinearLayout>
+            <!--second info of user-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/test_time"
+                    android:textColor="@color/freebie_2" />
+
+                <TextView
+                    android:id="@+id/tv_fb_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+                    android:textColor="@color/freebie_6" />
+            </LinearLayout>
+            <!--Evaluation of test -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/initial_result"
+                    android:textColor="@color/freebie_2" />
+
+                <TextView
+                    android:id="@+id/tv_evaluation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+                    android:textColor="@color/freebie_6" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/material_component_cards_space_between_cards"
+            android:layout_marginTop="8dp"
+            android:background="@color/freebie_1"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+            android:paddingEnd="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/material_component_button_height"
+                android:gravity="center_vertical"
+                android:text="@string/please_evaluate"
+                android:textColor="@color/freebie_2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:gravity="center_vertical"
+                    android:text="@string/rating"
+                    android:textColor="@color/freebie_2" />
+
+                <Spinner
+                    android:id="@+id/spinner_pd_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_margin="5dip"
+                    android:layout_weight="0.4"
+                    android:background="@color/freebie_2"
+                    android:entries="@array/array_pdlevel"
+                    android:gravity="center"
+                    android:includeFontPadding="true"
+                    android:lineSpacingMultiplier="1.5"
+                    android:maxLines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:prompt="@string/pd_level"
+                    android:spinnerMode="dropdown"></Spinner>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:gravity="center_vertical"
+                    android:text="@string/doctor_name"
+                    android:textColor="@color/freebie_2" />
+
+                <com.cengalabs.flatui.views.FlatEditText
+                    android:id="@+id/edittext_doctor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dip"
+                    android:layout_weight="0.6"
+                    android:gravity="center_vertical"
+                    android:hint="@string/doctor_name_hint"
+                    android:includeFontPadding="true"
+                    android:maxLines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="10dp"
+                    flatui:fl_fieldStyle="fl_flat"
+                    flatui:fl_theme="@array/freebie_reverse_edit_text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:gravity="center_vertical"
+                    android:text="病人姓名"
+                    android:textColor="@color/freebie_2" />
+
+                <com.cengalabs.flatui.views.FlatEditText
+                    android:id="@+id/edittext_patient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dip"
+                    android:layout_weight="0.6"
+                    android:gravity="center_vertical"
+                    android:hint="请输入病人名称"
+                    android:includeFontPadding="true"
+                    android:minLines="1"
+                    android:singleLine="true"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="10dp"
+                    flatui:fl_fieldStyle="fl_flat"
+                    flatui:fl_theme="@array/freebie_reverse_edit_text" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--evalution tips guide-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/material_component_cards_space_between_cards"
+            android:background="@color/freebie_1"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+            android:paddingEnd="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/evaluation_guide_name"
+                android:textColor="@color/freebie_2" />
+
+
+            <TextView
+                android:id="@+id/evaluation_guide_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1.5"
+                android:textColor="@color/freebie_2" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_save"
+            style="@style/PrimaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_save" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_cancel" />
+
+    </LinearLayout>
+
+</ScrollView>

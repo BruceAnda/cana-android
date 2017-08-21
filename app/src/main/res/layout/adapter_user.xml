@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/freebie_1"
+    android:keepScreenOn="true"
+    android:id="@+id/layout_user"
+    android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+    android:paddingEnd="@dimen/material_component_button_text_left_and_right_padding"
+    android:paddingTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+    android:paddingBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/material_component_lists_single_line_height"
+        android:textColor="@color/freebie_6"/>
+
+    <TextView
+        android:id="@+id/tv_user_age"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/material_component_lists_single_line_height"
+        android:textColor="@color/freebie_6"/>
+
+    <TextView
+        android:id="@+id/tv_user_gender"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/material_component_lists_single_line_height"
+        android:textColor="@color/freebie_6"/>
+</LinearLayout>

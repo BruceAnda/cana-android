@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:keepScreenOn="true"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="5dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="设置密码"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/text_label" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+
+        <cn.ac.ict.cana.duaui.base.PasswordEdit
+            android:id="@+id/dua_et_password"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:visibility="gone" />
+
+        <cn.ac.ict.cana.duaui.base.PasswordEdit
+            android:id="@+id/dua_et_repwd"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:visibility="gone" />
+
+        <com.jungly.gridpasswordview.GridPasswordView
+            android:id="@+id/pswView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            app:gpvGridColor="#ffffff"
+            app:gpvLineColor="@android:color/darker_gray"
+            app:gpvLineWidth="1dp"
+            app:gpvPasswordLength="8"
+            app:gpvPasswordTransformation="*"
+            app:gpvPasswordType="textPassword"
+            app:gpvTextColor="@color/colorAccent"
+            app:gpvTextSize="25sp" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:visibility="gone">
+
+        <!--<Switch
+            android:id="@+id/switch_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:button="@drawable/btn_login_and_regist_bg"
+            android:textOff="关"
+            android:textOn="开" />-->
+
+        <ImageView
+            android:id="@+id/iv_show_paw"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_eye_disable" />
+    </RelativeLayout>
+
+    <cn.ac.ict.cana.duaui.passwordview.PasswordView
+        android:id="@+id/passwordview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/input_shape"
+        android:gravity="center"
+        android:hint="输入密码"
+        android:letterSpacing="0.16"
+        android:paddingLeft="24dp"
+        android:textSize="22sp"
+        app:textColorPrimary="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/dua_register_button_next_step"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/btn_login_and_regist_bg"
+        android:enabled="false"
+        android:text="@string/dua_button_next_step"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

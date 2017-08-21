@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_stand_testing"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/freebie_9"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingTop="@dimen/material_component_cards_primary_title_top_padding">
+
+    <com.bcgdv.asia.lib.ticktock.TickTockView
+        android:id="@+id/ttv"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        app:tickAutoFitText="false"
+        app:tickCircleDuration="total_time"
+        app:tickDotRadius="6dp"
+        app:tickEmptyRingColor="@color/freebie_6"
+        app:tickFillRingColor="@color/freebie_2"
+        app:tickMiddleColor="@color/freebie_1"
+        app:tickMoveCounterClockwise="true"
+        app:tickRingThickness="3dp"
+        app:tickTextColor="@color/freebie_6" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:layout_weight="0.1"
+        android:src="@drawable/iv_hand_phone" />
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/pb_x"
+        style="@style/ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/pb_y"
+        style="@style/ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/pb_z"
+        style="@style/ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    tools:context="cn.ac.ict.cana.newversion.pagers.ExamPageFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="检测内容一共包含以下六项点击开始检测我们将依次为您测试每一项内容。"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="\n1.数字记忆 \n2.震颤情况 \n3.语言能力 \n4.站立平衡 \n5.行走平衡 \n6.手指灵敏\n"
+        android:textSize="28sp" />
+
+    <Button
+        android:id="@+id/btn_start_test"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@color/freebie_2"
+        android:text="开始检测"
+        android:textColor="@color/material_light_white" />
+</LinearLayout>

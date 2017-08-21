@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:keepScreenOn="true"
+    android:background="@color/freebie_9"
+    android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingTop="@dimen/material_component_cards_primary_title_top_padding">
+    <ImageView
+        android:contentDescription="@string/stride_image_description"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:src="@drawable/iv_info"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:id="@+id/tv_go"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="@string/stride_prepare"/>
+
+    <Button
+        android:id="@+id/btn_go"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_begin"
+        style="@style/PrimaryButton"/>
+
+</LinearLayout>

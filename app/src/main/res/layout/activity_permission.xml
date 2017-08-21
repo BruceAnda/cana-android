@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/freebie_9"
+    android:keepScreenOn="true"
+    android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_permission"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="0.5"
+        android:paddingTop="@dimen/material_component_lists_padding_above_list"
+        android:paddingBottom="@dimen/material_component_lists_text_padding_bottom"
+        >
+
+        <com.cengalabs.flatui.views.FlatTextView
+            android:id="@+id/tv_permission_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/material_component_cards_primary_title_top_padding"
+            android:text="@string/permission_tips"/>
+
+        <ListView
+            android:id="@+id/lv_permission_not_granted"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:scrollbars="vertical"
+            android:divider="@color/freebie_1"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="0.5"
+        android:paddingTop="@dimen/material_component_lists_padding_above_list"
+        android:paddingBottom="@dimen/material_component_lists_text_padding_bottom">
+
+        <com.cengalabs.flatui.views.FlatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/material_component_cards_primary_title_top_padding"
+            android:text="@string/permission_granted"/>
+
+        <ListView
+            android:id="@+id/lv_permission_granted"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:scrollbars="vertical"
+            android:divider="@color/freebie_1"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_permission_pass"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:text="@string/btn_continue"
+        android:textColor="@color/freebie_1"
+        android:layout_marginBottom="@dimen/material_component_dialogs_padding_around_buttons"
+        android:background="@color/freebie_5"
+        style="@style/Widget.AppCompat.Button.Borderless"/>
+
+</LinearLayout>

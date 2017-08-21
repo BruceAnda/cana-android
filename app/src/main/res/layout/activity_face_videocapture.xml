@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:keepScreenOn="true"
+	android:layout_height="match_parent">
+	<cn.ac.ict.cana.modules.face.view.VideoCaptureView
+		android:id="@+id/videocapture_videocaptureview_vcv"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		/>
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="40sp"
+		android:textColor="#FFFFFF"
+		android:padding="5dp"
+		android:gravity="center"
+		android:id="@+id/tv_hint"
+		android:background="#000000"
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true"/>
+</RelativeLayout>

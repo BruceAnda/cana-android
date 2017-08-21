@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:keepScreenOn="true"
+    android:paddingTop="5dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/dua_prompt_birthday"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/text_label" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:hint="格式yyyyMMdd"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:visibility="gone" />
+
+        <com.jungly.gridpasswordview.GridPasswordView
+            android:id="@+id/psw_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:gpvGridColor="#ffffff"
+            app:gpvLineColor="@android:color/darker_gray"
+            app:gpvLineWidth="1dp"
+            app:gpvPasswordLength="8"
+            app:gpvPasswordType="numberPassword"
+            app:gpvTextColor="@color/colorAccent"
+            app:gpvTextSize="25sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dua_register_tv_curBirthday"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <com.aigestudio.wheelpicker.widgets.WheelDatePicker
+        android:id="@+id/dua_register_date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"></com.aigestudio.wheelpicker.widgets.WheelDatePicker>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/dua_register_button_last_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/btn_login_and_regist_bg"
+            android:text="@string/dua_button_last_step"
+            android:visibility="gone" />
+        <!--
+                <Button
+                    android:id="@+id/dua_register_button_next_step"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+
+                    android:background="@drawable/btn_login_and_regist_bg"
+                    android:text="@string/dua_button_next_step" />-->
+
+        <Button
+            android:id="@+id/dua_register_button_next_step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btn_login_and_regist_bg"
+            android:enabled="false"
+            android:text="@string/dua_button_next_step"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+</LinearLayout>

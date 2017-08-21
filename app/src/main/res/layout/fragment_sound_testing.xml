@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".modules.sound.TestingFragment">
+
+
+
+    <TextView
+        android:id="@+id/tv_quston"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="@dimen/material_component_text_title_text_size"
+        android:gravity="center"
+        android:textColor="@color/freebie_6"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="50dp">
+    <ImageView
+        android:layout_width="100dp"
+        android:contentDescription="microphone"
+        android:layout_height="100dp"
+        android:id="@+id/iv_sound_mic"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sound_recoding"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/freebie_4"
+        android:textSize="20sp"/>
+    </LinearLayout>
+
+    <!--<com.bcgdv.asia.lib.ticktock.TickTockView-->
+        <!--android:id="@+id/ttv_tapper"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--app:tickAutoFitText="false"-->
+        <!--app:tickMiddleColor="@color/freebie_1"-->
+        <!--app:tickMoveCounterClockwise="true"-->
+        <!--app:tickTextColor="@color/freebie_6"-->
+        <!--app:tickDotRadius="6dp"-->
+        <!--app:tickEmptyRingColor="@color/freebie_6"-->
+        <!--app:tickFillRingColor="@color/freebie_2"-->
+        <!--app:tickRingThickness="3dp"-->
+        <!--app:tickCircleDuration="total_time"-->
+        <!--android:layout_marginBottom="10dp"/>-->
+
+    <Button
+        android:id="@+id/btn_start_recorder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PrimaryButton"
+        android:text="@string/btn_next_btn" />
+
+</LinearLayout>

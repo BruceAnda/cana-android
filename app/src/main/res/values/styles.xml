@@ -1,0 +1,137 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        &lt;!&ndash; Customize your theme here. &ndash;&gt;
+        <item name="colorPrimary">@color/freebie_2</item>
+        <item name="colorPrimaryDark">@color/freebie_4</item>
+        <item name="colorAccent">@color/freebie_1</item>
+    </style>-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/freebie_2</item>
+        <item name="colorPrimaryDark">@color/freebie_4</item>
+        <item name="colorAccent">@color/freebie_1</item>
+    </style>
+
+
+    <style name="AppThemeNoActBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/freebie_2</item>
+        <item name="colorPrimaryDark">@color/freebie_4</item>
+        <item name="colorAccent">@color/freebie_1</item>
+    </style>
+
+    <style name="WelcomeTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/freebie_2</item>
+        <item name="colorPrimaryDark">@color/freebie_4</item>
+        <!--<item name="colorAccent">@color/freebie_1</item>-->
+        <item name="colorAccent">@color/freebie_4</item>
+    </style>
+
+    <style name="AppThemeNoActBar.FullScreen">
+        <item name="colorPrimary">@color/freebie_2</item>
+        <item name="colorPrimaryDark">@color/freebie_4</item>
+        <item name="colorAccent">@android:color/darker_gray</item>
+        <item name="android:windowFullscreen">true</item>
+
+    </style>
+
+    <style name="Custom" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="DialogTitleText">Please Wait</item>
+        <item name="DialogSpotColor">@color/freebie_4</item>
+        <item name="DialogSpotCount">8</item>
+    </style>
+
+    <style name="labelStyle">
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_marginRight">25dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="PrimaryButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_marginBottom">
+            @dimen/material_component_dialogs_padding_around_buttons
+        </item>
+        <item name="android:textColor">@color/freebie_1</item>
+        <item name="android:background">@color/freebie_4</item>
+    </style>
+
+    <style name="Button" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_marginBottom">
+            @dimen/material_component_dialogs_padding_around_buttons
+        </item>
+        <item name="android:textColor">@color/freebie_4</item>
+        <item name="android:background">@color/freebie_1</item>
+    </style>
+
+    <style name="ProgressBar">
+        <item name="progress_text_visibility">invisible</item>
+        <item name="progress_unreached_bar_height">5dp</item>
+        <item name="progress_reached_bar_height">5dp</item>
+        <item name="android:layout_margin">2dp</item>
+    </style>
+
+    <style name="module_tips">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
+        <item name="android:textColor">@color/freebie_6</item>
+        <item name="android:textSize">@dimen/material_component_lists_single_line_text_size</item>
+    </style>
+
+    <style name="module_images">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">0.1</item>
+    </style>
+
+    <style name="module_main_page">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/freebie_6</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
+        <item name="android:textSize">@dimen/material_component_text_module_tips_text_size</item>
+    </style>
+
+    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+
+        <!--<item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>-->
+        <item name="android:windowAnimationStyle">@style/AnimFade</item>
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+
+        <item name="toolbarStyle">@style/ToolbarNoSpace</item>
+
+    </style>
+
+    <!-- 淡入淡出效果 -->
+    <style name="AnimFade" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/hold</item>
+        <item name="android:activityCloseEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/fade_out</item>
+    </style>
+
+    <!-- 无标题、全屏、淡入淡出  -->
+    <style name="Fullscreen_Notitle_Fade" parent="android:Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowAnimationStyle">@style/AnimFade</item>
+    </style>
+
+
+    <style name="ToolbarNoSpace" parent="Widget.AppCompat.Toolbar">
+        <!-- 设置该属性解决空白部分,Android默认离左右间距16dp-->
+        <item name="contentInsetStart">16dp</item>
+        <item name="contentInsetEnd">16dp</item>
+        <item name="background">@android:color/white</item>
+    </style>
+</resources>

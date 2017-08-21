@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:keepScreenOn="true"
+    android:paddingTop="5dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/dua_prompt_laststep"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/text_label" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <EditText
+            android:id="@+id/dua_et_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/dua_prompt_nickname"
+            android:singleLine="true"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/dua_register_button_last_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/btn_login_and_regist_bg"
+            android:text="@string/dua_button_last_step"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/dua_register_button_next_step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/btn_login_and_regist_bg"
+            android:enabled="false"
+            android:text="提交注册"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+</LinearLayout>

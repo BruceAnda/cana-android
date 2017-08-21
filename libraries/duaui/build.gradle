@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject .ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject .ext.android.minSdkVersion
+        targetSdkVersion rootProject .ext.android.targetSdkVersion
+        versionCode rootProject .ext.android.versionCode
+        versionName rootProject .ext.android.versionName
+    }
+}
+
+dependencies {
+    compile rootProject.ext.dependencies["WheelPicker"]
+    compile rootProject.ext.dependencies["glide"]
+    compile rootProject.ext.dependencies["InternationalPhoneInput"]
+    compile rootProject.ext.dependencies["duasdk"]
+    compile rootProject.ext.dependencies["android-image-cropper"]
+    compile rootProject.ext.dependencies["eventbus"]
+    compile rootProject.ext.dependencies["easypermissions"]
+    compile 'com.github.hotchemi:permissionsdispatcher:2.3.2'
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.2'
+    compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["gridPasswordView"]
+    compile project(':libraries:popup')
+    compile project(':libraries:ColorDialog')
+    compile project(':libraries:uploadfile')
+}

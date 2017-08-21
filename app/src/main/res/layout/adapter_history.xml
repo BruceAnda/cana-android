@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:background="@color/freebie_1"
+    android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingTop="@dimen/material_component_grid_lists_padding_big">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_history_user_name"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/material_component_lists_single_line_height"
+        android:textColor="@color/freebie_6" />
+
+    <TextView
+        android:id="@+id/tv_history_created_time"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/material_component_lists_single_line_height"
+        android:textColor="@color/freebie_6"/>
+
+    <TextView
+        android:id="@+id/tv_history_is_upload"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/material_component_lists_single_line_height"
+        android:textColor="@color/freebie_6"/>
+
+    </LinearLayout>
+    <CheckBox
+        android:id="@+id/cb_history"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"/>
+
+</LinearLayout>

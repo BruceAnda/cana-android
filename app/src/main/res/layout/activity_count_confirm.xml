@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:flatui="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_next"
+    android:layout_width="match_parent"
+    android:keepScreenOn="true"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/freebie_9"
+    android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingTop="@dimen/material_component_cards_primary_title_top_padding">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="left"
+        android:textColor="@color/material_light_black"
+        android:text="@string/count_hint"/>
+
+        <com.cengalabs.flatui.views.FlatEditText
+            android:id="@+id/et_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:maxLines="1"
+            android:gravity="center_vertical"
+            android:inputType="number"
+            android:includeFontPadding="true"
+            flatui:fl_fieldStyle="fl_flat"
+            flatui:fl_theme="@array/freebie_edittext"
+            android:layout_marginBottom="@dimen/material_component_dialogs_padding_around_buttons"/>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_confirm"
+        style="@style/PrimaryButton"/>
+
+
+</LinearLayout>
+

@@ -1,0 +1,94 @@
+ext {
+    android_support_version = "25.2.0"
+    getui_version = "2.9.0.0"
+    butterknife_version = "8.4.0"
+    circleprogressbar_version = "1.1.0"
+    photoview_version = "1.4.1"
+    picasso_version = "2.5.2"
+    jiecaovideoplayer_version = "4.8.3" //4.6.4
+    fresco_version = "0.14.1"
+    likebutton_version = "0.2.0"
+    eventbus_version = "3.0.0"
+    butterknife_compiler_version = "8.4.0"
+    circleindicator_version = "1.2.1@aar"
+    floatingtextlibrary_version = "0.2.0"
+    pretty_toast_version = "0.2.0"
+    okhttp_version = "3.1.2"
+    duasdk_version = "0.6.0"
+    gson_version = "2.6.2"
+    android_crop_version = "1.0.1@aar"
+    wheelpicker_version = "1.1.1"
+    glide_version = "3.7.0"
+    internationalphoneinput_version = "0.1.2"
+    stepper_indicator_version = "1.0.3"
+    supertoasts_version = "2.0"
+    xrecyclerview_version = "1.2.7"
+    android_gif_drawable_version = "1.2.3"
+    colordialog_version = "1.0.0"
+    gridpasswordview_version = "0.3"
+    rxvolley_version = "1.1.4"
+    fastjson_version = "1.1.56.android"
+
+    android = [compileSdkVersion: 24,
+               buildToolsVersion: "25.0.2",
+               applicationId    : "com.lovearthstudio.calathus",
+               minSdkVersion    : 18,
+               targetSdkVersion : 22,
+               versionCode      : 1,
+               versionName      : "1.0"
+    ]
+
+    dependencies = [
+            "appcompat-v7"           : "com.android.support:appcompat-v7:${android_support_version}",
+            "support-v4"             : "com.android.support:support-v4:${android_support_version}",
+            "preference-v7"          : "com.android.support:preference-v7:${android_support_version}",
+            "preference-v14"         : "com.android.support:preference-v14:${android_support_version}",
+            "design"                 : "com.android.support:design:${android_support_version}",
+            "cardview-v7"            : "com.android.support:cardview-v7:${android_support_version}",
+            "recyclerview-v7"        : "com.android.support:recyclerview-v7:${android_support_version}",
+            "getui"                  : "com.getui:sdk:${getui_version}",
+            "butterknife"            : "com.jakewharton:butterknife:${butterknife_version}",
+            "circleprogressbar"      : "com.dinuscxj:circleprogressbar:${circleprogressbar_version}",
+            "photoview"              : "com.bm.photoview:library:${photoview_version}",
+            "picasso"                : "com.squareup.picasso:picasso:${picasso_version}",
+            "jiecaovideoplayer"      : "fm.jiecao:jiecaovideoplayer:${jiecaovideoplayer_version}",
+            "fresco"                 : "com.facebook.fresco:fresco:${fresco_version}",
+            // For animated GIF support
+            "animated-gif"           : "com.facebook.fresco:animated-gif:${fresco_version}",
+            // For WebP support, inclu"ng animated WebP
+            "animated-webp"          : "com.facebook.fresco:animated-webp:${fresco_version}",
+            "webpsupport"            : "com.facebook.fresco:webpsupport:${fresco_version}",
+
+
+
+            "LikeButton"             : "com.github.jd-alexander:LikeButton:${likebutton_version}",
+            "eventbus"               : "org.greenrobot:eventbus:${eventbus_version}",
+            "butterknife-compiler"   : "com.jakewharton:butterknife-compiler:${butterknife_compiler_version}",
+            "circleindicator"        : "me.relex:circleindicator:${circleindicator_version}",
+            "FloatingTextLibrary"    : "com.ufreedom.uikit:FloatingTextLibrary:${floatingtextlibrary_version}",
+            "pretty-toast"           : "ua.com.crosp.solutions.library:pretty-toast:${pretty_toast_version}",
+            "okhttp"                 : "com.squareup.okhttp3:okhttp:${okhttp_version}",
+            "duasdk"                 : "com.lovearthstudio.android:duasdk:${duasdk_version}",
+            "gson"                   : "com.google.code.gson:gson:${gson_version}",
+            "android-crop"           : "com.soundcloud.android:android-crop:$android_crop_version",
+            "WheelPicker"            : "cn.aigestudio.wheelpicker:WheelPicker:$wheelpicker_version",
+            "glide"                  : "com.github.bumptech.glide:glide:${glide_version}",
+            "InternationalPhoneInput": "com.lovearthstudio.android:InternationalPhoneInput:${internationalphoneinput_version}",
+            "stepper-indicator"      : "com.github.badoualy:stepper-indicator:${stepper_indicator_version}",
+            "supertoasts"            : "com.github.johnpersano:supertoasts:${supertoasts_version}",
+            "xrecyclerview"          : "com.jcodecraeer:xrecyclerview:${xrecyclerview_version}",
+
+            "android-gif-drawable"   : "pl.droidsonroids.gif:android-gif-drawable:${android_gif_drawable_version}",
+
+            "ColorDialog"            : "com.github.andyxialm:ColorDialog:${colordialog_version}",
+
+            "gridPasswordView"       : "com.jungly:gridPasswordView:${gridpasswordview_version}",
+
+            "rxvolley"               : "com.kymjs.rxvolley:rxvolley:${rxvolley_version}",
+
+            "fastjson"               : "com.alibaba:fastjson:${fastjson_version}",
+            "android-image-cropper"  : "com.theartofdev.edmodo:android-image-cropper:2.4.+",
+            "easypermissions"        : "pub.devrel:easypermissions:0.3.1"
+
+    ]
+}

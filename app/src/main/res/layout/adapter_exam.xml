@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/bt_add_history"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/material_component_lists_three_line_height"
+        android:layout_marginBottom="@dimen/material_component_dialogs_padding_around_buttons"
+        android:background="@color/freebie_1"
+        android:textColor="@color/freebie_6" />
+</LinearLayout>

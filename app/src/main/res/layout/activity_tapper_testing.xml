@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:background="@color/freebie_9"
+    android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingTop="@dimen/material_component_cards_primary_title_top_padding"
+    >
+    <com.bcgdv.asia.lib.ticktock.TickTockView
+        android:id="@+id/ttv_tapper"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        app:tickAutoFitText="false"
+        app:tickMiddleColor="@color/freebie_1"
+        app:tickMoveCounterClockwise="true"
+        app:tickTextColor="@color/freebie_6"
+        app:tickDotRadius="6dp"
+        app:tickEmptyRingColor="@color/freebie_6"
+        app:tickFillRingColor="@color/freebie_2"
+        app:tickRingThickness="3dp"
+        app:tickCircleDuration="total_time"
+        android:layout_marginBottom="10dp"/>
+    <LinearLayout
+        android:id="@+id/ll_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_left_count"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="@string/zero" />
+
+        <TextView
+            android:id="@+id/tv_right_count"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="@string/zero" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:paddingBottom="10dp">
+
+        <ImageButton
+            android:id="@+id/btn_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tapper_click"
+            android:enabled="false"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1" />
+
+        <ImageButton
+            android:id="@+id/btn_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tapper_click"
+            android:enabled="false"
+            android:gravity="center"
+           />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:text="@string/tapper_tips"
+        style="@style/module_tips" />
+
+</LinearLayout>
