@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:keepScreenOn="true"
+    android:orientation="vertical"
     tools:context=".modules.sound.MainFragment">
 
     <TextView
@@ -17,18 +17,16 @@
 
     <TextView
         style="@style/module_main_page"
-        android:text="@string/sound_task_1"
-        />
+        android:text="@string/sound_task_1" />
 
     <ImageView
         style="@style/module_images"
-        android:src="@drawable/yuyin2"/>
+        android:src="@drawable/yuyin2" />
 
     <Button
         android:id="@+id/btn_start_recorder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/PrimaryButton"
+        style="@style/BtnControllerStyle"
+        android:layout_marginBottom="10dp"
         android:text="@string/btn_start_record" />
 
 </LinearLayout>

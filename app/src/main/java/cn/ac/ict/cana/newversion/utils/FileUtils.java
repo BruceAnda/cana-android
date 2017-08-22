@@ -57,7 +57,7 @@ public class FileUtils {
     public static String batch = "";
 
 
-    public static void writeToFile(String data) {
+    public static void writeToFile(String data, String filePath) {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(filePath, true);

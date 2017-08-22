@@ -104,6 +104,7 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                 // 数字记忆
                 if (ModuleHelper.MODULE_COUNT.equals(modelName)) {
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入震颤测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                        var filePath = FileUtils.filePath
                         // 进入下一项测试，保存数据
                         startActivity(Intent(this, ModelGuideActivity2::class.java))
                         doAsync {
@@ -111,9 +112,9 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                             jo.put("data", JSON.toJSONString(FileUtils.countDataList))
                             val toString = jo.toString()
                             println("countData:" + toString)
-                            FileUtils.writeToFile(toString)
+                            FileUtils.writeToFile(toString, filePath)
 
-                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            GzipUtil.compressForZip(filePath, filePath + ".gz")
 
                             finish()
                         }
@@ -127,6 +128,7 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                             intent.putExtra("grade", grade)
                             startActivity(intent)
                         } else {
+                            var filePath = FileUtils.filePath
                             // 进入下一项测试，保存数据
                             startActivity(Intent(this, ModelGuideActivity3::class.java))
                             doAsync {
@@ -160,9 +162,9 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
 
                                 jo.put("data", data.toString())
 
-                                FileUtils.writeToFile(jo.toString())
+                                FileUtils.writeToFile(jo.toString(), filePath)
 
-                                GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                                GzipUtil.compressForZip(filePath, filePath + ".gz")
                             }
                         }
                         finish()
@@ -171,9 +173,10 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                 } else if (ModuleHelper.MODULE_SOUND.equals(modelName)) {
 
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入站立平衡检测").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                        var filePath = FileUtils.filePath
                         startActivity(Intent(this, ModelGuideActivity4::class.java))
                         doAsync {
-                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            GzipUtil.compressForZip(filePath, filePath + ".gz")
                             finish()
                         }
                     }).setCancelable(false).show()
@@ -182,6 +185,7 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
 
 
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入行走平衡测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                        var filePath = FileUtils.filePath
                         startActivity(Intent(this, ModelGuideActivity5::class.java))
                         doAsync {
                             var jo = JSONObject()
@@ -200,15 +204,16 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                             data.put("Stand_R", standR.toString())
 
                             jo.put("data", data.toString())
-                            FileUtils.writeToFile(jo.toString())
+                            FileUtils.writeToFile(jo.toString(), filePath)
 
-                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            GzipUtil.compressForZip(filePath, filePath + ".gz")
                             finish()
                         }
                     }).setCancelable(false).show()
                     // 行走平衡
                 } else if (ModuleHelper.MODULE_STRIDE.equals(modelName)) {
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入手指灵敏测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                        var filePath = FileUtils.filePath
                         startActivity(Intent(this, ModelGuideActivity6::class.java))
                         doAsync {
                             var jo = JSONObject()
@@ -217,9 +222,9 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                             data.put("acc", JSON.toJSONString(FileUtils.accSDatalist))
                             data.put("gyro", JSON.toJSONString(FileUtils.gyroSDataList))
                             jo.put("data", data.toString())
-                            FileUtils.writeToFile(jo.toString())
+                            FileUtils.writeToFile(jo.toString(), filePath)
 
-                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            GzipUtil.compressForZip(filePath, filePath + ".gz")
 
                             finish()
                         }
@@ -227,6 +232,7 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                     // 手指灵敏
                 } else if (ModuleHelper.MODULE_TAPPER.equals(modelName)) {
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入面部表情测试。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                        var filePath = FileUtils.filePath
                         startActivity(Intent(this, ModelGuideActivity7::class.java))
                         doAsync {
                             var jo = JSONObject()
@@ -243,9 +249,9 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                             data.put(mTappers[1], tapperR)
                             jo.put("data", data)
 
-                            FileUtils.writeToFile(jo.toString())
+                            FileUtils.writeToFile(jo.toString(), filePath)
 
-                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            GzipUtil.compressForZip(filePath, filePath + ".gz")
                             finish()
                         }
                     }).setCancelable(false).show()
@@ -253,9 +259,10 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                 } else if (ModuleHelper.MODULE_FACE.equals(modelName)) {
 
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("恭喜你完成了测试，请上传数据我们会对您的康复情况进行分析。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                        var filePath = FileUtils.filePath
                         startActivity(Intent(this, UploadActivity::class.java))
                         doAsync {
-                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            GzipUtil.compressForZip(filePath, filePath + ".gz")
                             finish()
                         }
                     }).setCancelable(false).show()

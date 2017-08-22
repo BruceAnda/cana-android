@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import cn.ac.ict.cana.R;
 import cn.ac.ict.cana.helpers.ModuleHelper;
 import cn.ac.ict.cana.newversion.mode.History;
-import cn.ac.ict.cana.newversion.modules.count.CountMainActivity;
+import cn.ac.ict.cana.newversion.modules.count.CountGameActivity;
 import cn.ac.ict.cana.newversion.utils.FileUtils;
 
 /**
@@ -35,7 +35,7 @@ public class ModelGuideActivity extends Activity {
     }
 
     public void start(View view) {
-        Intent intent = new Intent(ModelGuideActivity.this, CountMainActivity.class);
+        Intent intent = new Intent(ModelGuideActivity.this, CountGameActivity.class);
         intent.putExtra("grade", 3);
         startActivity(intent);
         finish();

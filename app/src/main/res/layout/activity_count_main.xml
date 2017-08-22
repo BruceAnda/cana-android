@@ -101,6 +101,7 @@
         android:layout_weight="1">
 
         <Button
+            style="@style/BtnControllerStyle"
             android:id="@+id/btn_next_test"
             android:layout_width="match_parent"
             android:layout_height="50dp"

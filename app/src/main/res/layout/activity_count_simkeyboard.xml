@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:keepScreenOn="true"
     android:background="@color/freebie_9"
     android:gravity="center"
+    android:keepScreenOn="true"
     android:orientation="vertical"
     android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
     android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
@@ -59,18 +59,15 @@
         android:rowCount="6"></GridLayout>
 
     <!-- 定义一个横跨4列的按钮 -->
-    <Button
+    <TextView
         android:id="@+id/count_simkeyboard_confirmBtn"
-        style="@style/PrimaryButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/BtnControllerStyle"
         android:text="确定" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_continue"
-        style="@style/PrimaryButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/BtnControllerStyle"
+        android:layout_marginBottom="10dp"
         android:onClick="next"
-        android:text="我无法记住测试数字进行下一项测试" />
+        android:text="无法记住,跳过本项测试" />
 </LinearLayout>

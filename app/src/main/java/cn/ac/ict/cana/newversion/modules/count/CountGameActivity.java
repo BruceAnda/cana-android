@@ -22,6 +22,7 @@ import java.util.Random;
 import java.util.Set;
 
 import cn.ac.ict.cana.R;
+import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity;
 
 public class CountGameActivity extends Activity {
 
@@ -152,7 +153,7 @@ public class CountGameActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, CountMainActivity.class));
+        startActivity(new Intent(this, ModelGuideActivity.class));
         finish();
     }
 
@@ -163,7 +164,7 @@ public class CountGameActivity extends Activity {
         new AlertDialog.Builder(this).setTitle("提示").setMessage("测试失败,重新开始").setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startActivity(new Intent(CountGameActivity.this, CountMainActivity.class));
+                startActivity(new Intent(CountGameActivity.this, ModelGuideActivity.class));
                 finish();
             }
         }).setCancelable(false).show();

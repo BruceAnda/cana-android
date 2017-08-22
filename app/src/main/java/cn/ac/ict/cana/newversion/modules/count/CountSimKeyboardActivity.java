@@ -36,6 +36,7 @@ import cn.ac.ict.cana.helpers.ModuleHelper;
 import cn.ac.ict.cana.newversion.activities.FeedBackActivity;
 import cn.ac.ict.cana.newversion.mode.CountData;
 import cn.ac.ict.cana.newversion.mode.History;
+import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity;
 import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity2;
 import cn.ac.ict.cana.newversion.provider.HistoryProvider;
 import cn.ac.ict.cana.newversion.utils.FileUtils;
@@ -48,7 +49,7 @@ public class CountSimKeyboardActivity extends Activity {
     private String randomStr;
     private String version;
     private TextView nextet;
-    private Button nextbtn;
+    private TextView nextbtn;
     private Intent intent;
     private int times;
     private boolean isRight;
@@ -129,10 +130,16 @@ public class CountSimKeyboardActivity extends Activity {
         });
 
 
-        chars = new String[]{
+        /*chars = new String[]{
                 "7", "8", "9",
                 "6", "5", "4",
                 "3", "2", "1",
+                "0", getApplicationContext().getString(R.string.count_sim_clear), getApplication().getString(R.string.count_sim_delete)
+        };*/
+        chars = new String[]{
+                "1", "2", "3",
+                "4", "5", "6",
+                "7", "8", "9",
                 "0", getApplicationContext().getString(R.string.count_sim_clear), getApplication().getString(R.string.count_sim_delete)
         };
 
@@ -150,7 +157,7 @@ public class CountSimKeyboardActivity extends Activity {
         tvGrade.setText("请输入刚才屏幕上出现的" + grade + "个数字");
         nextet = (TextView) findViewById(R.id.count_simkeyboard_tv);
         nextet.setInputType(EditorInfo.TYPE_CLASS_PHONE);
-        nextbtn = (Button) findViewById(R.id.count_simkeyboard_confirmBtn);
+        nextbtn = (TextView) findViewById(R.id.count_simkeyboard_confirmBtn);
 
         countData = new CountData();
         // 确定按钮点击
@@ -384,7 +391,7 @@ public class CountSimKeyboardActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                startActivity(new Intent(CountSimKeyboardActivity.this, CountMainActivity.class));
+                startActivity(new Intent(CountSimKeyboardActivity.this, ModelGuideActivity.class));
                 finish();
                 break;
         }
@@ -408,7 +415,7 @@ public class CountSimKeyboardActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, CountMainActivity.class));
+        startActivity(new Intent(this, ModelGuideActivity.class));
         finish();
     }
 }

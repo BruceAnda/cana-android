@@ -33,6 +33,7 @@ import cn.ac.ict.cana.R;
 import cn.ac.ict.cana.events.NewHistoryEvent;
 import cn.ac.ict.cana.helpers.ModuleHelper;
 import cn.ac.ict.cana.models.History;
+import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity;
 
 /**
  * Created by zhongxi on 2016/10/19.
@@ -56,8 +57,8 @@ public class CountSimKeyboardActivity extends Activity {
 
     private int[] source;
     private SoundPool pool;
-    private Map<String,Integer> poolMap;
-    private boolean  isLoad;
+    private Map<String, Integer> poolMap;
+    private boolean isLoad;
     public boolean isMusic;
     private Button musicBtn;
     private boolean isNotFull;
@@ -70,11 +71,11 @@ public class CountSimKeyboardActivity extends Activity {
         init();
     }
 
-    public void init(){
+    public void init() {
 
         isMusic = true;
         isNotFull = true;
-        pool = new SoundPool(11, AudioManager.STREAM_MUSIC,0);
+        pool = new SoundPool(11, AudioManager.STREAM_MUSIC, 0);
         poolMap = new HashMap<>();
         source = new int[]{
                 R.raw.counts0,
@@ -90,12 +91,12 @@ public class CountSimKeyboardActivity extends Activity {
                 R.raw.counts_del
         };
 
-        for(int i=0;i<11;i++){
-            poolMap.put("index"+i,pool.load(this,source[i],1));
+        for (int i = 0; i < 11; i++) {
+            poolMap.put("index" + i, pool.load(this, source[i], 1));
         }
         pool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
-            public void onLoadComplete(SoundPool soundPool, int sampleId,int status) {
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
 
                 if (sampleId == poolMap.size()) {
                     isLoad = true;
@@ -107,10 +108,10 @@ public class CountSimKeyboardActivity extends Activity {
         musicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isMusic) {
+                if (isMusic) {
                     musicBtn.setBackgroundResource(R.drawable.count_keymusic_close);
                     isMusic = false;
-                }else{
+                } else {
                     musicBtn.setBackgroundResource(R.drawable.count_keymusic_open);
                     isMusic = true;
                 }
@@ -119,10 +120,10 @@ public class CountSimKeyboardActivity extends Activity {
 
 
         chars = new String[]{
-                "7","8","9",
-                "6","5","4",
-                "3","2","1",
-                "0",getApplicationContext().getString(R.string.count_sim_clear),getApplication().getString(R.string.count_sim_delete)
+                "7", "8", "9",
+                "6", "5", "4",
+                "3", "2", "1",
+                "0", getApplicationContext().getString(R.string.count_sim_clear), getApplication().getString(R.string.count_sim_delete)
         };
 
         Point size = new Point();
@@ -133,8 +134,8 @@ public class CountSimKeyboardActivity extends Activity {
         intent = this.getIntent();
         randomStr = intent.getStringExtra("data");
         version = intent.getStringExtra("version");
-        randomStr = randomStr.substring(0,6);
-        nextet = (TextView)findViewById(R.id.count_simkeyboard_tv);
+        randomStr = randomStr.substring(0, 6);
+        nextet = (TextView) findViewById(R.id.count_simkeyboard_tv);
         nextet.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         nextbtn = (Button) findViewById(R.id.count_simkeyboard_confirmBtn);
         nextbtn.setOnClickListener(new View.OnClickListener() {
@@ -142,21 +143,21 @@ public class CountSimKeyboardActivity extends Activity {
             public void onClick(View view) {
                 String str = nextet.getText().toString().trim();
                 result.add(str);
-                if(str.equals(randomStr)){
+                if (str.equals(randomStr)) {
                     isRight = true;
                     saveAndContinue();
 
-                }else{
-                    if(!isRight) {
+                } else {
+                    if (!isRight) {
                         times++;
-                        if(times >=5){
+                        if (times >= 5) {
                             saveAndContinue();
                         }
                     }
 //                    Toast.makeText(CountSimKeyboardActivity.this, String.format(Locale.CHINA, getString(R.string.count_wrong_answer), times),Toast.LENGTH_SHORT).show();
 
-                    if(times<5){
-                        Toast.makeText(CountSimKeyboardActivity.this,String.format(Locale.CHINA, getString(R.string.count_wrong_answer),times),Toast.LENGTH_SHORT).show();
+                    if (times < 5) {
+                        Toast.makeText(CountSimKeyboardActivity.this, String.format(Locale.CHINA, getString(R.string.count_wrong_answer), times), Toast.LENGTH_SHORT).show();
 
 //                        SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(CountSimKeyboardActivity.this, SweetAlertDialog.WARNING_TYPE)
 //                                .setTitleText(getString(R.string.input_hint))
@@ -179,9 +180,9 @@ public class CountSimKeyboardActivity extends Activity {
         result = new ArrayList<>();
 
 //        confirmBtn = (Button)findViewById(R.id.count_simkeyboard_confirmBtn);
-        tv = (TextView)findViewById(R.id.count_simkeyboard_tv);
-        gridLayout = (GridLayout)findViewById(R.id.coutn_gridlayout_root);
-        for(int i=0;i<chars.length;i++){
+        tv = (TextView) findViewById(R.id.count_simkeyboard_tv);
+        gridLayout = (GridLayout) findViewById(R.id.coutn_gridlayout_root);
+        for (int i = 0; i < chars.length; i++) {
             Button btn = new Button(this);
 //            btn.setTextColor(getResources().getColor(R.color.freebie_9));
             btn.setBackgroundResource(R.drawable.count_key_button_style);
@@ -195,23 +196,22 @@ public class CountSimKeyboardActivity extends Activity {
 //            btn.setBackgroundColor(getResources().getColor(R.color.freebie_2));
 
             btn.setText(chars[i]);
-            if(i>9){
+            if (i > 9) {
                 btn.setTextSize(30);
-            }
-            else{
+            } else {
                 btn.setTextSize(40);
             }
 //            btn.setPadding(5,35,5,35);
-            btn.setOnClickListener(new View.OnClickListener(){
+            btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Button btn = (Button)arg0;
+                    Button btn = (Button) arg0;
 
                     String btnText = btn.getText().toString().trim();
 
-                    if(!isNotFull&&btnText.length()<2){
+                    if (!isNotFull && btnText.length() < 2) {
 
-                        Toast.makeText(CountSimKeyboardActivity.this,getString(R.string.input_full_hint),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CountSimKeyboardActivity.this, getString(R.string.input_full_hint), Toast.LENGTH_SHORT).show();
 //                        SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(CountSimKeyboardActivity.this, SweetAlertDialog.WARNING_TYPE)
 //                                .setTitleText(getString(R.string.input_hint))
 //                                .setContentText(getString(R.string.input_full_hint))
@@ -226,42 +226,42 @@ public class CountSimKeyboardActivity extends Activity {
 //                        sweetAlertDialog.show();
                     }
 
-                    if(isMusic&&isNotFull) {
-                        if(btnText.length()<2){
+                    if (isMusic && isNotFull) {
+                        if (btnText.length() < 2) {
                             pool.play(poolMap.get("index" + String.valueOf(btnText)), 1.0f, 1.0f, 0, 1, 1.0f);
-                        } else{
+                        } else {
                             pool.play(poolMap.get("index" + 10), 1.0f, 1.0f, 0, 1, 1.0f);
                         }
                     }
-                    if(isMusic && !isNotFull){
+                    if (isMusic && !isNotFull) {
                         pool.play(poolMap.get("index" + 10), 1.0f, 1.0f, 0, 1, 1.0f);
                     }
 
                     String str = tv.getText().toString();
-                    if(btnText.equals("删除")||btnText.equals("delete")){
+                    if (btnText.equals("删除") || btnText.equals("delete")) {
                         deleteText(arg0);
                         isNotFull = true;
-                    }else if(btnText.equals("清空")||btnText.equals("clear")){
+                    } else if (btnText.equals("清空") || btnText.equals("clear")) {
                         clearText(arg0);
                         isNotFull = true;
-                    }else{
+                    } else {
 
                         btnText = str.concat(btnText);
                         tv.setText(btnText);
-                        if(btnText.length()>5){
+                        if (btnText.length() > 5) {
                             isNotFull = false;
-                        }else{
+                        } else {
                             isNotFull = true;
                         }
                     }
                 }
 
             });
-            GridLayout.Spec rowSpec = GridLayout.spec(i/3);
-            GridLayout.Spec colSpec = GridLayout.spec(i%3);
-            GridLayout.LayoutParams params = new GridLayout.LayoutParams(rowSpec,colSpec);
+            GridLayout.Spec rowSpec = GridLayout.spec(i / 3);
+            GridLayout.Spec colSpec = GridLayout.spec(i % 3);
+            GridLayout.LayoutParams params = new GridLayout.LayoutParams(rowSpec, colSpec);
             params.setGravity(Gravity.FILL);
-            gridLayout.addView(btn,params);
+            gridLayout.addView(btn, params);
             params.width = oneQuarterWidth;
         }
 
@@ -269,18 +269,18 @@ public class CountSimKeyboardActivity extends Activity {
 
     protected void saveAndContinue() {
         String content = randomStr;
-        if(isRight){
-            content+=";1";
-        }else{
-            content+=";0";
+        if (isRight) {
+            content += ";1";
+        } else {
+            content += ";0";
         }
-        if(version.equals("sound")){
-            content+=";1";
-        }else{
-            content+=";0";
+        if (version.equals("sound")) {
+            content += ";1";
+        } else {
+            content += ";0";
         }
-        for(String x: result){
-            content+=";"+x;
+        for (String x : result) {
+            content += ";" + x;
         }
 
         saveToStorage(content);
@@ -288,7 +288,7 @@ public class CountSimKeyboardActivity extends Activity {
         finish();
     }
 
-    public void saveToStorage(String content){
+    public void saveToStorage(String content) {
         SharedPreferences sharedPreferences = getSharedPreferences("Cana", Context.MODE_PRIVATE);
 //        String uuid = sharedPreferences.getString("selectedUser", "None");
 //        HistoryProvider historyProvider = new HistoryProvider(DataBaseHelper.getInstance(this));
@@ -321,15 +321,16 @@ public class CountSimKeyboardActivity extends Activity {
 //        Toast.makeText(getApplicationContext(), CountEvaluation.evaluation(history),Toast.LENGTH_SHORT).show();
     }
 
-    public void clearText(View v){
+    public void clearText(View v) {
         tv.setText("");
     }
-    public void deleteText(View v){
+
+    public void deleteText(View v) {
         String str = tv.getText().toString().trim();
-        if(str.equals("")){
+        if (str.equals("")) {
             return;
         }
-        str = str.substring(0,str.length()-1);
+        str = str.substring(0, str.length() - 1);
         tv.setText(str);
     }
 
@@ -337,7 +338,7 @@ public class CountSimKeyboardActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                startActivity(new Intent(CountSimKeyboardActivity.this,CountMainActivity.class));
+                startActivity(new Intent(CountSimKeyboardActivity.this, ModelGuideActivity.class));
                 finish();
                 break;
         }

@@ -115,10 +115,8 @@
 
     <Button
         android:id="@+id/bt_begin"
-        style="@style/PrimaryButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        style="@style/BtnControllerStyle"
+        android:layout_marginBottom="10dp"
         android:text="@string/btn_begin" />
 </LinearLayout>
 
