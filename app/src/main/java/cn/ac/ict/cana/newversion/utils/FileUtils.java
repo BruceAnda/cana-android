@@ -27,13 +27,23 @@ public class FileUtils {
     public static List<CountData> countDataList;
 
     // 震颤数据
-    public static List<AccData> accDatalist;
-    public static List<GyroData> gyroDataList;
+    public static List<AccData> tremor_lr_accdatalist;
+    public static List<GyroData> tremor_lr_gyrodatalist;
+
+    public static List<AccData> tremor_lp_accdatalist;
+    public static List<GyroData> tremor_lp_gyrodatalist;
+
+    public static List<AccData> tremor_rr_accdatalist;
+    public static List<GyroData> tremor_rr_gyrodatalist;
+
+    public static List<AccData> tremor_rp_accdatalist;
+    public static List<GyroData> tremor_rp_gyrodatalist;
 
     // 站立平衡
     public static List<AccData> accLDatalist;
-    public static List<AccData> accRDatalist;
     public static List<GyroData> gyroLDataList;
+
+    public static List<AccData> accRDatalist;
     public static List<GyroData> gyroRDataList;
 
     // 行走平衡

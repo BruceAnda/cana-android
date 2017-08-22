@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2016.  Dmitry Malkovich
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -356,5 +355,13 @@
         <item>@color/theme2_primary_color</item>
         <item>@color/theme2_light_color</item>
     </integer-array>
+
+    <color name="mainColor">#44BFFF</color>
+    <color name="mainColor2">#4B8DFF</color>
+    <color name="mainColor3">#389BFA</color>
+    <color name="mainColor4">#749BDE</color>
+    <color name="mainColor5">#FD8080</color>
+    <color name="mainColor6">#FFF173</color>
+    <color name="mainColor7">#FAFC66</color>
 
 </resources>

@@ -11,12 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import cn.ac.ict.cana.R;
 import cn.ac.ict.cana.activities.MainActivity_;
 import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity2;
-import cn.ac.ict.cana.newversion.utils.FileUtils;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class TremorMainActivity extends Activity {
@@ -52,16 +49,12 @@ public class TremorMainActivity extends Activity {
         bt_begin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 if (mp != null) {
                     mp.stop();
                     mp.release();
                     mp = null;
 
                 }
-                FileUtils.accDatalist = new ArrayList<>();
-                FileUtils.gyroDataList = new ArrayList<>();
                 Intent intent = new Intent(TremorMainActivity.this, TremorTestingActivity.class);
                 intent.putExtra("isRight", isRight);
                 intent.putExtra("isStatic", isStatic);

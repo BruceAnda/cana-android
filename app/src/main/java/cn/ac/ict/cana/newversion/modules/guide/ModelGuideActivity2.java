@@ -30,8 +30,17 @@ public class ModelGuideActivity2 extends Activity {
     protected void onResume() {
         super.onResume();
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_TREMOR);
-        FileUtils.accDatalist = new ArrayList<>();
-        FileUtils.gyroDataList = new ArrayList<>();
+        FileUtils.tremor_lr_accdatalist = new ArrayList<>();
+        FileUtils.tremor_lr_gyrodatalist = new ArrayList<>();
+
+        FileUtils.tremor_lp_accdatalist = new ArrayList<>();
+        FileUtils.tremor_lp_gyrodatalist = new ArrayList<>();
+
+        FileUtils.tremor_rr_accdatalist = new ArrayList<>();
+        FileUtils.tremor_rr_gyrodatalist = new ArrayList<>();
+
+        FileUtils.tremor_rp_accdatalist = new ArrayList<>();
+        FileUtils.tremor_rp_gyrodatalist = new ArrayList<>();
     }
 
     public void start(View view) {

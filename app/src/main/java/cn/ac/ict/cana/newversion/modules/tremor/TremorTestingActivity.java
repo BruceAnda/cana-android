@@ -212,7 +212,15 @@ public class TremorTestingActivity extends Activity {
         @Override
         public void onSensorChanged(SensorEvent event) {
             if (start) {
-                FileUtils.accDatalist.add(new AccData(System.currentTimeMillis(), event.values[0], event.values[1], event.values[2]));
+                if (grade == 0) {
+                    FileUtils.tremor_lr_accdatalist.add(new AccData(System.currentTimeMillis(), event.values[0], event.values[1], event.values[2]));
+                } else if (grade == 1) {
+                    FileUtils.tremor_lp_accdatalist.add(new AccData(System.currentTimeMillis(), event.values[0], event.values[1], event.values[2]));
+                } else if (grade == 2) {
+                    FileUtils.tremor_rr_accdatalist.add(new AccData(System.currentTimeMillis(), event.values[0], event.values[1], event.values[2]));
+                } else if (grade == 3) {
+                    FileUtils.tremor_rp_accdatalist.add(new AccData(System.currentTimeMillis(), event.values[0], event.values[1], event.values[2]));
+                }
                /* FloatVector vector = new FloatVector(event.values[0], event.values[1], event.values[2]);
                 accVectors.add(vector);*/
                 pbx.setProgress((int) (event.values[0] * 10));
@@ -232,7 +240,15 @@ public class TremorTestingActivity extends Activity {
         @Override
         public void onSensorChanged(SensorEvent event) {
             if (start) {
-                FileUtils.gyroDataList.add(new GyroData(System.currentTimeMillis(), event.values[0], event.values[1], event.values[2]));
+                if (grade == 0) {
+                    FileUtils.tremor_lr_gyrodatalist.add(new GyroData(System.currentTimeMillis(), event.values[0], event.values[1], event.values[2]));
+                } else if (grade == 1) {
+                    FileUtils.tremor_lp_gyrodatalist.add(new GyroData(System.currentTimeMillis(), event.values[0], event.values[1], event.values[2]));
+                } else if (grade == 2) {
+                    FileUtils.tremor_rr_gyrodatalist.add(new GyroData(System.currentTimeMillis(), event.values[0], event.values[1], event.values[2]));
+                } else if (grade == 3) {
+                    FileUtils.tremor_rp_gyrodatalist.add(new GyroData(System.currentTimeMillis(), event.values[0], event.values[1], event.values[2]));
+                }
                 /*FloatVector gyroVector = new FloatVector(event.values[0], event.values[1], event.values[2]);
                 gyroVectors.add(gyroVector);*/
             }

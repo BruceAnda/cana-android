@@ -68,11 +68,6 @@ public class StandMainActivity extends Activity {
 
                 }
 
-                FileUtils.accLDatalist = new ArrayList<AccData>();
-                FileUtils.accRDatalist = new ArrayList<AccData>();
-                FileUtils.gyroLDataList = new ArrayList<GyroData>();
-                FileUtils.gyroRDataList = new ArrayList<GyroData>();
-
                 Intent intent = new Intent(StandMainActivity.this, StandTestingActivity.class);
                 intent.putExtra("isRight", isRight);
                 intent.putExtra("level", level);

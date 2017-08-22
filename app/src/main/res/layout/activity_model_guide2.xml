@@ -1,52 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/freebie_9"
+    android:gravity="center_horizontal"
     android:keepScreenOn="true"
+    android:orientation="vertical"
     tools:context="cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="2.震颤情况，此部分将检测您的手部震颤情况，分别检测左手和右手的静止性震颤和动作性震颤，点击开始进入本测试。"
-        android:textSize="28sp" />
+        style="@style/GuideTitle"
+        android:text="2.震颤检测" />
 
-    <Button
-        android:id="@+id/btn_next_test"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:background="@color/freebie_2"
-        android:onClick="next"
-        android:text="跳过本项测试"
-        android:textColor="@color/material_light_white" />
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_pre_test"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_above="@id/btn_next_test"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:background="@color/freebie_2"
-        android:onClick="pre"
-        android:text="返回上一项测试"
-        android:textColor="@color/material_light_white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="本环节分为四个部分，请根据提示完成相应动作并尽量保持静止。开始之前，请您找到一把椅子并坐下。准备好后点击进入测试。"
+            android:textSize="28sp" />
 
-    <Button
-        android:id="@+id/btn_start_test"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_above="@id/btn_pre_test"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:background="@color/freebie_2"
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/guide2" />
+    </LinearLayout>
+
+
+    <TextView
+        style="@style/BtnControllerStyle"
         android:onClick="start"
-        android:text="开始检测"
-        android:textColor="@color/material_light_white" />
-</RelativeLayout>
+        android:text="开始检测" />
+
+    <TextView
+        style="@style/BtnControllerStyle"
+        android:onClick="pre"
+        android:text="返回上一项测试" />
+
+    <TextView
+        style="@style/BtnControllerStyle"
+        android:onClick="next"
+        android:layout_marginBottom="10dp"
+        android:text="跳过本项测试" />
+</LinearLayout>

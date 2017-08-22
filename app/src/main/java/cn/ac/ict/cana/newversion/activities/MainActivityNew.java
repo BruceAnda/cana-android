@@ -73,7 +73,8 @@ public class MainActivityNew extends YouMengBaseActivity {
         timer = new Timer(false);
         viewPager.setAdapter(mMainAdapterNew);
         //   callArrayList = new ArrayList<>();
-        int color = Color.parseColor("#68BED9");
+        //int color = Color.parseColor("#68BED9");
+        int color = getResources().getColor(R.color.mainColor2);
 
         final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
         models.add(
@@ -90,13 +91,6 @@ public class MainActivityNew extends YouMengBaseActivity {
                 ).title(getResources().getString(R.string.page_user))
                         .build()
         );
-    /*    models.add(
-                new NavigationTabBar.Model.Builder(
-                        ContextCompat.getDrawable(this, R.drawable.ic_history),
-                        color
-                ).title(getResources().getString(R.string.page_char))
-                        .build()
-        );*/
         models.add(
                 new NavigationTabBar.Model.Builder(
                         ContextCompat.getDrawable(this, R.drawable.ic_history),
@@ -224,14 +218,14 @@ public class MainActivityNew extends YouMengBaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-       // DuaActivityProfile duaActivityProfile = (DuaActivityProfile) mactivityManager.getActivity("one");
-      //  duaActivityProfile.onActivityResult(requestCode, resultCode, data);
+        // DuaActivityProfile duaActivityProfile = (DuaActivityProfile) mactivityManager.getActivity("one");
+        //  duaActivityProfile.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-       // DuaActivityProfile duaActivityProfile = (DuaActivityProfile) mactivityManager.getActivity("one");
-       // duaActivityProfile.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // DuaActivityProfile duaActivityProfile = (DuaActivityProfile) mactivityManager.getActivity("one");
+        // duaActivityProfile.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

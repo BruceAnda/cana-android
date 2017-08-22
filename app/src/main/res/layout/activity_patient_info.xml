@@ -201,11 +201,7 @@
 
         <Button
             android:id="@+id/btn_save"
-            style="@style/PrimaryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/BtnControllerStyle"
             android:text="开始测试" />
-
     </LinearLayout>
-
 </ScrollView>

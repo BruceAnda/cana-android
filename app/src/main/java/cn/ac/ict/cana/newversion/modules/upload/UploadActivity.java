@@ -22,6 +22,7 @@ import com.lovearthstudio.duasdk.Dua;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import cn.ac.ict.cana.R;
@@ -178,6 +179,14 @@ public class UploadActivity extends Activity {
                         mHandler.sendEmptyMessage(CODE_UPLOAD);
                     } else {
                         mHandler.sendEmptyMessage(CODE_UPLOAD_FINISH);
+                    }
+                    File file = new File(history.filePath);
+                    if (file.exists()) {
+                        file.delete();
+                    }
+                    File file1 = new File(history.filePath.substring(0, history.filePath.lastIndexOf(".")));
+                    if (file1.exists()) {
+                        file1.delete();
                     }
                     history.isUpload = true;
                     historyProvider.updateHistory(history);

@@ -23,6 +23,7 @@ import com.alibaba.fastjson.JSON
 import com.lovearthstudio.duasdk.Dua
 import com.lovearthstudio.duasdk.util.encryption.MD5
 import kotlinx.android.synthetic.main.activity_feed_back.*
+import org.jetbrains.anko.doAsync
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -100,101 +101,163 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                     insertDB(data)
                 }
 
-                // 记忆模块
+                // 数字记忆
                 if (ModuleHelper.MODULE_COUNT.equals(modelName)) {
-                    var jo = JSONObject()
-                    jo.put("data", JSON.toJSONString(FileUtils.countDataList))
-                    val toString = jo.toString()
-                    println("countData:" + toString)
-                    FileUtils.writeToFile(toString)
-
-                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
-
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入震颤测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                        // 进入下一项测试，保存数据
                         startActivity(Intent(this, ModelGuideActivity2::class.java))
-                        finish()
+                        doAsync {
+                            var jo = JSONObject()
+                            jo.put("data", JSON.toJSONString(FileUtils.countDataList))
+                            val toString = jo.toString()
+                            println("countData:" + toString)
+                            FileUtils.writeToFile(toString)
+
+                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+
+                            finish()
+                        }
                     }).setCancelable(false).show()
+                    // 震颤
                 } else if (ModuleHelper.MODULE_TREMOR.equals(modelName)) {
                     val grade = intent.getIntExtra("grade", 0)
-                    var jo = JSONObject()
-                    jo.put("type", mTremors[grade - 1])
-                    var data = JSONObject()
-                    data.put("acc", JSON.toJSONString(FileUtils.accDatalist))
-                    data.put("gyro", JSON.toJSONString(FileUtils.gyroDataList))
-                    jo.put("data", data.toString())
-                    FileUtils.writeToFile(jo.toString())
-
-                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
-
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage(mTermorsTitle[grade - 1]).setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         if (grade < 4) {
                             val intent = Intent(this, TremorMainActivity::class.java)
                             intent.putExtra("grade", grade)
                             startActivity(intent)
                         } else {
+                            // 进入下一项测试，保存数据
                             startActivity(Intent(this, ModelGuideActivity3::class.java))
+                            doAsync {
+                                var jo = JSONObject()
+
+                                var tremorLrData = JSONObject()
+                                tremorLrData.put("type", mTremors[0])
+                                tremorLrData.put("acc", JSON.toJSONString(FileUtils.tremor_lr_accdatalist))
+                                tremorLrData.put("gyro", JSON.toJSONString(FileUtils.tremor_lr_gyrodatalist))
+
+                                var tremorLpData = JSONObject()
+                                tremorLpData.put("type", mTremors[1])
+                                tremorLpData.put("acc", JSON.toJSONString(FileUtils.tremor_lp_accdatalist))
+                                tremorLpData.put("gyro", JSON.toJSONString(FileUtils.tremor_lp_gyrodatalist))
+
+                                var tremorRrData = JSONObject()
+                                tremorRrData.put("type", mTremors[2])
+                                tremorRrData.put("acc", JSON.toJSONString(FileUtils.tremor_rr_accdatalist))
+                                tremorRrData.put("gyro", JSON.toJSONString(FileUtils.tremor_rr_gyrodatalist))
+
+                                var tremorRpData = JSONObject()
+                                tremorRpData.put("type", mTremors[3])
+                                tremorRpData.put("acc", JSON.toJSONString(FileUtils.tremor_rp_accdatalist))
+                                tremorRpData.put("gyro", JSON.toJSONString(FileUtils.tremor_rp_gyrodatalist))
+
+                                var data = JSONObject()
+                                data.put(mTremors[0], tremorLrData.toString())
+                                data.put(mTremors[1], tremorLpData.toString())
+                                data.put(mTremors[2], tremorRrData.toString())
+                                data.put(mTremors[3], tremorRpData.toString())
+
+                                jo.put("data", data.toString())
+
+                                FileUtils.writeToFile(jo.toString())
+
+                                GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            }
                         }
                         finish()
                     }).setCancelable(false).show()
+                    // 语言能力
                 } else if (ModuleHelper.MODULE_SOUND.equals(modelName)) {
 
-                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入站立平衡检测").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         startActivity(Intent(this, ModelGuideActivity4::class.java))
-                        finish()
+                        doAsync {
+                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            finish()
+                        }
                     }).setCancelable(false).show()
+                    // 单腿站立
                 } else if (ModuleHelper.MODULE_STAND.equals(modelName)) {
-                    var jo = JSONObject()
-                    jo.put("type", mStands[0])
-                    var data = JSONObject()
-                    data.put("acc", JSON.toJSONString(FileUtils.accLDatalist))
-                    data.put("gyro", JSON.toJSONString(FileUtils.gyroLDataList))
-                    jo.put("type", mStands[1])
-                    data.put("acc", JSON.toJSONString(FileUtils.accRDatalist))
-                    data.put("gyro", JSON.toJSONString(FileUtils.gyroRDataList))
-                    jo.put("data", data.toString())
-                    FileUtils.writeToFile(jo.toString())
 
-                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
 
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入行走平衡测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         startActivity(Intent(this, ModelGuideActivity5::class.java))
+                        doAsync {
+                            var jo = JSONObject()
+                            var standL = JSONObject()
+                            standL.put("type", mStands[0])
+                            standL.put("acc", JSON.toJSONString(FileUtils.accLDatalist))
+                            standL.put("gyro", JSON.toJSONString(FileUtils.gyroLDataList))
+
+                            var standR = JSONObject()
+                            standR.put("type", mStands[1])
+                            standR.put("acc", JSON.toJSONString(FileUtils.accRDatalist))
+                            standR.put("gyro", JSON.toJSONString(FileUtils.gyroRDataList))
+
+                            var data = JSONObject()
+                            data.put("Stand_L", standL.toString())
+                            data.put("Stand_R", standR.toString())
+
+                            jo.put("data", data.toString())
+                            FileUtils.writeToFile(jo.toString())
+
+                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            finish()
+                        }
                     }).setCancelable(false).show()
+                    // 行走平衡
                 } else if (ModuleHelper.MODULE_STRIDE.equals(modelName)) {
-                    var jo: JSONObject = JSONObject()
-                    jo.put("type", "Stride")
-                    var data: JSONObject = JSONObject()
-                    data.put("acc", JSON.toJSONString(FileUtils.accSDatalist))
-                    data.put("gyro", JSON.toJSONString(FileUtils.gyroSDataList))
-                    jo.put("data", data.toString())
-                    FileUtils.writeToFile(jo.toString())
-
-                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
-
-
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入手指灵敏测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         startActivity(Intent(this, ModelGuideActivity6::class.java))
-                        finish()
+                        doAsync {
+                            var jo = JSONObject()
+                            jo.put("type", "Stride")
+                            var data = JSONObject()
+                            data.put("acc", JSON.toJSONString(FileUtils.accSDatalist))
+                            data.put("gyro", JSON.toJSONString(FileUtils.gyroSDataList))
+                            jo.put("data", data.toString())
+                            FileUtils.writeToFile(jo.toString())
+
+                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+
+                            finish()
+                        }
                     }).setCancelable(false).show()
+                    // 手指灵敏
                 } else if (ModuleHelper.MODULE_TAPPER.equals(modelName)) {
-                    var jo: JSONObject = JSONObject()
-                    jo.put("type", mTappers[0])
-                    jo.put("data", JSON.toJSONString(FileUtils.tapperLDatas))
-                    jo.put("type", mTappers[1])
-                    jo.put("data", JSON.toJSONString(FileUtils.tapperRDatas))
-                    FileUtils.writeToFile(jo.toString())
-
-                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
-
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入面部表情测试。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         startActivity(Intent(this, ModelGuideActivity7::class.java))
-                    }).setCancelable(false).show()
-                } else if (ModuleHelper.MODULE_FACE.equals(modelName)) {
+                        doAsync {
+                            var jo = JSONObject()
+                            var tapperL = JSONObject()
+                            tapperL.put("type", mTappers[0])
+                            tapperL.put("data", JSON.toJSONString(FileUtils.tapperLDatas))
 
-                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            var tapperR = JSONObject()
+                            tapperR.put("type", mTappers[1])
+                            tapperR.put("data", JSON.toJSONString(FileUtils.tapperRDatas))
+
+                            var data = JSONObject()
+                            data.put(mTappers[0], tapperL)
+                            data.put(mTappers[1], tapperR)
+                            jo.put("data", data)
+
+                            FileUtils.writeToFile(jo.toString())
+
+                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            finish()
+                        }
+                    }).setCancelable(false).show()
+                    // 面部表情
+                } else if (ModuleHelper.MODULE_FACE.equals(modelName)) {
 
                     AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("恭喜你完成了测试，请上传数据我们会对您的康复情况进行分析。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                         startActivity(Intent(this, UploadActivity::class.java))
+                        doAsync {
+                            GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+                            finish()
+                        }
                     }).setCancelable(false).show()
                 }
             }
