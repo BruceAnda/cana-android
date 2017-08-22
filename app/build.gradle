@@ -45,6 +45,8 @@ dependencies {
     compile project(':libraries:ColorDialog')
     compile project(':libraries:uploadfile')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    compile "org.jetbrains.anko:anko-sqlite:$anko_version"
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
@@ -63,11 +65,9 @@ dependencies {
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.github.hotchemi:permissionsdispatcher:2.3.2'
     compile 'com.pgyersdk:sdk:2.5.6'
+    compile 'com.alibaba:fastjson:1.1.59.android'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.2'
     provided 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'com.alibaba:fastjson:1.1.59.android'
-
-    compile "org.jetbrains.anko:anko-sqlite:$anko_version"
 }
 repositories {
     mavenCentral()

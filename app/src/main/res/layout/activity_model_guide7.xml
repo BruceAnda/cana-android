@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="6.手指灵敏,请根据提示分别用左手和右手完成"
+        android:text="7.面部表情"
         android:textSize="28sp" />
 
     <Button
@@ -23,7 +23,7 @@
         android:layout_marginBottom="20dp"
         android:background="@color/freebie_2"
         android:onClick="next"
-        android:text="跳过本项测试"
+        android:text="完成测试"
         android:textColor="@color/material_light_white" />
 
     <Button

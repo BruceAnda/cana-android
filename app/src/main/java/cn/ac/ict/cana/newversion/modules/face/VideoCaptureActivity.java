@@ -17,9 +17,7 @@
 package cn.ac.ict.cana.newversion.modules.face;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.media.ThumbnailUtils;
@@ -41,7 +39,8 @@ import java.util.TimerTask;
 
 import cn.ac.ict.cana.R;
 import cn.ac.ict.cana.helpers.ModuleHelper;
-import cn.ac.ict.cana.models.History;
+import cn.ac.ict.cana.newversion.activities.FeedBackActivity;
+import cn.ac.ict.cana.newversion.modules.count.CountMainActivity;
 import cn.ac.ict.cana.newversion.modules.face.camera.CameraWrapper;
 import cn.ac.ict.cana.newversion.modules.face.camera.NativeCamera;
 import cn.ac.ict.cana.newversion.modules.face.configuration.CaptureConfiguration;
@@ -50,6 +49,7 @@ import cn.ac.ict.cana.newversion.modules.face.recorder.VideoRecorder;
 import cn.ac.ict.cana.newversion.modules.face.recorder.VideoRecorderInterface;
 import cn.ac.ict.cana.newversion.modules.face.view.RecordingButtonInterface;
 import cn.ac.ict.cana.newversion.modules.face.view.VideoCaptureView;
+import cn.ac.ict.cana.newversion.utils.FileUtils;
 
 public class VideoCaptureActivity extends Activity implements RecordingButtonInterface, VideoRecorderInterface {
 
@@ -217,23 +217,19 @@ public class VideoCaptureActivity extends Activity implements RecordingButtonInt
 //        if (mVideoRecorder != null) {
 //            mVideoRecorder.stopRecording(null);
 //        }
-        if(mp1!=null)
-        {
+        if (mp1 != null) {
             mp1.stop();
             mp1 = null;
         }
-        if(mp2!=null)
-        {
+        if (mp2 != null) {
             mp2.stop();
             mp2 = null;
         }
-        if(mp3!=null)
-        {
+        if (mp3 != null) {
             mp3.stop();
             mp3 = null;
         }
-        if(timer!=null)
-        {
+        if (timer != null) {
             timer.cancel();
             timer = null;
         }
@@ -244,7 +240,7 @@ public class VideoCaptureActivity extends Activity implements RecordingButtonInt
 
     @Override
     public void onRecordButtonClicked() {
-        Log.d("ddd","recordbtn");
+        Log.d("ddd", "recordbtn");
         try {
             mVideoRecorder.toggleRecording();
         } catch (AlreadyUsedException e) {
@@ -291,15 +287,19 @@ public class VideoCaptureActivity extends Activity implements RecordingButtonInt
 
     public void finishCompleted() {
         saveToStorage();
-        Intent intent = new Intent(VideoCaptureActivity.this, ModuleHelper.getActivityAfterExam());
+        /*Intent intent = new Intent(VideoCaptureActivity.this, ModuleHelper.getActivityAfterExam());
+        startActivity(intent);
+        finish();*/
+
+        Intent intent = new Intent(VideoCaptureActivity.this, FeedBackActivity.class);
+        intent.putExtra("modelName", ModuleHelper.MODULE_FACE);
         startActivity(intent);
         finish();
     }
 
     private void finishCancelled() {
         //this.setResult(RESULT_CANCELED);
-        if(mVideoFile!=null)
-        {
+        if (mVideoFile != null) {
             mVideoFile.delete();
         }
         finish();
@@ -364,13 +364,19 @@ public class VideoCaptureActivity extends Activity implements RecordingButtonInt
     }
 
     public void saveToStorage() {
-        SharedPreferences sharedPreferences = getSharedPreferences("Cana", Context.MODE_PRIVATE);
-        String filePath = History.getFilePath(this, ModuleHelper.MODULE_FACE);
-        mVideoFile.saveTo(filePath);
+        // SharedPreferences sharedPreferences = getSharedPreferences("Cana", Context.MODE_PRIVATE);
+        //String filePath = History.getFilePath(this, ModuleHelper.MODULE_FACE);
+        mVideoFile.saveTo(FileUtils.filePath);
 
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("HistoryFilePath", filePath);
-        editor.apply();
+        // SharedPreferences.Editor editor = sharedPreferences.edit();
+        // editor.putString("HistoryFilePath", filePath);
+        // editor.apply();
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, FaceMainActivity.class));
+        finish();
     }
 }

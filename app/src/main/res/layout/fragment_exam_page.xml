@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="\n1.数字记忆 \n2.震颤情况 \n3.语言能力 \n4.站立平衡 \n5.行走平衡 \n6.手指灵敏\n"
+        android:text="\n1.数字记忆 \n2.震颤情况 \n3.语言能力 \n4.站立平衡 \n5.行走平衡 \n6.手指灵敏 \n7.面部表情"
         android:textSize="28sp" />
 
     <Button

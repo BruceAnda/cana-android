@@ -1,41 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/main"
-    android:keepScreenOn="true"
     android:background="@color/freebie_9"
-    android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
     android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
-    android:paddingTop="@dimen/material_component_cards_primary_title_top_padding"
-    >
+    android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingTop="@dimen/material_component_cards_primary_title_top_padding">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:text="@string/module_face"
-            android:textColor="@color/freebie_4"
-            android:textSize="@dimen/material_component_text_title_text_size" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:text="面部表情"
+        android:textColor="@color/freebie_4"
+        android:textSize="@dimen/material_component_text_title_text_size" />
 
-        <TextView
-            style="@style/module_main_page"
-            android:text="@string/face_tips"
-            android:textColor="@color/freebie_6" />
+    <TextView
+        style="@style/module_main_page"
+        android:text="@string/face_tips"
+        android:textColor="@color/freebie_6" />
+
     <ImageView
-        android:src="@drawable/face"
         style="@style/module_images"
         android:contentDescription="@string/module_face"
-        />
+        android:src="@drawable/face" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id = "@+id/bt_begin"
-            android:text="@string/btn_continue"
-            style="@style/PrimaryButton"/>
-    </LinearLayout>
+    <Button
+        android:id="@+id/bt_begin"
+        style="@style/PrimaryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_continue" />
+</LinearLayout>
 

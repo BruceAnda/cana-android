@@ -76,8 +76,9 @@ public class UploadActivity extends Activity {
     private TextView tv_stand;
     private TextView tv_stride;
     private TextView tv_tapper;
+    private TextView tv_face;
 
-    private int numCount, numTremor, numSound, numStand, numStride, numTapper;
+    private int numCount, numTremor, numSound, numStand, numStride, numTapper, numFace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class UploadActivity extends Activity {
         tv_stand = (TextView) findViewById(R.id.tv_stand);
         tv_stride = (TextView) findViewById(R.id.tv_stride);
         tv_tapper = (TextView) findViewById(R.id.tv_tapper);
+        tv_face = (TextView) findViewById(R.id.tv_face);
 
         historyProvider = new HistoryProvider(DataBaseHelper.getInstance(this));
         histories = historyProvider.getHistoriesNoUpLoad();
@@ -109,6 +111,8 @@ public class UploadActivity extends Activity {
                 numStride++;
             } else if (history.type.equals(ModuleHelper.MODULE_TAPPER)) {
                 numTapper++;
+            } else if (history.type.endsWith(ModuleHelper.MODULE_FACE)) {
+                numFace++;
             }
         }
         tv_count.setText("数字记忆(" + numCount + ")");
@@ -117,6 +121,7 @@ public class UploadActivity extends Activity {
         tv_stand.setText("站立平衡(" + numStand + ")");
         tv_stride.setText("行走平衡(" + numStride + ")");
         tv_tapper.setText("手指灵敏(" + numTapper + ")");
+        tv_face.setText("面部表情(" + numFace + ")");
     }
 
     public void upload(View view) {

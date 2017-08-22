@@ -36,7 +36,7 @@ public class ModuleHelper {
     public final static String MODULE_TAPPER = "Tapper";
     public final static String MODULE_TREMOR = "Tremor";
 
-    public final static ArrayList<String> ModuleList = new ArrayList<>(Arrays.asList(MODULE_COUNT, MODULE_TREMOR, MODULE_SOUND, MODULE_STAND, MODULE_STRIDE, MODULE_TAPPER));
+    public final static ArrayList<String> ModuleList = new ArrayList<>(Arrays.asList(MODULE_COUNT, MODULE_TREMOR, MODULE_SOUND, MODULE_STAND, MODULE_STRIDE, MODULE_TAPPER, MODULE_FACE));
 
     public static String getName(Context context, String moduleName) {
         if (null == moduleName) {
@@ -55,6 +55,8 @@ public class ModuleHelper {
                 return context.getString(R.string.module_stride);
             case MODULE_TAPPER:
                 return context.getString(R.string.module_tapper);
+            case MODULE_FACE:
+                return "面部表情";
             default:
                 return "";
         }

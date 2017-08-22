@@ -48,8 +48,7 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                         .setTitleText(getString(R.string.are_you_sure))
                         .setContentText(getString(R.string.cannot_recover))
                         .setConfirmText(getString(R.string.btn_cancel))
-                        .setConfirmClickListener {
-                            sDialog ->
+                        .setConfirmClickListener { sDialog ->
                             sDialog.dismissWithAnimation()
                         }
                         .setCancelText(resources.getText(R.string.btn_discard).toString())
@@ -182,6 +181,13 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                     jo.put("type", mTappers[1])
                     jo.put("data", JSON.toJSONString(FileUtils.tapperRDatas))
                     FileUtils.writeToFile(jo.toString())
+
+                    GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
+
+                    AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入面部表情测试。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                        startActivity(Intent(this, ModelGuideActivity7::class.java))
+                    }).setCancelable(false).show()
+                } else if (ModuleHelper.MODULE_FACE.equals(modelName)) {
 
                     GzipUtil.compressForZip(FileUtils.filePath, FileUtils.filePath + ".gz")
 

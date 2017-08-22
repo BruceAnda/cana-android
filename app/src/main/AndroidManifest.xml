@@ -281,6 +281,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActBar.FullScreen" />
         <activity
+            android:name=".newversion.modules.guide.ModelGuideActivity7"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActBar.FullScreen" />
+        <activity
             android:name=".newversion.modules.upload.UploadActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
@@ -295,7 +299,9 @@
             android:name=".newversion.activities.FeedBackActivity"
             android:theme="@style/AppThemeNoActBar.FullScreen" />
         <activity android:name=".newversion.activities.MainActivityNew" />
-        <activity android:name=".newversion.activities.PatientInfoActivity"></activity>
+        <activity android:name=".newversion.activities.PatientInfoActivity" />
+        <activity android:name=".newversion.modules.face.FaceMainActivity" />
+        <activity android:name=".newversion.modules.face.VideoCaptureActivity" />
     </application>
 
 </manifest>
