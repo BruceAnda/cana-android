@@ -24,6 +24,12 @@ public class ModelGuideActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_model_guide);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_COUNT);
         FileUtils.countDataList = new ArrayList<>();
     }

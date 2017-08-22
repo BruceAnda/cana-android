@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
+import java.util.ArrayList;
+
 import cn.ac.ict.cana.R;
 import cn.ac.ict.cana.helpers.ModuleHelper;
 import cn.ac.ict.cana.newversion.mode.History;
@@ -22,7 +24,16 @@ public class ModelGuideActivity4 extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_model_guide4);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_STAND);
+        FileUtils.accLDatalist = new ArrayList<>();
+        FileUtils.accRDatalist = new ArrayList<>();
+        FileUtils.gyroLDataList = new ArrayList<>();
+        FileUtils.gyroRDataList = new ArrayList<>();
     }
 
     public void start(View view) {

@@ -100,7 +100,7 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
 
                 // 记忆模块
                 if (ModuleHelper.MODULE_COUNT.equals(modelName)) {
-                    var jo: JSONObject = JSONObject()
+                    var jo = JSONObject()
                     jo.put("data", JSON.toJSONString(FileUtils.countDataList))
                     val toString = jo.toString()
                     println("countData:" + toString)

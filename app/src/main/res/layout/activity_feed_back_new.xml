@@ -150,7 +150,7 @@
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp"
                     android:prompt="@string/pd_level"
-                    android:spinnerMode="dropdown"></Spinner>
+                    android:spinnerMode="dropdown"/>
 
             </LinearLayout>
         </LinearLayout>

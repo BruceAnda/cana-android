@@ -294,14 +294,24 @@
             android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".newversion.activities.FeedBackActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActBar.FullScreen" />
-        <activity android:name=".newversion.activities.MainActivityNew" />
-        <activity android:name=".newversion.activities.PatientInfoActivity" />
-        <activity android:name=".newversion.modules.face.FaceMainActivity" />
-        <activity android:name=".newversion.modules.face.VideoCaptureActivity" />
+        <activity
+            android:name=".newversion.activities.MainActivityNew"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.activities.PatientInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.modules.face.FaceMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.modules.face.VideoCaptureActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

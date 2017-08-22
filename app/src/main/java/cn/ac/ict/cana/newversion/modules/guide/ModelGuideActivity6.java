@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import cn.ac.ict.cana.R;
 import cn.ac.ict.cana.helpers.ModuleHelper;
 import cn.ac.ict.cana.newversion.mode.History;
-import cn.ac.ict.cana.newversion.mode.TapperData;
 import cn.ac.ict.cana.newversion.modules.tapper.TapperMainActivity;
 import cn.ac.ict.cana.newversion.utils.FileUtils;
 
@@ -26,10 +25,16 @@ public class ModelGuideActivity6 extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_model_guide6);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_TAPPER);
 
-        FileUtils.tapperLDatas = new ArrayList<TapperData>();
-        FileUtils.tapperRDatas = new ArrayList<TapperData>();
+        FileUtils.tapperLDatas = new ArrayList();
+        FileUtils.tapperRDatas = new ArrayList();
     }
 
     public void start(View view) {
