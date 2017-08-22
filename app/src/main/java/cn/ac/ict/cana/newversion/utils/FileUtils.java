@@ -21,6 +21,7 @@ public class FileUtils {
     public static String PATIENT_SEX = "";
     public static String PATIENT_AGE = "";
     public static String PATIENT_MEDICINE = "";
+    public static String SWITCHING_PERIOD = "";
 
     // 记忆数据
     public static List<CountData> countDataList;

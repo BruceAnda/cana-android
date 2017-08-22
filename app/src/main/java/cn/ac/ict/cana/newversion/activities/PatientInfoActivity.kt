@@ -19,8 +19,9 @@ import kotlinx.android.synthetic.main.activity_patient_info.*
 class PatientInfoActivity : Activity() {
 
     private val sex = arrayOf("男", "女")
+    private val open = arrayOf("关", "开")
 
-    private val mONItemSelectListener = object : AdapterView.OnItemSelectedListener {
+    private val mOnSexItemSelectListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(p0: AdapterView<*>?) {
             //  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
@@ -28,7 +29,18 @@ class PatientInfoActivity : Activity() {
         override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
             // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             FileUtils.PATIENT_SEX = sex[p2]
-            println(sex[p2])
+        }
+
+    }
+
+    private val mOnOpenSexItemSelectListener = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+            //  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            FileUtils.SWITCHING_PERIOD = open[p2]
         }
 
     }
@@ -43,8 +55,11 @@ class PatientInfoActivity : Activity() {
 
         // 性别默认为男
         FileUtils.PATIENT_SEX = sex[0]
+        // 开关期
+        FileUtils.SWITCHING_PERIOD = open[0]
 
-        spinner_patient_sex.onItemSelectedListener = mONItemSelectListener
+        spinner_patient_sex.onItemSelectedListener = mOnSexItemSelectListener
+        spinner_patient_open.onItemSelectedListener = mOnOpenSexItemSelectListener
 
         btn_save.setOnClickListener {
             val patient_name = edittext_patient_name.text?.toString()

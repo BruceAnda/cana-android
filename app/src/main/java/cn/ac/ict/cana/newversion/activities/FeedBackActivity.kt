@@ -82,6 +82,7 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                                     "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                                     "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                                     "\"patient_medicine\":\"${FileUtils.PATIENT_MEDICINE}\"," +
+                                    "\"switching_period\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                                     "\"file\":\"${fileName}\"}"
                             insertDB(data)
                         }
@@ -94,6 +95,7 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_medicine\":\"${FileUtils.PATIENT_MEDICINE}\"," +
+                            "\"switching_period\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"file\":\"${fileName}\"}"
                     insertDB(data)
                 }
@@ -114,9 +116,9 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                     }).setCancelable(false).show()
                 } else if (ModuleHelper.MODULE_TREMOR.equals(modelName)) {
                     val grade = intent.getIntExtra("grade", 0)
-                    var jo: JSONObject = JSONObject()
+                    var jo = JSONObject()
                     jo.put("type", mTremors[grade - 1])
-                    var data: JSONObject = JSONObject()
+                    var data = JSONObject()
                     data.put("acc", JSON.toJSONString(FileUtils.accDatalist))
                     data.put("gyro", JSON.toJSONString(FileUtils.gyroDataList))
                     jo.put("data", data.toString())
@@ -142,9 +144,9 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                         finish()
                     }).setCancelable(false).show()
                 } else if (ModuleHelper.MODULE_STAND.equals(modelName)) {
-                    var jo: JSONObject = JSONObject()
+                    var jo = JSONObject()
                     jo.put("type", mStands[0])
-                    var data: JSONObject = JSONObject()
+                    var data = JSONObject()
                     data.put("acc", JSON.toJSONString(FileUtils.accLDatalist))
                     data.put("gyro", JSON.toJSONString(FileUtils.gyroLDataList))
                     jo.put("type", mStands[1])
