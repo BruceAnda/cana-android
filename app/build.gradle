@@ -37,6 +37,7 @@ dependencies {
     compile rootProject.ext.dependencies["glide"]
     compile rootProject.ext.dependencies["InternationalPhoneInput"]
     compile rootProject.ext.dependencies["duasdk"]
+    compile rootProject.ext.dependencies["cardview"]
     compile rootProject.ext.dependencies["android-image-cropper"]
     compile rootProject.ext.dependencies["eventbus"]
     compile rootProject.ext.dependencies["easypermissions"]
@@ -45,7 +46,6 @@ dependencies {
     compile project(':libraries:ColorDialog')
     compile project(':libraries:uploadfile')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
     compile "org.jetbrains.anko:anko-sqlite:$anko_version"
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.2.1'

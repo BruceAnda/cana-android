@@ -61,12 +61,12 @@
     <!-- 定义一个横跨4列的按钮 -->
     <TextView
         android:id="@+id/count_simkeyboard_confirmBtn"
-        style="@style/BtnControllerStyle"
+        style="@style/BtnControllerOrangeStyle"
         android:text="确定" />
 
     <TextView
         android:id="@+id/btn_continue"
-        style="@style/BtnControllerStyle"
+        style="@style/BtnControllerOrangeStyle"
         android:layout_marginBottom="10dp"
         android:onClick="next"
         android:text="无法记住,跳过本项测试" />

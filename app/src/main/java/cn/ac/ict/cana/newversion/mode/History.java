@@ -11,14 +11,17 @@ import static java.util.UUID.randomUUID;
  */
 public class History {
     public long id;
-    public final Long userid;
-    public final String type;
+    public Long userid;
+    public String type;
     public String filePath;
     public boolean isUpload;
     public String createdTime;
     public String mark;
     public String level;
     public String ext;
+
+    public History() {
+    }
 
     public History(Long userid, String historyType, String filePath) {
         this.userid = userid;

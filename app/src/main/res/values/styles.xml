@@ -135,22 +135,38 @@
         <item name="background">@android:color/white</item>
     </style>
 
-    <style name="BtnControllerStyle">
+    <!-- 操作按钮的样式 -->
+    <style name="BtnControllerOrangeStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginLeft">@dimen/btn_margin_left</item>
         <item name="android:layout_marginRight">@dimen/btn_margin_right</item>
-        <item name="android:background">@drawable/btn_controller_bg</item>
+        <item name="android:background">@drawable/btn_controller_orange_bg</item>
         <item name="android:textColor">@color/material_light_white</item>
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="BtnContrllerWhileStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">@dimen/btn_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/btn_margin_right</item>
+        <item name="android:background">@drawable/btn_controller_white_bg</item>
+        <item name="android:textColor">@color/mainColor</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <!-- 引导页标题的样式 -->
     <style name="GuideTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">40dp</item>
         <item name="android:textSize">30sp</item>
     </style>
+
+
 </resources>

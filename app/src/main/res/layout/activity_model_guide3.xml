@@ -37,17 +37,17 @@
     </LinearLayout>
 
     <TextView
-        style="@style/BtnControllerStyle"
+        style="@style/BtnControllerOrangeStyle"
         android:onClick="start"
         android:text="开始检测" />
 
     <TextView
-        style="@style/BtnControllerStyle"
+        style="@style/BtnControllerOrangeStyle"
         android:onClick="pre"
         android:text="返回上一项测试" />
 
     <TextView
-        style="@style/BtnControllerStyle"
+        style="@style/BtnControllerOrangeStyle"
         android:layout_marginBottom="10dp"
         android:onClick="next"
         android:text="跳过本项测试" />

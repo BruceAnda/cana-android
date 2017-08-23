@@ -2,69 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/freebie_9"
-    android:orientation="vertical"
-    android:paddingEnd="10dp"
+    android:background="@color/mainColor"
+    android:gravity="center"
     android:keepScreenOn="true"
-    android:paddingStart="10dp"
-    android:paddingTop="10dp">
-
-    <com.cengalabs.flatui.views.FlatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/material_component_dialogs_padding_around_buttons"
-        android:text="@string/setting_tips"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/btn_setting_device"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/material_component_dialogs_padding_around_buttons"
-        android:background="@color/freebie_1"
-        android:text="@string/setting_device"
-        android:textColor="@color/freebie_6"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/btn_setting_logs"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/material_component_dialogs_padding_around_buttons"
-        android:background="@color/freebie_1"
-        android:text="@string/setting_logs"
-        android:textColor="@color/freebie_6"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/btn_setting_support"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/material_component_dialogs_padding_around_buttons"
-        android:layout_marginTop="@dimen/material_component_cards_primary_title_top_padding"
-        android:background="@color/freebie_1"
-        android:text="@string/setting_support"
-        android:textColor="@color/freebie_6" />
-
-    <Button
-        android:id="@+id/btn_setting_about"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/material_component_dialogs_padding_around_buttons"
-        android:background="@color/freebie_1"
-        android:text="@string/setting_about"
-        android:textColor="@color/freebie_6" />
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_setting"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="@color/freebie_4"
-        android:textSize="20sp" />
+        android:id="@+id/btn_setting_support"
+        style="@style/BtnContrllerWhileStyle"
+        android:text="技术支持" />
+
+    <TextView
+        android:id="@+id/btn_setting_about"
+        style="@style/BtnContrllerWhileStyle"
+        android:text="关于我们" />
 
 </LinearLayout>

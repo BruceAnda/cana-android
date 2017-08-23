@@ -38,7 +38,7 @@
 
     <Button
         android:id="@+id/stride_walking_btn"
-        style="@style/BtnControllerStyle"
+        style="@style/BtnControllerOrangeStyle"
         android:layout_marginBottom="10dp"
         android:text="@string/btn_begin" />
 

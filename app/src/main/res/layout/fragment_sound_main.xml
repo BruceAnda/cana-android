@@ -25,7 +25,7 @@
 
     <Button
         android:id="@+id/btn_start_recorder"
-        style="@style/BtnControllerStyle"
+        style="@style/BtnControllerOrangeStyle"
         android:layout_marginBottom="10dp"
         android:text="@string/btn_start_record" />
 

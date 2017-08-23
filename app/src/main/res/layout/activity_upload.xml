@@ -111,7 +111,7 @@
     </LinearLayout>
 
     <TextView
-        style="@style/BtnControllerStyle"
+        style="@style/BtnControllerOrangeStyle"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:onClick="upload"

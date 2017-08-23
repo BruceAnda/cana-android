@@ -1,72 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:keepScreenOn="true"
     android:layout_height="match_parent"
-    android:background="@color/freebie_9"
+    android:background="@color/mainColor"
+    android:gravity="center_horizontal"
+    android:keepScreenOn="true"
     android:orientation="vertical">
 
-    <cn.ac.ict.cana.widget.TreeView
-        android:id="@+id/tree_view"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:text="数据记录"
+        android:textColor="@color/material_light_white"
+        android:textSize="40sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/historyList"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/material_component_dialogs_padding_around_buttons"
-        android:layout_weight="0.1"
-        android:cacheColorHint="@android:color/transparent"
-        android:childDivider="@color/freebie_9"
-        android:divider="@null"
-        android:dividerHeight="1dp"
-        android:fadingEdge="none"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:groupIndicator="@null"
-        android:scrollbars="none"
-        android:smoothScrollbar="true" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/bt_upload_all"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/material_component_dialogs_padding_around_buttons"
-            android:layout_marginEnd="@dimen/material_layout_keylines_screen_edge_margin"
-            android:layout_marginStart="@dimen/material_layout_keylines_screen_edge_margin"
-            android:layout_weight="1"
-            android:background="@color/freebie_4"
-            android:text="@string/btn_upload_all"
-            android:textColor="@color/freebie_1" />
-
-        <Button
-            android:id="@+id/bt_upload"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/material_component_dialogs_padding_around_buttons"
-            android:layout_marginEnd="@dimen/material_layout_keylines_screen_edge_margin"
-            android:layout_marginStart="@dimen/material_layout_keylines_screen_edge_margin"
-            android:layout_weight="1"
-            android:background="@color/freebie_4"
-            android:text="@string/btn_upload"
-            android:textColor="@color/freebie_1" />
-
-
-    </LinearLayout>
-
-
-    <Button
-        android:id="@+id/bt_delete"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/material_layout_keylines_screen_edge_margin"
-        android:layout_marginStart="@dimen/material_layout_keylines_screen_edge_margin"
-        android:background="@color/freebie_1"
-        android:text="@string/btn_delete"
-        android:textColor="@color/freebie_4" />
-
+        android:layout_height="match_parent" />
 </LinearLayout>
