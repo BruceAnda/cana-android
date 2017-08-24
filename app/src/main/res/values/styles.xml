@@ -165,9 +165,19 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">40dp</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">36sp</item>
     </style>
 
+    <!-- 引导页内容样式 -->
+    <style name="GuideContentStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- 数字记忆键盘 -->
     <style name="CountSimkeyboardStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -178,6 +188,5 @@
         <item name="android:textColor">@color/mainColor</item>
         <item name="android:textSize">50sp</item>
     </style>
-
 
 </resources>

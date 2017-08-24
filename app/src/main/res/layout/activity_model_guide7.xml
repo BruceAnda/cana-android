@@ -22,18 +22,13 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:text="@string/face_tips"
-            android:textSize="28sp" />
+            style="@style/GuideContentStyle"
+            android:text="@string/face_tips" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/number_guide" />
+            android:src="@mipmap/model_guide7" />
     </LinearLayout>
 
     <TextView

@@ -22,13 +22,8 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:text="请您依次记住屏幕上出现的数字，并按要求输入，每轮有两次机会。共四轮，记忆数字个数由3个开始依次增加。"
-            android:textSize="28sp" />
+            style="@style/GuideContentStyle"
+            android:text="请您依次记住屏幕上出现的数字，并按要求输入，每轮有两次机会。共四轮，记忆数字个数由3个开始依次增加。" />
 
         <ImageView
             android:layout_width="match_parent"

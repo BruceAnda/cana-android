@@ -22,18 +22,13 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:text="本环节分为四个部分，请根据提示完成相应动作并尽量保持静止。开始之前，请您找到一把椅子并坐下。准备好后点击进入测试。"
-            android:textSize="28sp" />
+            style="@style/GuideContentStyle"
+            android:text="本环节分为四个部分，请根据提示完成相应动作并尽量保持静止。开始之前，请您找到一把椅子并坐下。准备好后点击进入测试。" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/guide2" />
+            android:src="@mipmap/model_guide2" />
     </LinearLayout>
 
 
@@ -49,7 +44,7 @@
 
     <TextView
         style="@style/BtnControllerOrangeStyle"
-        android:onClick="next"
         android:layout_marginBottom="@dimen/margin_bottom"
+        android:onClick="next"
         android:text="跳过本项测试" />
 </LinearLayout>

@@ -1,43 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/freebie_9"
+    android:gravity="center_horizontal"
     android:keepScreenOn="true"
     android:orientation="vertical"
-    android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
-    android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
-    android:paddingTop="@dimen/material_component_cards_primary_title_top_padding">
+    tools:context="cn.ac.ict.cana.newversion.modules.tremor.TremorMainActivity">
 
     <TextView
         android:id="@+id/tv_termor_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
-        android:text="@string/module_face"
-        android:textColor="@color/freebie_4"
-        android:textSize="@dimen/material_component_text_title_text_size" />
+        style="@style/GuideTitle"
+        android:text="静止性震颤" />
 
     <TextView
         android:id="@+id/tv_tremor_tips"
-        style="@style/module_main_page"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
+        style="@style/GuideContentStyle"
+        android:layout_marginTop="20dp"
         android:text="@string/tremor_tips" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:layout_weight="1"
         android:contentDescription="@string/stand_image_description"
-        android:src="@drawable/iv_hand_phone" />
+        android:src="@mipmap/tremor_main_still" />
 
-    <Button
+    <TextView
         android:id="@+id/bt_begin"
         style="@style/BtnControllerOrangeStyle"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:onClick="test"
         android:text="@string/btn_begin" />
 </LinearLayout>
 

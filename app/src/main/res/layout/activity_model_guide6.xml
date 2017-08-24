@@ -22,13 +22,8 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:text="用右手食指、中指以最快速度交替敲击两个蓝色圆钮。点击开始测试。"
-            android:textSize="28sp" />
+            style="@style/GuideContentStyle"
+            android:text="用右手食指、中指以最快速度交替敲击两个蓝色圆钮。点击开始测试。" />
 
         <ImageView
             android:layout_width="match_parent"

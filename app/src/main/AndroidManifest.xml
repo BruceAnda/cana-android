@@ -231,7 +231,7 @@
         <activity
             android:name=".newversion.modules.tapper.TapperMainActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:theme="@style/AppThemeNoActBar.FullScreen" />
         <activity
             android:name=".newversion.modules.tapper.TapperTestingActivity"
             android:screenOrientation="portrait"
@@ -239,7 +239,7 @@
         <activity
             android:name=".newversion.modules.tremor.TremorMainActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:theme="@style/AppThemeNoActBar.FullScreen" />
         <activity
             android:name=".newversion.modules.tremor.TremorTestingActivity"
             android:screenOrientation="portrait"

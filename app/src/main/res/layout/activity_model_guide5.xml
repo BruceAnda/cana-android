@@ -22,18 +22,13 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:text="点击开始测试后，坐在椅子上， 讲设备放于胸前，倒数5秒开始后，完成起立、行走、转身、行走、坐下的动作。"
-            android:textSize="28sp" />
+            style="@style/GuideContentStyle"
+            android:text="点击开始测试后，坐在椅子上， 讲设备放于胸前，倒数5秒开始后，完成起立、行走、转身、行走、坐下的动作。" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/guide5" />
+            android:src="@mipmap/model_guide5" />
     </LinearLayout>
 
 

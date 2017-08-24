@@ -163,7 +163,7 @@
     <!-- tremor -->
     <string name="select_phone_position">请选择那只手拿手机</string>
     <string name="select_feature">请选择测试类别</string>
-    <string name="tremor_tips">点击开始测试后，单手持设备，倒计时5秒钟后，测试正式开始，请保持选择的姿势，等待10秒钟。左手和右手分别完成。</string>
+    <string name="tremor_tips">静坐在椅子上，手持手机自然下垂放在腿上，保持完全放松状态。如图所示。</string>
 
     <string name="show_camera">Show camera preview</string>
     <string name="show_contacts">Show and add contacts</string>

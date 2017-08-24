@@ -22,18 +22,13 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:text="点击开始测试，倒计时5秒后，测试正式开始。请如图所示：手持设备，双手交叉抱肩，保持此姿势，单腿站立10秒，按右脚左脚的顺序完成。"
-            android:textSize="28sp" />
+            style="@style/GuideContentStyle"
+            android:text="点击开始测试，倒计时5秒后，测试正式开始。请如图所示：手持设备，双手交叉抱肩，保持此姿势，单腿站立10秒，按右脚左脚的顺序完成。" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/guide4" />
+            android:src="@mipmap/model_guide4" />
     </LinearLayout>
 
 

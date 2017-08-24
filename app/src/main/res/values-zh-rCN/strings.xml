@@ -177,10 +177,10 @@
         <item>请用右手握住手机，点击开始后，左手向前平举至与肩同高，持续20秒钟。</item>
     </array>
     <array name="tremor_title">
-        <item>左手静止性震颤检测</item>
-        <item>左手运行性震颤检测</item>
-        <item>右手静止性震颤检测</item>
-        <item>右手运动性震颤检测</item>
+        <item>静止性震颤</item>
+        <item>静止性震颤</item>
+        <item>运行性震颤</item>
+        <item>运动性震颤</item>
     </array>
 
     <!-- Feedback -->
