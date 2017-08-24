@@ -29,7 +29,7 @@ import java.util.Locale;
 
 import cn.ac.ict.cana.R;
 import cn.ac.ict.cana.adapters.PermissionAdapter;
-import cn.ac.ict.cana.base.YouMengBaseActivity;
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity;
 import cn.ac.ict.cana.duaui.DuaActivityLogin;
 import cn.ac.ict.cana.helpers.ToastManager;
 import cn.ac.ict.cana.models.Permission;

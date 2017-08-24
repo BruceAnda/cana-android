@@ -11,7 +11,7 @@ import cn.ac.ict.cana.R
 
 
 /**
- * A simple [Fragment] subclass.
+ * 用户信息界面
  */
 class UserPageFragmentNew : Fragment() {
 

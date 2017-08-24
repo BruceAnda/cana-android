@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.base.YouMengBaseActivity;
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity;
 
 /**
  * Author: saukymo

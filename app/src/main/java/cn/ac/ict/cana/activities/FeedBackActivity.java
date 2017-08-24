@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.base.YouMengBaseActivity;
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity;
 import cn.ac.ict.cana.events.NewHistoryEvent;
 import cn.ac.ict.cana.helpers.DataBaseHelper;
 import cn.ac.ict.cana.helpers.ModuleHelper;

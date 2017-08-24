@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.helpers.DataBaseHelper
 import cn.ac.ict.cana.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.mode.History

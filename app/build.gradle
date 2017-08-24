@@ -68,6 +68,7 @@ dependencies {
     compile 'com.alibaba:fastjson:1.1.59.android'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.2'
     provided 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
 }
 repositories {
     mavenCentral()

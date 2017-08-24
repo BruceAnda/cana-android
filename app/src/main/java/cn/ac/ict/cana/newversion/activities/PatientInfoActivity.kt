@@ -1,13 +1,12 @@
 package cn.ac.ict.cana.newversion.activities
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.AdapterView
-
 import cn.ac.ict.cana.R
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity
 import cn.ac.ict.cana.newversion.utils.FileUtils
 import com.lovearthstudio.duasdk.util.encryption.MD5
@@ -16,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_patient_info.*
 /**
  * 病人信息页面
  */
-class PatientInfoActivity : Activity() {
+class PatientInfoActivity : YouMengBaseActivity() {
 
     private val sex = arrayOf("男", "女")
     private val open = arrayOf("关", "开")

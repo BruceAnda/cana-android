@@ -31,7 +31,7 @@ import java.util.TimerTask;
 
 import cn.ac.ict.cana.R;
 import cn.ac.ict.cana.adapters.MainAdapterNew;
-import cn.ac.ict.cana.base.YouMengBaseActivity;
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity;
 import cn.ac.ict.cana.duaui.DuaActivityProfile;
 import cn.ac.ict.cana.events.CheckedItemChangedEvent;
 import cn.ac.ict.cana.events.ResponseEvent;

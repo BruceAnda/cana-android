@@ -116,7 +116,7 @@
     <Button
         android:id="@+id/bt_begin"
         style="@style/BtnControllerOrangeStyle"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/margin_bottom"
         android:text="@string/btn_begin" />
 </LinearLayout>
 

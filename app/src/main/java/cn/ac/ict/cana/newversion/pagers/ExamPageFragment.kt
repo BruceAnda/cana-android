@@ -25,7 +25,7 @@ class ExamPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 开始测试按钮点击事件
-        btnStartTest.setOnClickListener {
+        start_test.setOnClickListener {
             startActivity(Intent(activity, PatientInfoActivity::class.java))
         }
         // 单项测试按钮点击事件

@@ -15,26 +15,28 @@
         android:layout_marginTop="80dp"
         android:src="@drawable/bg_head" />
 
-    <Button
-        android:id="@+id/btnStartTest"
+    <TextView
+        android:id="@+id/start_test"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_below="@id/ivBgHead"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="60dp"
         android:background="@drawable/btn_start_test_buttonbg"
+        android:gravity="center"
         android:text="完整测试"
         android:textColor="@color/material_light_white"
-        android:textSize="26sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/tvSingleTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/btnStartTest"
-        android:layout_below="@id/btnStartTest"
+        android:layout_alignRight="@id/start_test"
+        android:layout_below="@id/start_test"
         android:layout_marginTop="10dp"
         android:text="单独测试→"
         android:textColor="@color/material_light_white"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
+
 </RelativeLayout>

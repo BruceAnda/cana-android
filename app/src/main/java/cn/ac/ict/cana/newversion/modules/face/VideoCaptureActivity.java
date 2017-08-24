@@ -40,7 +40,6 @@ import java.util.TimerTask;
 import cn.ac.ict.cana.R;
 import cn.ac.ict.cana.helpers.ModuleHelper;
 import cn.ac.ict.cana.newversion.activities.FeedBackActivity;
-import cn.ac.ict.cana.newversion.modules.count.CountMainActivity;
 import cn.ac.ict.cana.newversion.modules.face.camera.CameraWrapper;
 import cn.ac.ict.cana.newversion.modules.face.camera.NativeCamera;
 import cn.ac.ict.cana.newversion.modules.face.configuration.CaptureConfiguration;

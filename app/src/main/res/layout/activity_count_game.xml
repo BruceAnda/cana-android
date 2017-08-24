@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/mainColor"
-        android:textSize="200sp"
+        android:textSize="300sp"
         android:textStyle="bold"
         android:visibility="invisible" />
 

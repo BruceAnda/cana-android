@@ -33,7 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.base.YouMengBaseActivity;
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity;
 import cn.ac.ict.cana.duaui.DuaActivityLogin;
 import cn.ac.ict.cana.newversion.activities.MainActivityNew_;
 import cn.refactor.lib.colordialog.ColorDialog;

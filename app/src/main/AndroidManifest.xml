@@ -191,27 +191,15 @@
             android:name="UMENG_CHANNEL"
             android:value="GooglePlay" />
 
-        <activity android:name=".base.YouMengBaseActivity" />
-        <activity
-            android:name=".newversion.modules.count.CountConfirmActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".newversion.base.YouMengBaseActivity" />
         <activity
             android:name=".newversion.modules.count.CountGameActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActBar.FullScreen" />
         <activity
-            android:name=".newversion.modules.count.CountMainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
             android:name=".newversion.modules.count.CountSimKeyboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActBar.FullScreen" />
-        <activity
-            android:name=".newversion.modules.count.CountSoundActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name=".newversion.modules.sound.SoundMainActivity"
             android:screenOrientation="portrait"
