@@ -109,7 +109,7 @@ public class TapperTestingActivity extends Activity {
                     }
 
                     /*level++;
-                    Intent intent = new Intent(TapperTestingActivity.this, FeedBackActivity.class);
+                    Intent intent = new Intent(TapperTestingActivity.this, FeedBackActivity_v2.class);
                     intent.putExtra("modelName", ModuleHelper.MODULE_TAPPER);
                     intent.putExtra("level", level);
                     startActivity(intent);

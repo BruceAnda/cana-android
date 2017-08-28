@@ -10,10 +10,10 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.AnimationSet
-import android.widget.TextView
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity
+import kotlinx.android.synthetic.main.activity_count_game.*
 import java.util.*
 
 /**
@@ -21,13 +21,10 @@ import java.util.*
  */
 class CountGameActivity : YouMengBaseActivity() {
 
+    private val TAG = CountGameActivity::class.java.simpleName
+
     private val mHandler = Handler()
-    private var tvnum: TextView? = null
-    private var width: Int = 0
-    private var height: Int = 0
     private var random: Random? = null
-    private var tvnumWidth: Int = 0
-    private var tvnumHeight: Int = 0
     private var set: AnimationSet? = null
     private var myHandler: Handler? = null
     private var count: Int = 0
@@ -43,18 +40,12 @@ class CountGameActivity : YouMengBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val defaultDisplay = windowManager.defaultDisplay
-        width = defaultDisplay.width - 300
-        height = defaultDisplay.height - 300
         delayMillis = 200
         random = Random()
         setContentView(R.layout.activity_count_game)
 
         grade = intent.getIntExtra("grade", 3)
 
-        tvnum = findViewById(R.id.tvnum) as TextView
-        tvnumWidth = 200
-        tvnumHeight = 200
         set = AnimationSet(true)
 
         dataPool = HashSet()
@@ -68,7 +59,7 @@ class CountGameActivity : YouMengBaseActivity() {
 
         alphaAnimation!!.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation) {
-                tvnum!!.visibility = View.VISIBLE
+                tv_num.visibility = View.VISIBLE
             }
 
             override fun onAnimationEnd(animation: Animation) {
@@ -106,12 +97,12 @@ class CountGameActivity : YouMengBaseActivity() {
 
         randomStr += tempRandom
 
-        tvnum!!.text = tempRandom.toString()
+        tv_num.text = tempRandom.toString()
 
         myHandler = Handler()
         mHandler.postDelayed({
             count++
-            tvnum!!.startAnimation(set)
+            tv_num.startAnimation(set)
         }, delayMillis.toLong())
     }
 
@@ -127,9 +118,5 @@ class CountGameActivity : YouMengBaseActivity() {
             startActivity(Intent(this@CountGameActivity, ModelGuideActivity::class.java))
             finish()
         }.setCancelable(false).show()
-    }
-
-    companion object {
-        private val TAG = CountGameActivity::class.java.simpleName
     }
 }

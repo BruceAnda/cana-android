@@ -178,5 +178,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     //
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_count">1.数字记忆</string>
+    <string name="menu_tremor">2.震颤情况</string>
+    <string name="menu_sound">3.语言能力</string>
+    <string name="menu_stand">4.站立平衡</string>
+    <string name="menu_stride">5.行走平衡</string>
+    <string name="menu_tapper">6.手指灵敏</string>
+    <string name="menu_face">7.面部表情</string>
+    <string name="menu_type_all">完整测试</string>
+    <string name="menu_type_single">单独测试→</string>
 </resources>
 

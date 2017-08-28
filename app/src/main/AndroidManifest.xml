@@ -28,7 +28,7 @@
         android:icon="@drawable/ic_app"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppThemeNoActBar.FullScreen"
         tools:replace="android:icon,android:theme">
 
         <!-- 蒲公英 -->
@@ -230,52 +230,40 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name=".newversion.modules.tapper.TapperMainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.tapper.TapperTestingActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.tremor.TremorMainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.tremor.TremorTestingActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.guide.ModelGuideActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.guide.ModelGuideActivity2"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.guide.ModelGuideActivity3"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.guide.ModelGuideActivity4"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.guide.ModelGuideActivity5"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.guide.ModelGuideActivity6"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.guide.ModelGuideActivity7"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.upload.UploadActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".duaui.DuaActivityLogin"
             android:screenOrientation="portrait"
@@ -285,9 +273,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
-            android:name=".newversion.activities.FeedBackActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
+            android:name=".newversion.activities.FeedBackActivity_v2"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.activities.MainActivityNew"
             android:screenOrientation="portrait" />
@@ -300,6 +287,22 @@
         <activity
             android:name=".newversion.modules.face.VideoCaptureActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.modules.tapper_v2.TapperTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.modules.stand_v2.StandTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.modules.tremor_v2.TremorMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.activities.FeedBackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.modules.tremor_v2.TremorTestActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".newversion.modules.sound_v2.SoundTestActivity"></activity>
     </application>
 
 </manifest>

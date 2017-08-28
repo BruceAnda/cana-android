@@ -166,7 +166,7 @@ public class StandTestingActivity extends Activity {
             finish();
         }
        /* level++;
-        Intent intent = new Intent(StandTestingActivity.this, FeedBackActivity.class);
+        Intent intent = new Intent(StandTestingActivity.this, FeedBackActivity_v2.class);
         intent.putExtra("modelName", ModuleHelper.MODULE_STAND);
         intent.putExtra("level", level);
         startActivity(intent);

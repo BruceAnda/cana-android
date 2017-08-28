@@ -1,13 +1,12 @@
 package cn.ac.ict.cana.newversion.modules.count
 
-import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Point
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
@@ -19,26 +18,29 @@ import android.widget.Toast
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.helpers.DataBaseHelper
 import cn.ac.ict.cana.helpers.ModuleHelper
-import cn.ac.ict.cana.newversion.activities.FeedBackActivity
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.contant.GlobleData
 import cn.ac.ict.cana.newversion.mode.CountData
 import cn.ac.ict.cana.newversion.mode.History
 import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity
 import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity2
+import cn.ac.ict.cana.newversion.modules.upload.UploadActivity
+import cn.ac.ict.cana.newversion.pagers.ExamPageFragment
 import cn.ac.ict.cana.newversion.provider.HistoryProvider
 import cn.ac.ict.cana.newversion.utils.FileUtils
+import cn.ac.ict.cana.newversion.utils.GzipUtil
+import com.alibaba.fastjson.JSON
 import com.lovearthstudio.duasdk.Dua
+import com.lovearthstudio.duasdk.util.encryption.MD5
 import kotlinx.android.synthetic.main.activity_count_simkeyboard.*
-import java.io.BufferedWriter
-import java.io.File
-import java.io.FileWriter
-import java.io.IOException
+import org.jetbrains.anko.doAsync
+import org.json.JSONObject
 import java.util.*
 
 /**
- * Created by zhongxi on 2016/10/19.
+ * 数字记忆录入模块
  */
-class CountSimKeyboardActivity : YouMengBaseActivity() {
+open class CountSimKeyboardActivity : YouMengBaseActivity() {
 
     private var randomStr: String? = null
     private var version: String? = null
@@ -100,7 +102,6 @@ class CountSimKeyboardActivity : YouMengBaseActivity() {
                 isMusic = true
             }
         }
-
 
         chars = arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", applicationContext.getString(R.string.count_sim_clear), application.getString(R.string.count_sim_delete))
 
@@ -237,7 +238,7 @@ class CountSimKeyboardActivity : YouMengBaseActivity() {
         finish()
     }
 
-    protected fun saveAndContinue() {
+    private fun saveAndContinue() {
         var content = randomStr
         if (isRight) {
             content += ";1"
@@ -258,45 +259,61 @@ class CountSimKeyboardActivity : YouMengBaseActivity() {
             nextTest()
         } else {
             FileUtils.countDataList.add(countData)
-            val intent = Intent(this@CountSimKeyboardActivity, FeedBackActivity::class.java)
+            /*val intent = Intent(this@CountSimKeyboardActivity, FeedBackActivity_v2::class.java)
             intent.putExtra("modelName", ModuleHelper.MODULE_COUNT)
             startActivity(intent)
-            finish()
+            finish()*/
+            // 存储数据，数字模块不需要打分
+            val suffix = FileUtils.filePath.substring(FileUtils.filePath.lastIndexOf("."), FileUtils.filePath.length)
+            val fileName = "Parkins/" + MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}") + suffix
+            val data = "{\"score\":\"${0}\"," +
+                    "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                    "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
+                    "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
+                    "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
+                    "\"patient_medicine\":\"${FileUtils.PATIENT_MEDICINE}\"," +
+                    "\"switching_period\":\"${FileUtils.SWITCHING_PERIOD}\"," +
+                    "\"file\":\"${fileName}\"}"
+            insertDB(data)
+            var filePath = FileUtils.filePath
+            // 单项测试
+            if (GlobleData.menu_type == ExamPageFragment.MENU_TYPE_SINGLE) {
+                startActivity(Intent(this@CountSimKeyboardActivity, UploadActivity::class.java))
+                writeData(filePath)
+                finish()
+            } else {
+                AlertDialog.Builder(this@CountSimKeyboardActivity).setTitle("提示").setMessage("即将进入震颤测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                    // 进入下一项测试，保存数据
+                    startActivity(Intent(this, ModelGuideActivity2::class.java))
+                    writeData(filePath)
+                    finish()
+                }).setCancelable(false).show()
+            }
         }
     }
 
-    fun saveToStorage(content: String) {
-        val sharedPreferences = getSharedPreferences("Cana", Context.MODE_PRIVATE)
-        //        String uuid = sharedPreferences.getString("selectedUser", "None");
-        //        HistoryProvider historyProvider = new HistoryProvider(DataBaseHelper.getInstance(this));
-        //        History history = new History(this, uuid, ModuleHelper.MODULE_COUNT);
+    /**
+     * 把数据写入文件
+     */
+    private fun writeData(filePath: String) {
+        doAsync {
+            var jo = JSONObject()
+            jo.put("type", "count")
+            jo.put("data", JSON.toJSONString(FileUtils.countDataList))
+            val toString = jo.toString()
+            println("countData:" + toString)
+            FileUtils.writeToFile(toString, filePath)
 
-        // Example: How to write data to file.
-        val filePath = History.getFilePath(this, ModuleHelper.MODULE_COUNT)
-        val file = File(filePath)
-        try {
-            val fileWrite = FileWriter(file, true)
-            val bufferedWriter = BufferedWriter(fileWrite)
-
-            bufferedWriter.write(content)
-
-            //Important! Have a new line in the end of txt file.
-            bufferedWriter.newLine()
-            bufferedWriter.close()
-            fileWrite.close()
-        } catch (e: IOException) {
-            Log.e("ExamAdapter", e.toString())
+            GzipUtil.compressForZip(filePath, filePath + ".gz")
         }
+    }
 
-        //        history.id = historyProvider.InsertHistory(history);
-        val editor = sharedPreferences.edit()
-        editor.putString("HistoryFilePath", filePath)
-        editor.apply()
-        //        Log.d("CountSaveToStorage", String.valueOf(history.id));
-        //  EventBus.getDefault().post(new NewHistoryEvent());
-
+    /**
+     * 把数据文件路径插入到数据库
+     */
+    private fun insertDB(mark: String) {
         val historyProvider = HistoryProvider(DataBaseHelper.getInstance(this))
-        val history = History(Dua.getInstance().currentDuaId, ModuleHelper.MODULE_COUNT, filePath, grade.toString())
+        val history = History(Dua.getInstance().currentDuaId, ModuleHelper.MODULE_COUNT, FileUtils.filePath + ".gz", mark)
         historyProvider.InsertHistory(history)
     }
 

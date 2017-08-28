@@ -7,11 +7,14 @@ import android.view.View
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.contant.GlobleData
 import cn.ac.ict.cana.newversion.mode.AccData
 import cn.ac.ict.cana.newversion.mode.GyroData
 import cn.ac.ict.cana.newversion.mode.History
-import cn.ac.ict.cana.newversion.modules.stand.StandMainActivity
+import cn.ac.ict.cana.newversion.modules.stand_v2.StandTestActivity
+import cn.ac.ict.cana.newversion.pagers.ExamPageFragment
 import cn.ac.ict.cana.newversion.utils.FileUtils
+import kotlinx.android.synthetic.main.activity_model_guide4.*
 import java.util.*
 
 /**
@@ -22,6 +25,11 @@ class ModelGuideActivity4 : YouMengBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide4)
+
+        if (GlobleData.menu_type == ExamPageFragment.MENU_TYPE_SINGLE) {
+            btn_pre.visibility = View.GONE
+            btn_skip.visibility = View.GONE
+        }
     }
 
     override fun onResume() {
@@ -34,8 +42,11 @@ class ModelGuideActivity4 : YouMengBaseActivity() {
     }
 
     fun start(view: View) {
-        val intent = Intent(this@ModelGuideActivity4, StandMainActivity::class.java)
-        intent.putExtra("level", 0)
+        /* val intent = Intent(this@ModelGuideActivity4, StandMainActivity::class.java)
+         intent.putExtra("level", 0)
+         startActivity(intent)
+         finish()*/
+        val intent = Intent(this@ModelGuideActivity4, StandTestActivity::class.java)
         startActivity(intent)
         finish()
     }

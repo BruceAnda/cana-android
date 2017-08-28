@@ -152,7 +152,7 @@ public class TremorTestingActivity extends Activity {
             intent.putExtra("grade", grade);
             startActivity(intent);
         } else {
-            Intent intent = new Intent(TremorTestingActivity.this, FeedBackActivity.class);
+            Intent intent = new Intent(TremorTestingActivity.this, FeedBackActivity_v2.class);
             intent.putExtra("modelName", ModuleHelper.MODULE_TREMOR);
             startActivity(intent);
         }*/

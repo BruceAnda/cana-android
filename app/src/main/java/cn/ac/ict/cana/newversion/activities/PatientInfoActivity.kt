@@ -7,10 +7,11 @@ import android.view.View
 import android.widget.AdapterView
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
-import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity
+import cn.ac.ict.cana.newversion.modules.guide.*
+import cn.ac.ict.cana.newversion.pagers.ExamPageFragment
 import cn.ac.ict.cana.newversion.utils.FileUtils
-import com.lovearthstudio.duasdk.util.encryption.MD5
 import kotlinx.android.synthetic.main.activity_patient_info.*
+import java.util.*
 
 /**
  * 病人信息页面
@@ -47,6 +48,7 @@ class PatientInfoActivity : YouMengBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_info)
+
         FileUtils.PATIENT_NAME = ""
         FileUtils.PATIENT_AGE = ""
         FileUtils.PATIENT_SEX = ""
@@ -63,7 +65,7 @@ class PatientInfoActivity : YouMengBaseActivity() {
         btn_save.setOnClickListener {
             val patient_name = edittext_patient_name.text?.toString()
             if (TextUtils.isEmpty(patient_name)) {
-                edittext_patient_name.setError("请输入病人名称！")
+                edittext_patient_name.error = "请输入病人名称！"
                 return@setOnClickListener
             }
             FileUtils.PATIENT_NAME = patient_name
@@ -71,7 +73,7 @@ class PatientInfoActivity : YouMengBaseActivity() {
 
             val patient_age = edittext_patient_age.text?.toString()
             if (TextUtils.isEmpty(patient_age)) {
-                edittext_patient_age.setError("请输入病人年龄")
+                edittext_patient_age.error = "请输入病人年龄"
                 return@setOnClickListener
             }
             FileUtils.PATIENT_AGE = patient_age
@@ -83,8 +85,45 @@ class PatientInfoActivity : YouMengBaseActivity() {
                 FileUtils.PATIENT_MEDICINE = patient_medicine
             }
 
-            startActivity(Intent(this@PatientInfoActivity, ModelGuideActivity::class.java))
-            FileUtils.batch = MD5.md5(System.currentTimeMillis().toString());
+            val menu_type = intent.extras.getInt(ExamPageFragment.MENT_TYPE)
+            val menu = intent.extras.getInt(ExamPageFragment.MENU)
+            var target: Intent? = null
+            when (menu_type) {
+                ExamPageFragment.MENU_TYPE_ALL -> {
+                    target = Intent(this@PatientInfoActivity, ModelGuideActivity::class.java)
+                }
+                ExamPageFragment.MENU_TYPE_SINGLE -> {
+                    when (menu) {
+                        ExamPageFragment.MENU_COUNT -> {
+                            target = Intent(this@PatientInfoActivity, ModelGuideActivity::class.java)
+                        }
+                        ExamPageFragment.MENU_TREMOR -> {
+                            target = Intent(this@PatientInfoActivity, ModelGuideActivity2::class.java)
+                        }
+                        ExamPageFragment.MENU_SOUND -> {
+                            target = Intent(this@PatientInfoActivity, ModelGuideActivity3::class.java)
+                        }
+                        ExamPageFragment.MENU_STAND -> {
+                            target = Intent(this@PatientInfoActivity, ModelGuideActivity4::class.java)
+                        }
+                        ExamPageFragment.MENU_STRIDE -> {
+                            target = Intent(this@PatientInfoActivity, ModelGuideActivity5::class.java)
+                        }
+                        ExamPageFragment.MENU_TAPPER -> {
+                            target = Intent(this@PatientInfoActivity, ModelGuideActivity6::class.java)
+                        }
+                        ExamPageFragment.MENU_FACE -> {
+                            target = Intent(this@PatientInfoActivity, ModelGuideActivity7::class.java)
+                        }
+                    }
+                }
+            }
+            target?.putExtra(ExamPageFragment.MENT_TYPE, menu_type)
+            target?.putExtra(ExamPageFragment.MENU, menu)
+            startActivity(target)
+            //FileUtils.batch = MD5.md5(System.currentTimeMillis().toString())
+            // 产生一个batch
+            FileUtils.batch = UUID.randomUUID().toString()
             finish()
         }
     }

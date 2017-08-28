@@ -7,10 +7,13 @@ import android.view.View
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.contant.GlobleData
 import cn.ac.ict.cana.newversion.mode.CountData
 import cn.ac.ict.cana.newversion.mode.History
 import cn.ac.ict.cana.newversion.modules.count.CountGameActivity
+import cn.ac.ict.cana.newversion.pagers.ExamPageFragment
 import cn.ac.ict.cana.newversion.utils.FileUtils
+import kotlinx.android.synthetic.main.activity_model_guide.*
 import java.util.*
 
 /**
@@ -18,9 +21,15 @@ import java.util.*
  */
 class ModelGuideActivity : YouMengBaseActivity() {
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide)
+
+        if (GlobleData.menu_type == ExamPageFragment.MENU_TYPE_SINGLE) {
+            btn_skip.visibility = View.GONE
+        }
     }
 
     override fun onResume() {

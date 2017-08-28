@@ -7,9 +7,12 @@ import android.view.View
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.contant.GlobleData
 import cn.ac.ict.cana.newversion.mode.History
-import cn.ac.ict.cana.newversion.modules.sound.SoundMainActivity
+import cn.ac.ict.cana.newversion.modules.sound_v2.SoundTestActivity
+import cn.ac.ict.cana.newversion.pagers.ExamPageFragment
 import cn.ac.ict.cana.newversion.utils.FileUtils
+import kotlinx.android.synthetic.main.activity_model_guide3.*
 
 /**
  * 语言测试
@@ -19,6 +22,11 @@ class ModelGuideActivity3 : YouMengBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide3)
+
+        if (GlobleData.menu_type == ExamPageFragment.MENU_TYPE_SINGLE) {
+            btn_pre.visibility = View.GONE
+            btn_skip.visibility = View.GONE
+        }
     }
 
     override fun onResume() {
@@ -27,7 +35,7 @@ class ModelGuideActivity3 : YouMengBaseActivity() {
     }
 
     fun start(view: View) {
-        startActivity(Intent(this@ModelGuideActivity3, SoundMainActivity::class.java))
+        startActivity(Intent(this@ModelGuideActivity3, SoundTestActivity::class.java))
         finish()
     }
 

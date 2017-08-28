@@ -47,6 +47,7 @@ dependencies {
     compile project(':libraries:uploadfile')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.anko:anko-sqlite:$anko_version"
+    // 支持 GIF 动图，需要添加
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
@@ -66,9 +67,11 @@ dependencies {
     compile 'com.github.hotchemi:permissionsdispatcher:2.3.2'
     compile 'com.pgyersdk:sdk:2.5.6'
     compile 'com.alibaba:fastjson:1.1.59.android'
+    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
+    compile 'com.facebook.fresco:fresco:0.12.0'
+    compile 'com.facebook.fresco:animated-gif:0.12.0'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.2'
     provided 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
 }
 repositories {
     mavenCentral()

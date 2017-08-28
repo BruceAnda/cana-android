@@ -8,13 +8,15 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.helpers.DataBaseHelper
 import cn.ac.ict.cana.helpers.ModuleHelper
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.bean.AccAndGyroData
+import cn.ac.ict.cana.newversion.contant.GlobleData
 import cn.ac.ict.cana.newversion.mode.History
 import cn.ac.ict.cana.newversion.modules.guide.*
-import cn.ac.ict.cana.newversion.modules.tremor.TremorMainActivity
 import cn.ac.ict.cana.newversion.modules.upload.UploadActivity
+import cn.ac.ict.cana.newversion.pagers.ExamPageFragment
 import cn.ac.ict.cana.newversion.provider.HistoryProvider
 import cn.ac.ict.cana.newversion.utils.FileUtils
 import cn.ac.ict.cana.newversion.utils.GzipUtil
@@ -22,7 +24,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.alibaba.fastjson.JSON
 import com.lovearthstudio.duasdk.Dua
 import com.lovearthstudio.duasdk.util.encryption.MD5
-import kotlinx.android.synthetic.main.activity_feed_back.*
+import kotlinx.android.synthetic.main.activity_feed_back_v2.*
 import org.jetbrains.anko.doAsync
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -32,15 +34,13 @@ import java.util.*
  * 返回的Activity
  */
 
-class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListener, View.OnClickListener {
+class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
+
+    private val TAG = FeedBackActivity::class.java.simpleName
 
     private val mTremors = arrayOf("Tremor_LR", "Tremor_LP", "Tremor_RR", "Tremor_RP")
     private val mStands = arrayOf("Stand_L", "Stand_R")
     private val mTappers = arrayOf("Tapping_L", "Tapping_R")
-
-    private val mTermorsTitle = arrayOf("即将进入左手运动性震颤检测", "即将进入右手静止性震颤检测", "即将进入右手运动性震颤检测", "即将进入声音检测")
-    private val mStandsTitle = arrayOf("即将进入右脚站立测试", "即将进入行走平衡测试")
-    private val mTappersTitle = arrayOf("即将进入右手手指灵敏测试", "恭喜你完成了测试，请上传数据我们会对您的康复情况进行分析。")
 
     override fun onClick(v: View?) {
         when (v!!.id) {
@@ -63,31 +63,16 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                 val fileName = "Parkins/" + MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}") + suffix
 
                 if (ModuleHelper.MODULE_TREMOR.equals(modelName)) {
-                    val grade = intent.getIntExtra("grade", 0)
-                    when (grade) {
-                        1 -> {
-                            FileUtils.score_lefthand_still = score
-                        }
-                        2 -> {
-                            FileUtils.score_lefthand_motion = score
-                        }
-                        3 -> {
-                            FileUtils.score_righthand_still = score
-                        }
-                        4 -> {
-                            FileUtils.score_righthand_motion = score
-                            Log.i(TAG, "插入${modelName}数据")
-                            val data = "{\"score\":\"${FileUtils.score_lefthand_still},${FileUtils.score_lefthand_motion},${FileUtils.score_righthand_still},${FileUtils.score_righthand_motion}\"," +
-                                    "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
-                                    "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                                    "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                                    "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                                    "\"patient_medicine\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                                    "\"switching_period\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                                    "\"file\":\"${fileName}\"}"
-                            insertDB(data)
-                        }
-                    }
+                    Log.i(TAG, "插入${modelName}数据")
+                    val data = "{\"score\":\"${score},${score2},${score3},${score4}\"," +
+                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
+                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
+                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
+                            "\"patient_medicine\":\"${FileUtils.PATIENT_MEDICINE}\"," +
+                            "\"switching_period\":\"${FileUtils.SWITCHING_PERIOD}\"," +
+                            "\"file\":\"${fileName}\"}"
+                    insertDB(data)
                 } else {
                     Log.i(TAG, "插入${modelName}数据")
                     val data = "{\"score\":\"${score}\"," +
@@ -121,153 +106,160 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
                     }).setCancelable(false).show()
                     // 震颤
                 } else if (ModuleHelper.MODULE_TREMOR.equals(modelName)) {
-                    val grade = intent.getIntExtra("grade", 0)
-                    AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage(mTermorsTitle[grade - 1]).setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                        if (grade < 4) {
-                            val intent = Intent(this, TremorMainActivity::class.java)
-                            intent.putExtra("grade", grade)
-                            startActivity(intent)
-                        } else {
-                            var filePath = FileUtils.filePath
+                    var filePath = FileUtils.filePath
+                    if (GlobleData.menu_type == ExamPageFragment.MENU_TYPE_SINGLE) {
+                        startActivity(Intent(this@FeedBackActivity, UploadActivity::class.java))
+                        writeTremorData(filePath)
+                        finish()
+                    } else {
+                        AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入声音检测").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                             // 进入下一项测试，保存数据
                             startActivity(Intent(this, ModelGuideActivity3::class.java))
-                            doAsync {
-                                var jo = JSONObject()
-
-                                var tremorLrData = JSONObject()
-                                tremorLrData.put("type", mTremors[0])
-                                tremorLrData.put("acc", JSON.toJSONString(FileUtils.tremor_lr_accdatalist))
-                                tremorLrData.put("gyro", JSON.toJSONString(FileUtils.tremor_lr_gyrodatalist))
-
-                                var tremorLpData = JSONObject()
-                                tremorLpData.put("type", mTremors[1])
-                                tremorLpData.put("acc", JSON.toJSONString(FileUtils.tremor_lp_accdatalist))
-                                tremorLpData.put("gyro", JSON.toJSONString(FileUtils.tremor_lp_gyrodatalist))
-
-                                var tremorRrData = JSONObject()
-                                tremorRrData.put("type", mTremors[2])
-                                tremorRrData.put("acc", JSON.toJSONString(FileUtils.tremor_rr_accdatalist))
-                                tremorRrData.put("gyro", JSON.toJSONString(FileUtils.tremor_rr_gyrodatalist))
-
-                                var tremorRpData = JSONObject()
-                                tremorRpData.put("type", mTremors[3])
-                                tremorRpData.put("acc", JSON.toJSONString(FileUtils.tremor_rp_accdatalist))
-                                tremorRpData.put("gyro", JSON.toJSONString(FileUtils.tremor_rp_gyrodatalist))
-
-                                var data = JSONObject()
-                                data.put(mTremors[0], tremorLrData.toString())
-                                data.put(mTremors[1], tremorLpData.toString())
-                                data.put(mTremors[2], tremorRrData.toString())
-                                data.put(mTremors[3], tremorRpData.toString())
-
-                                jo.put("data", data.toString())
-
-                                FileUtils.writeToFile(jo.toString(), filePath)
-
-                                GzipUtil.compressForZip(filePath, filePath + ".gz")
-                            }
-                        }
-                        finish()
-                    }).setCancelable(false).show()
+                            writeTremorData(filePath)
+                            finish()
+                        }).setCancelable(false).show()
+                    }
                     // 语言能力
                 } else if (ModuleHelper.MODULE_SOUND.equals(modelName)) {
-
-                    AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入站立平衡检测").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                        var filePath = FileUtils.filePath
-                        startActivity(Intent(this, ModelGuideActivity4::class.java))
-                        doAsync {
-                            GzipUtil.compressForZip(filePath, filePath + ".gz")
+                    var filePath = FileUtils.filePath
+                    if (GlobleData.menu_type == ExamPageFragment.MENU_TYPE_SINGLE) {
+                        startActivity(Intent(this@FeedBackActivity, UploadActivity::class.java))
+                        writeSoundData(filePath)
+                        finish()
+                    } else {
+                        AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入站立平衡检测").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                            startActivity(Intent(this, ModelGuideActivity4::class.java))
+                            writeSoundData(filePath)
                             finish()
-                        }
-                    }).setCancelable(false).show()
+                        }).setCancelable(false).show()
+                    }
                     // 单腿站立
                 } else if (ModuleHelper.MODULE_STAND.equals(modelName)) {
+                    var filePath = FileUtils.filePath
+                    if (GlobleData.menu_type == ExamPageFragment.MENU_TYPE_SINGLE) {
+                        startActivity(Intent(this@FeedBackActivity, UploadActivity::class.java))
+                        writeStandData(filePath)
+                        finish()
+                    } else {
 
-
-                    AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入行走平衡测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                        var filePath = FileUtils.filePath
-                        startActivity(Intent(this, ModelGuideActivity5::class.java))
-                        doAsync {
-                            var jo = JSONObject()
-                            var standL = JSONObject()
-                            standL.put("type", mStands[0])
-                            standL.put("acc", JSON.toJSONString(FileUtils.accLDatalist))
-                            standL.put("gyro", JSON.toJSONString(FileUtils.gyroLDataList))
-
-                            var standR = JSONObject()
-                            standR.put("type", mStands[1])
-                            standR.put("acc", JSON.toJSONString(FileUtils.accRDatalist))
-                            standR.put("gyro", JSON.toJSONString(FileUtils.gyroRDataList))
-
-                            var data = JSONObject()
-                            data.put("Stand_L", standL.toString())
-                            data.put("Stand_R", standR.toString())
-
-                            jo.put("data", data.toString())
-                            FileUtils.writeToFile(jo.toString(), filePath)
-
-                            GzipUtil.compressForZip(filePath, filePath + ".gz")
-                            finish()
-                        }
-                    }).setCancelable(false).show()
+                        AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入行走平衡测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                            startActivity(Intent(this, ModelGuideActivity5::class.java))
+                            writeStandData(filePath)
+                        }).setCancelable(false).show()
+                    }
                     // 行走平衡
                 } else if (ModuleHelper.MODULE_STRIDE.equals(modelName)) {
-                    AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入手指灵敏测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                        var filePath = FileUtils.filePath
-                        startActivity(Intent(this, ModelGuideActivity6::class.java))
-                        doAsync {
-                            var jo = JSONObject()
-                            jo.put("type", "Stride")
-                            var data = JSONObject()
-                            data.put("acc", JSON.toJSONString(FileUtils.accSDatalist))
-                            data.put("gyro", JSON.toJSONString(FileUtils.gyroSDataList))
-                            jo.put("data", data.toString())
-                            FileUtils.writeToFile(jo.toString(), filePath)
-
-                            GzipUtil.compressForZip(filePath, filePath + ".gz")
-
+                    var filePath = FileUtils.filePath
+                    if (GlobleData.menu_type == ExamPageFragment.MENU_TYPE_SINGLE) {
+                        startActivity(Intent(this@FeedBackActivity, UploadActivity::class.java))
+                        writeStrideData(filePath)
+                        finish()
+                    } else {
+                        AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入手指灵敏测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                            startActivity(Intent(this, ModelGuideActivity6::class.java))
+                            writeStrideData(filePath)
                             finish()
-                        }
-                    }).setCancelable(false).show()
+                        }).setCancelable(false).show()
+                    }
                     // 手指灵敏
                 } else if (ModuleHelper.MODULE_TAPPER.equals(modelName)) {
-                    AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入面部表情测试。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                        var filePath = FileUtils.filePath
-                        startActivity(Intent(this, ModelGuideActivity7::class.java))
-                        doAsync {
-                            var jo = JSONObject()
-                            var tapperL = JSONObject()
-                            tapperL.put("type", mTappers[0])
-                            tapperL.put("data", JSON.toJSONString(FileUtils.tapperLDatas))
-
-                            var tapperR = JSONObject()
-                            tapperR.put("type", mTappers[1])
-                            tapperR.put("data", JSON.toJSONString(FileUtils.tapperRDatas))
-
-                            var data = JSONObject()
-                            data.put(mTappers[0], tapperL)
-                            data.put(mTappers[1], tapperR)
-                            jo.put("data", data)
-
-                            FileUtils.writeToFile(jo.toString(), filePath)
-
-                            GzipUtil.compressForZip(filePath, filePath + ".gz")
+                    var filePath = FileUtils.filePath
+                    if (GlobleData.menu_type == ExamPageFragment.MENU_TYPE_SINGLE) {
+                        startActivity(Intent(this@FeedBackActivity, UploadActivity::class.java))
+                        writeTapperData(filePath)
+                        finish()
+                    } else {
+                        AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入面部表情测试。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                            startActivity(Intent(this, ModelGuideActivity7::class.java))
+                            writeTapperData(filePath)
                             finish()
-                        }
-                    }).setCancelable(false).show()
+                        }).setCancelable(false).show()
+                    }
                     // 面部表情
                 } else if (ModuleHelper.MODULE_FACE.equals(modelName)) {
-
-                    AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("恭喜你完成了测试，请上传数据我们会对您的康复情况进行分析。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                        var filePath = FileUtils.filePath
-                        startActivity(Intent(this, UploadActivity::class.java))
-                        doAsync {
-                            GzipUtil.compressForZip(filePath, filePath + ".gz")
-                            finish()
-                        }
-                    }).setCancelable(false).show()
+                    var filePath = FileUtils.filePath
+                    if (GlobleData.menu_type == ExamPageFragment.MENU_TYPE_SINGLE) {
+                        startActivity(Intent(this@FeedBackActivity, UploadActivity::class.java))
+                        writeFaceData(filePath)
+                        finish()
+                    } else {
+                        AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("恭喜你完成了测试，请上传数据我们会对您的康复情况进行分析。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                            startActivity(Intent(this, UploadActivity::class.java))
+                            writeFaceData(filePath)
+                        }).setCancelable(false).show()
+                    }
                 }
             }
+        }
+    }
+
+    private fun writeFaceData(filePath: String) {
+        doAsync {
+            GzipUtil.compressForZip(filePath, filePath + ".gz")
+            finish()
+        }
+    }
+
+    private fun writeTapperData(filePath: String) {
+        doAsync {
+            var jo = JSONObject()
+
+            jo.put("type", "tapper")
+            jo.put(mTappers[0], JSON.toJSONString(FileUtils.tapperLDatas))
+            jo.put(mTappers[1], JSON.toJSONString(FileUtils.tapperRDatas))
+
+            FileUtils.writeToFile(jo.toString(), filePath)
+
+            GzipUtil.compressForZip(filePath, filePath + ".gz")
+        }
+    }
+
+    private fun writeStrideData(filePath: String) {
+        doAsync {
+            var jo = JSONObject()
+            jo.put("type", "stride")
+            jo.put("data", JSON.toJSONString(AccAndGyroData(FileUtils.accSDatalist, FileUtils.gyroSDataList)))
+
+            FileUtils.writeToFile(jo.toString(), filePath)
+
+            GzipUtil.compressForZip(filePath, filePath + ".gz")
+        }
+    }
+
+    private fun writeStandData(filePath: String) {
+        doAsync {
+            var jo = JSONObject()
+
+            jo.put("type", "stand")
+            jo.put("Stand_L", JSON.toJSONString(AccAndGyroData(FileUtils.accLDatalist, FileUtils.gyroLDataList)))
+            jo.put("Stand_R", JSON.toJSONString(AccAndGyroData(FileUtils.accRDatalist, FileUtils.gyroRDataList)))
+
+            FileUtils.writeToFile(jo.toString(), filePath)
+
+            GzipUtil.compressForZip(filePath, filePath + ".gz")
+            finish()
+        }
+    }
+
+    private fun writeSoundData(filePath: String) {
+        doAsync {
+            GzipUtil.compressForZip(filePath, filePath + ".gz")
+        }
+    }
+
+    private fun writeTremorData(filePath: String) {
+        doAsync {
+            var jo = JSONObject()
+
+            jo.put("type", "tremor")
+            jo.put(mTremors[0], JSON.toJSONString(AccAndGyroData(FileUtils.tremor_lr_accdatalist, FileUtils.tremor_lr_gyrodatalist)))
+            jo.put(mTremors[1], JSON.toJSONString(AccAndGyroData(FileUtils.tremor_lp_accdatalist, FileUtils.tremor_lp_gyrodatalist)))
+            jo.put(mTremors[2], JSON.toJSONString(AccAndGyroData(FileUtils.tremor_rr_accdatalist, FileUtils.tremor_rr_gyrodatalist)))
+            jo.put(mTremors[3], JSON.toJSONString(AccAndGyroData(FileUtils.tremor_rp_accdatalist, FileUtils.tremor_rp_gyrodatalist)))
+
+            FileUtils.writeToFile(jo.toString(), filePath)
+
+            GzipUtil.compressForZip(filePath, filePath + ".gz")
         }
     }
 
@@ -282,27 +274,65 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
     }
 
     var score = 0
+    var score2 = 0
+    var score3 = 0
+    var score4 = 0
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    var mOnItemSelecter = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            score = p2
+        }
+    }
+    var mOnItemSelecter2 = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            score2 = p2
+        }
     }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        score = position
+    var mOnItemSelecter3 = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            score3 = p2
+        }
+    }
+    var mOnItemSelecter4 = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            score4 = p2
+        }
     }
 
     var modelName: String? = null
-    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+    private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feed_back_new)
+        setContentView(R.layout.activity_feed_back_v2)
 
         modelName = intent.getStringExtra("modelName")
+
+        if (modelName.equals(ModuleHelper.MODULE_TREMOR)) {
+            ll_score2.visibility = View.VISIBLE
+            ll_score3.visibility = View.VISIBLE
+            ll_score4.visibility = View.VISIBLE
+        }
+
         tv_module_name.text = ModuleHelper.getName(this, modelName)
         tv_fb_name.text = Dua.getInstance().duaUser.name.replace("dua:", "")
         tv_fb_time.text = simpleDateFormat.format(Date())
-        spinner_pd_level.onItemSelectedListener = this
+        spinner_pd_level.onItemSelectedListener = mOnItemSelecter
+        spinner_pd_level2.onItemSelectedListener = mOnItemSelecter2
+        spinner_pd_level3.onItemSelectedListener = mOnItemSelecter3
+        spinner_pd_level4.onItemSelectedListener = mOnItemSelecter4
 
         evaluation_guide_name.text = ModuleHelper.getEvaluationGuide(this, modelName)
 
@@ -310,7 +340,4 @@ class FeedBackActivity : YouMengBaseActivity(), AdapterView.OnItemSelectedListen
         btn_cancel.setOnClickListener(this)
     }
 
-    companion object {
-        private val TAG = FeedBackActivity::class.java.simpleName
-    }
 }

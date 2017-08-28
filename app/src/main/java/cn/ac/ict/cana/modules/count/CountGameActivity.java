@@ -37,7 +37,7 @@ public class CountGameActivity extends Activity {
     private int tempRandom;
     private int delayMillis;
     private Runnable myRunnable;
-    private String randomStr="";
+    private String randomStr = "";
 
     private AlphaAnimation alphaAnimation;
 
@@ -55,7 +55,7 @@ public class CountGameActivity extends Activity {
         setContentView(R.layout.activity_count_game);
 
 
-        tvnum = (TextView) findViewById(R.id.tvnum);
+        tvnum = (TextView) findViewById(R.id.tv_num);
         tvnumWidth = 200;
         tvnumHeight = 200;
         set = new AnimationSet(true);
@@ -74,7 +74,7 @@ public class CountGameActivity extends Activity {
 //        rotateAnimation.setInterpolator(new AccelerateInterpolator());
 //        rotateAnimation.setFillAfter(true);
 
-        alphaAnimation = new AlphaAnimation(1,1f);
+        alphaAnimation = new AlphaAnimation(1, 1f);
         alphaAnimation.setDuration(2000);
         alphaAnimation.setInterpolator(new AccelerateInterpolator());
         alphaAnimation.setFillAfter(true);
@@ -102,7 +102,7 @@ public class CountGameActivity extends Activity {
 //                    intent.setClass(CountGameActivity.this, CountConfirmActivity.class);
                     intent.setClass(CountGameActivity.this, CountSimKeyboardActivity.class);
                     intent.putExtra("data", randomStr);
-                    intent.putExtra("version","picture");
+                    intent.putExtra("version", "picture");
 //                    intent.putExtra("patient", patient);
                     startActivity(intent);
                     finish();
@@ -127,7 +127,7 @@ public class CountGameActivity extends Activity {
 //        layoutParams.topMargin = random.nextInt(height - 2 * tvnumHeight) + tvnumHeight;
 
         tempRandom = random.nextInt(10);
-        while(dataPool.contains(tempRandom)){
+        while (dataPool.contains(tempRandom)) {
             tempRandom = random.nextInt(10);
         }
         dataPool.add(tempRandom);

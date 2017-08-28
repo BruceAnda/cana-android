@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,26 +26,35 @@
             style="@style/GuideContentStyle"
             android:text="用右手食指、中指以最快速度交替敲击两个蓝色圆钮。点击开始测试。" />
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/model_guide6"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/guide6" />
+            fresco:actualImageScaleType="fitCenter" />
     </LinearLayout>
 
-    <TextView
-        style="@style/BtnControllerOrangeStyle"
-        android:onClick="start"
-        android:text="开始检测" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="50dp">
 
-    <TextView
-        style="@style/BtnControllerOrangeStyle"
-        android:onClick="pre"
-        android:text="返回上一项测试" />
+        <TextView
+            style="@style/BtnControllerOrangeStyle"
+            android:onClick="start"
+            android:text="开始检测" />
+
+        <TextView
+            android:id="@+id/btn_pre"
+            style="@style/BtnControllerOrangeStyle"
+            android:onClick="pre"
+            android:text="返回上一项测试" />
 
 
-    <TextView
-        style="@style/BtnControllerOrangeStyle"
-        android:layout_marginBottom="@dimen/margin_bottom"
-        android:onClick="next"
-        android:text="跳过本项测试" />
+        <TextView
+            android:id="@+id/btn_skip"
+            style="@style/BtnControllerOrangeStyle"
+            android:onClick="next"
+            android:text="跳过本项测试" />
+    </LinearLayout>
 </LinearLayout>

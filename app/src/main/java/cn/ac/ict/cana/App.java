@@ -2,6 +2,7 @@ package cn.ac.ict.cana;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.lovearthstudio.duasdk.Dua;
 import com.pgyersdk.crash.PgyCrashManager;
 
@@ -21,5 +22,6 @@ public class App extends Application {
 
         Dua.init(this);
         UploadUtils.initOSS();
+        Fresco.initialize(this);
     }
 }

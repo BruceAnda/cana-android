@@ -31,17 +31,23 @@
             android:src="@mipmap/model_guide" />
     </LinearLayout>
 
-    <TextView
-        style="@style/BtnControllerOrangeStyle"
-        android:layout_above="@id/btn_next_test"
-        android:onClick="start"
-        android:text="开始检测" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="50dp">
 
-    <TextView
-        style="@style/BtnControllerOrangeStyle"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/margin_bottom"
-        android:onClick="next"
-        android:text="跳过本项测试" />
+        <TextView
+            style="@style/BtnControllerOrangeStyle"
+            android:layout_above="@id/btn_next_test"
+            android:onClick="start"
+            android:text="开始检测" />
+
+        <TextView
+            android:id="@+id/btn_skip"
+            style="@style/BtnControllerOrangeStyle"
+            android:onClick="next"
+            android:text="跳过本项测试" />
+    </LinearLayout>
 
 </LinearLayout>
