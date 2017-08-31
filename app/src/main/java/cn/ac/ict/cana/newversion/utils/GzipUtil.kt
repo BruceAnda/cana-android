@@ -16,7 +16,7 @@ object GzipUtil {
     fun compressForZip(unZipFile: String, zipFile: String) {
         val inputStream = FileInputStream(unZipFile)
         val outputStream = BufferedOutputStream(GZIPOutputStream(FileOutputStream(zipFile)))
-        var len = -1
+        var len: Int
         var b = ByteArray(1024)
         len = inputStream.read(b)
         while (len != -1) {

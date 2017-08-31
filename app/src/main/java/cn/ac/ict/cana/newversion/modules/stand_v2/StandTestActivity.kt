@@ -129,4 +129,9 @@ class StandTestActivity : YouMengBaseActivity() {
         startActivity(intent)
         finish()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ttv.stop()
+    }
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.ac.ict.cana.newversion.pagers.ExamPageFragment;
-import cn.ac.ict.cana.newversion.pagers.HIstoryPageFragment;
+import cn.ac.ict.cana.newversion.pagers.HistoryPageFragment;
 import cn.ac.ict.cana.newversion.pagers.SettingPageFragment;
 import cn.ac.ict.cana.newversion.pagers.UserPageFragmentNew;
 
@@ -25,7 +25,7 @@ public class MainAdapterNew extends FragmentPagerAdapter {
         fragments = new ArrayList<>();
         fragments.add(new ExamPageFragment());
         fragments.add(new UserPageFragmentNew());
-        fragments.add(new HIstoryPageFragment());
+        fragments.add(new HistoryPageFragment());
         fragments.add(new SettingPageFragment());
     }
 

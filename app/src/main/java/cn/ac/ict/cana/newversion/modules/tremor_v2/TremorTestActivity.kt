@@ -25,13 +25,16 @@ class TremorTestActivity : YouMengBaseActivity() {
     private val tips = arrayOf("右手", "预备", "预备", "预备", "开始", "左手", "预备", "预备", "预备", "开始")
     private var index = 0
     private var isAction = false
+    // 倒计时
+    private val countDown = CountDown(6000, 1000)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tremor_test_v2)
 
         isAction = intent.extras.getBoolean("isAction")
-        CountDown(6000, 1000).start()
+        countDown.start()
     }
 
     fun initTickTockView() {
@@ -50,7 +53,7 @@ class TremorTestActivity : YouMengBaseActivity() {
                     tv_tip.visibility = View.INVISIBLE
                     tv_tip.text = "左手"
                     ll_count_down.visibility = View.VISIBLE
-                    CountDown(6000, 1000).start()
+                    countDown.start()
                 } else {
                     if (isAction) {
                         btn_finish.visibility = View.VISIBLE
@@ -121,7 +124,10 @@ class TremorTestActivity : YouMengBaseActivity() {
         }
     }
 
-    fun initSensors() {
+    /**
+     * 启动传感器
+     */
+    fun startSensors() {
         sm = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sm.registerListener(mAccEventListener,
                 sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
@@ -131,6 +137,9 @@ class TremorTestActivity : YouMengBaseActivity() {
                 SensorManager.SENSOR_DELAY_GAME)
     }
 
+    /**
+     * 停止传感器
+     */
     private fun stopSensors() {
         if (sm != null) {
             sm.unregisterListener(mAccEventListener)
@@ -141,24 +150,60 @@ class TremorTestActivity : YouMengBaseActivity() {
     inner class CountDown(millisInFuture: Long, countDownInterval: Long) : CountDownTimer(millisInFuture, countDownInterval) {
         override fun onFinish() {
             // 右手倒计时结束
-            ll_count_down.visibility = View.GONE
-            ttv.visibility = View.VISIBLE
-            tv_tip.visibility = View.VISIBLE
+            displayViews()
 
-            initSensors()
+            startSensors()
             initTickTockView()
         }
 
         override fun onTick(p0: Long) {
-            tv_count_down.text = (p0 / 1000).toString()
-            tv_tips.text = tips[index++]
+            updateTips(p0)
         }
+
+
     }
 
+    /**
+     * 控制View的显示
+     */
+    private fun displayViews() {
+        ll_count_down.visibility = View.GONE
+        ttv.visibility = View.VISIBLE
+        tv_tip.visibility = View.VISIBLE
+    }
+
+    /**
+     * 更新倒计时和提示
+     */
+    private fun updateTips(p0: Long) {
+        tv_count_down.text = (p0 / 1000).toString()
+        tv_tips.text = tips[index++]
+    }
+
+    /**
+     * 执行完成测试
+     */
     fun finishTest(view: View) {
+        toScore()
+    }
+
+    /**
+     * 跳转到评分界面
+     */
+    private fun toScore() {
         val intent = Intent(this@TremorTestActivity, FeedBackActivity::class.java)
         intent.putExtra("modelName", ModuleHelper.MODULE_TREMOR)
         startActivity(intent)
         finish()
+    }
+
+    /**
+     * 销毁的时候回收资源
+     */
+    override fun onDestroy() {
+        super.onDestroy()
+        // 关闭倒计时
+        countDown.cancel()
+        ttv.stop()
     }
 }
