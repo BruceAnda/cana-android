@@ -1,23 +1,24 @@
 package cn.ac.ict.cana.newversion.activities
 
+import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.helpers.DataBaseHelper
 import cn.ac.ict.cana.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.bean.AccAndGyroData
 import cn.ac.ict.cana.newversion.contant.GlobleData
-import cn.ac.ict.cana.newversion.mode.History
+import cn.ac.ict.cana.newversion.db.bean.History
+import cn.ac.ict.cana.newversion.db.database
 import cn.ac.ict.cana.newversion.modules.guide.*
 import cn.ac.ict.cana.newversion.modules.upload.UploadActivity
 import cn.ac.ict.cana.newversion.pagers.ExamPageFragment
-import cn.ac.ict.cana.newversion.provider.HistoryProvider
 import cn.ac.ict.cana.newversion.utils.FileUtils
 import cn.ac.ict.cana.newversion.utils.GzipUtil
 import cn.pedant.SweetAlert.SweetAlertDialog
@@ -268,9 +269,21 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
      */
     fun insertDB(mark: String) {
         Log.i(TAG, "insertDB${mark}")
-        val historyProvider = HistoryProvider(DataBaseHelper.getInstance(this))
-        val history = History(Dua.getInstance().currentDuaId, modelName, FileUtils.filePath + ".gz", mark)
-        historyProvider.InsertHistory(history)
+        /* val historyProvider = HistoryProvider(DataBaseHelper.getInstance(this))
+         val history = History(Dua.getInstance().currentDuaId, modelName, FileUtils.filePath + ".gz", mark)
+         historyProvider.InsertHistory(history)*/
+        database.use {
+            // 历史数据
+            val values = ContentValues()
+            values.put(History.BATCH, FileUtils.batch)
+            values.put(History.USERID, Dua.getInstance().currentDuaId)
+            values.put(History.TYPE, modelName)
+            values.put(History.FILEPATH, FileUtils.filePath + ".gz")
+            values.put(History.MARK, mark)
+            values.put(History.ISUPLOAD, false)
+            // 插入数据库
+            insert(History.TABLE_NAME, null, values)
+        }
     }
 
     var score = 0
@@ -324,11 +337,14 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
             ll_score2.visibility = View.VISIBLE
             ll_score3.visibility = View.VISIBLE
             ll_score4.visibility = View.VISIBLE
+            tv_score_tip.text = "右手静止性震颤"
+            tv_score_tip2.text = "左手静止性震颤"
+            tv_score_tip3.text = "右手运动性震颤"
+            tv_score_tip4.text = "左手运动性震颤"
         }
 
         tv_module_name.text = ModuleHelper.getName(this, modelName)
-        tv_fb_name.text = Dua.getInstance().duaUser.name.replace("dua:", "")
-        tv_fb_time.text = simpleDateFormat.format(Date())
+
         spinner_pd_level.onItemSelectedListener = mOnItemSelecter
         spinner_pd_level2.onItemSelectedListener = mOnItemSelecter2
         spinner_pd_level3.onItemSelectedListener = mOnItemSelecter3

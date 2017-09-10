@@ -159,7 +159,7 @@ public class PromptDialog extends Dialog {
             return R.mipmap.ic_success;
         }
         if (DIALOG_TYPE_WARNING == mDialogType) {
-            return R.mipmap.ic_wrong;
+            return R.mipmap.ic_info;
         }
         return R.mipmap.ic_info;
     }

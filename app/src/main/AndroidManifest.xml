@@ -302,8 +302,21 @@
         <activity
             android:name=".newversion.modules.tremor_v2.TremorTestActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".newversion.modules.sound_v2.SoundTestActivity" />
-        <activity android:name=".newversion.activities.HistoryDetailActivity"></activity>
+        <activity
+            android:name=".newversion.modules.sound_v2.SoundTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.activities.HistoryDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.login.LandPageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.login.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newversion.login.ResultActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

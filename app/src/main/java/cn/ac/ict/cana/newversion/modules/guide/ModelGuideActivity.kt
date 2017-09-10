@@ -14,6 +14,7 @@ import cn.ac.ict.cana.newversion.modules.count.CountGameActivity
 import cn.ac.ict.cana.newversion.pagers.ExamPageFragment
 import cn.ac.ict.cana.newversion.utils.FileUtils
 import kotlinx.android.synthetic.main.activity_model_guide.*
+import java.io.File
 import java.util.*
 
 /**
@@ -37,6 +38,7 @@ class ModelGuideActivity : YouMengBaseActivity() {
 
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_COUNT)
         FileUtils.countDataList = ArrayList<CountData>()
+
     }
 
     /**

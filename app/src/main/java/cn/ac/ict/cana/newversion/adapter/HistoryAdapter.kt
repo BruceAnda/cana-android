@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.newversion.mode.History
+import cn.ac.ict.cana.newversion.db.bean.Batch
+import kotlinx.android.synthetic.main.history_item_layout.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * 历史数据Adapter
  */
-class HistoryAdapter(var context: Context, var datas: ArrayList<History>) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+class HistoryAdapter(var context: Context, var datas: List<Batch>) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // 设置点击事件
@@ -33,8 +36,9 @@ class HistoryAdapter(var context: Context, var datas: ArrayList<History>) : Recy
     }
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        fun bind(data: History) {
-
+        fun bind(data: Batch) {
+            itemView.patient_name.text = "患者：" + data.patientName
+            itemView.collection_time.text = "采集时间：" + SimpleDateFormat("yyyy-MM-dd, HH:mm").format(Date(data.time))
         }
     }
 

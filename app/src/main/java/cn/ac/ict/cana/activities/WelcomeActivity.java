@@ -33,10 +33,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cn.ac.ict.cana.R;
+import cn.ac.ict.cana.newversion.activities.MainActivityNew;
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity;
 import cn.ac.ict.cana.duaui.DuaActivityLogin;
-import cn.ac.ict.cana.newversion.activities.MainActivityNew_;
+import cn.ac.ict.cana.newversion.login.LandPageActivity;
 import cn.refactor.lib.colordialog.ColorDialog;
+import cn.refactor.lib.colordialog.ColorDialogPermission;
+import cn.refactor.lib.colordialog.ColorDialogPermissionDead;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnPermissionDenied;
 import permissions.dispatcher.OnShowRationale;
@@ -58,7 +61,7 @@ public class WelcomeActivity extends YouMengBaseActivity implements Animation.An
     private final static String TAG = "welcome";
     private AlphaAnimation alphaAnimation = new AlphaAnimation(0.0F, 1.0F);
     private LinearLayout activity_welcome;
-    private ColorDialog colorDialog;
+    private ColorDialogPermission colorDialog;
     private TextView tv_welcome_name;
 
     @Override
@@ -115,8 +118,36 @@ public class WelcomeActivity extends YouMengBaseActivity implements Animation.An
 
     @Override
     public void onAnimationEnd(Animation animation) {
+
+        colorDialog = new ColorDialogPermission(WelcomeActivity.this);
+        colorDialog.setCancelable(false);
+        colorDialog.setListener(new ColorDialogPermission.OnClickListener() {
+            @Override
+            public void cancel(ColorDialogPermission dialog2) {
+                dialog2.dismiss();
+                ColorDialogPermissionDead colorDialogPermissionDead = new ColorDialogPermissionDead(WelcomeActivity.this);
+                colorDialogPermissionDead.setCancelable(false);
+                colorDialogPermissionDead.setListener(new ColorDialogPermissionDead.OnClickListener() {
+                    @Override
+                    public void cancel(ColorDialogPermissionDead dialog) {
+                        colorDialog.show();
+                    }
+
+                    @Override
+                    public void determine(ColorDialogPermissionDead dialog) {
+                        finish();
+                    }
+                }).show();
+            }
+
+            @Override
+            public void start(ColorDialogPermission dialog2) {
+                WelcomeActivityPermissionsDispatcher.showPermissionsWithCheck(WelcomeActivity.this);
+                dialog2.dismiss();
+            }
+        });
         //selectPager();
-        colorDialog = new ColorDialog(WelcomeActivity.this);
+        /*colorDialog = new ColorDialogPermission(WelcomeActivity.this);
         colorDialog.setColor(WelcomeActivity.this.getResources().getColor(R.color.colorAccent));
         colorDialog.setContentTextSize(WelcomeActivity.this.getResources().getDimension(R.dimen.info_content_text_size));
         colorDialog.setTitleTextSize(WelcomeActivity.this.getResources().getDimension(R.dimen.info_title_text_size));
@@ -148,7 +179,7 @@ public class WelcomeActivity extends YouMengBaseActivity implements Animation.An
                     }
                 }).show();
             }
-        });
+        });*/
         if (EasyPermissions.hasPermissions(WelcomeActivity.this, perms)) {
             selectPager();
         } else {
@@ -162,13 +193,12 @@ public class WelcomeActivity extends YouMengBaseActivity implements Animation.An
             public void onNoUpdateAvailable() {
                 Dua.DuaUser duaUser = Dua.getInstance().getCurrentDuaUser();
                 if (duaUser.logon) {
-                    startActivity(new Intent(WelcomeActivity.this, MainActivityNew_.class));
+                    startActivity(new Intent(WelcomeActivity.this, MainActivityNew.class));
                     finish();
                 } else {
-                    startActivityForResult(new Intent(WelcomeActivity.this, DuaActivityLogin.class), 10086);
+                    startActivityForResult(new Intent(WelcomeActivity.this, LandPageActivity.class), 10086);
                     finish();
                 }
-                FlatUI.initDefaultValues(WelcomeActivity.this);
             }
 
             @Override
@@ -225,7 +255,7 @@ public class WelcomeActivity extends YouMengBaseActivity implements Animation.An
     public void onMessageEvent(String operator) {
         if (operator.equals(DuaActivityLogin.LOGIN_SUCCESS)) {
             updateProfile();
-            startActivity(new Intent(this, MainActivityNew_.class));
+            startActivity(new Intent(this, MainActivityNew.class));
             finish();
         }
     }

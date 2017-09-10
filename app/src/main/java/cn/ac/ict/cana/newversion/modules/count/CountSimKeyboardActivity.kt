@@ -1,5 +1,6 @@
 package cn.ac.ict.cana.newversion.modules.count
 
+import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Point
@@ -20,6 +21,7 @@ import cn.ac.ict.cana.helpers.DataBaseHelper
 import cn.ac.ict.cana.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.contant.GlobleData
+import cn.ac.ict.cana.newversion.db.database
 import cn.ac.ict.cana.newversion.mode.CountData
 import cn.ac.ict.cana.newversion.mode.History
 import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity
@@ -312,9 +314,21 @@ open class CountSimKeyboardActivity : YouMengBaseActivity() {
      * 把数据文件路径插入到数据库
      */
     private fun insertDB(mark: String) {
-        val historyProvider = HistoryProvider(DataBaseHelper.getInstance(this))
+        /*val historyProvider = HistoryProvider(DataBaseHelper.getInstance(this))
         val history = History(Dua.getInstance().currentDuaId, ModuleHelper.MODULE_COUNT, FileUtils.filePath + ".gz", mark)
-        historyProvider.InsertHistory(history)
+        historyProvider.InsertHistory(history)*/
+        database.use {
+            // 历史数据
+            val values = ContentValues()
+            values.put(cn.ac.ict.cana.newversion.db.bean.History.BATCH, FileUtils.batch)
+            values.put(cn.ac.ict.cana.newversion.db.bean.History.USERID, Dua.getInstance().currentDuaId)
+            values.put(cn.ac.ict.cana.newversion.db.bean.History.TYPE, ModuleHelper.MODULE_COUNT)
+            values.put(cn.ac.ict.cana.newversion.db.bean.History.FILEPATH, FileUtils.filePath + ".gz")
+            values.put(cn.ac.ict.cana.newversion.db.bean.History.MARK, mark)
+            values.put(cn.ac.ict.cana.newversion.db.bean.History.ISUPLOAD, false)
+            // 插入数据库
+            insert(cn.ac.ict.cana.newversion.db.bean.History.TABLE_NAME, null, values)
+        }
     }
 
     fun clearText(v: View) {

@@ -321,8 +321,8 @@ class FeedBackActivity_v2 : YouMengBaseActivity(), AdapterView.OnItemSelectedLis
         }
 
         tv_module_name.text = ModuleHelper.getName(this, modelName)
-        tv_fb_name.text = Dua.getInstance().duaUser.name.replace("dua:", "")
-        tv_fb_time.text = simpleDateFormat.format(Date())
+       // tv_fb_name.text = Dua.getInstance().duaUser.name.replace("dua:", "")
+       // tv_fb_time.text = simpleDateFormat.format(Date())
         spinner_pd_level.onItemSelectedListener = this
 
         evaluation_guide_name.text = ModuleHelper.getEvaluationGuide(this, modelName)

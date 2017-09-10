@@ -74,6 +74,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             + HISTORY_MARK + " CHAR(20)"
             + ");";
 
+    // Patient table 病人信息表
+
+
     private volatile static DataBaseHelper mDataBaseHelper;
 
     private DataBaseHelper(Context context) {

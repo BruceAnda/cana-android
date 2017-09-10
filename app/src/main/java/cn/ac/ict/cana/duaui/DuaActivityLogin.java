@@ -42,7 +42,7 @@ import cn.ac.ict.cana.duaui.base.BackHandledInterface;
 import cn.ac.ict.cana.duaui.util.AlertUtil;
 import cn.ac.ict.cana.duaui.util.FileUtil;
 import cn.ac.ict.cana.duaui.util.IntentUtil;
-import cn.ac.ict.cana.newversion.activities.MainActivityNew_;
+import cn.ac.ict.cana.newversion.activities.MainActivityNew;
 import pub.devrel.easypermissions.EasyPermissions;
 import zhaoliang.com.uploadfile.UploadUtils;
 
@@ -421,7 +421,7 @@ public class DuaActivityLogin extends Activity implements View.OnClickListener, 
                     /*JSONObject event = new JSONObject();
                     event.put("type", "update_profile");
                     EventBus.getDefault().post(event);*/
-                    startActivity(new Intent(DuaActivityLogin.this, MainActivityNew_.class));
+                    startActivity(new Intent(DuaActivityLogin.this, MainActivityNew.class));
                     finish();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -430,7 +430,7 @@ public class DuaActivityLogin extends Activity implements View.OnClickListener, 
 
             @Override
             public void onError(int status, String reason) {
-                startActivity(new Intent(DuaActivityLogin.this, MainActivityNew_.class));
+                startActivity(new Intent(DuaActivityLogin.this, MainActivityNew.class));
                 finish();
             }
         });

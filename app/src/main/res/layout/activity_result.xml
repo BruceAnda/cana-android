@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.ac.ict.cana.newversion.login.ResultActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_land"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mainColor">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_above="@id/tv_center"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/bg_head" />
+
+        <TextView
+            android:id="@+id/tv_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="PD  助手"
+            android:textColor="@color/material_light_white"
+            android:textSize="35sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btn_custom_info"
+            android:gravity="center"
+            android:text="恭喜您！注册成功"
+            android:textColor="@color/material_light_white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/btn_to_test"
+            style="@style/BtnContrllerWhileStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
+            android:onClick="toTest"
+            android:text="直接测试" />
+
+        <TextView
+            android:id="@+id/btn_custom_info"
+            style="@style/BtnContrllerWhileStyle"
+            android:layout_above="@id/btn_to_test"
+            android:onClick="toCustomInfo"
+            android:text="信息填写" />
+    </RelativeLayout>
+</FrameLayout>

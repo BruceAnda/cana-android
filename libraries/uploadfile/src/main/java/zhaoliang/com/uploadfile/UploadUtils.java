@@ -30,10 +30,11 @@ public class UploadUtils {
     private static String mCallbackAddress = "http://oss-cn-qingdao.aliyuncs.com:23450";
     private static String mBucket = "ivita-files";
     //private static String mBucket = "xdua-files/Avatar/";
-   // private static String mBucket = "xdua-files";
+    // private static String mBucket = "xdua-files";
     private static String mStsServer = "http://sts.xdua.org:3000";
     private static OSS ossClient;
     private static List<OSSAsyncTask> tasks = new ArrayList<>();
+    private static String TAG = UploadUtils.class.getSimpleName();
 
     /**
      * 初始化 这些参数都是阿里云的参数，具体获取方式请查看阿里云
@@ -78,9 +79,10 @@ public class UploadUtils {
      * @param userProgressCallback
      */
     public static void asyncPutFile(String object,
-                             String localFile,
-                             @NonNull final OSSCompletedCallback<PutObjectRequest, PutObjectResult> userCallback,
-                             final OSSProgressCallback<PutObjectRequest> userProgressCallback) {
+                                    String localFile,
+                                    @NonNull final OSSCompletedCallback<PutObjectRequest, PutObjectResult> userCallback,
+                                    final OSSProgressCallback<PutObjectRequest> userProgressCallback) {
+        Log.i(TAG, "asyncPutFile");
         if (object.equals("")) {
             Log.w("AsyncPutFile", "ObjectNull");
             return;
@@ -124,6 +126,7 @@ public class UploadUtils {
             }
         });*/
 
+        Log.i(TAG, "开始上传" + object + ":" + localFile);
         tasks.add(ossClient.asyncPutObject(put, userCallback));
     }
 

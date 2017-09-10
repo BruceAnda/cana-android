@@ -160,6 +160,29 @@
         <item name="android:textSize">30sp</item>
     </style>
 
+    <!-- login -->
+    <style name="LoginEditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">@dimen/btn_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/btn_margin_right</item>
+        <item name="android:background">@drawable/login_edittext_bg</item>
+        <item name="android:textColor">@color/material_light_white</item>
+        <item name="android:textColorHint">@color/material_light_white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="RegistInputStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginLeft">@dimen/btn_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/btn_margin_right</item>
+        <item name="android:background">@drawable/login_edittext_bg</item>
+        <item name="android:paddingLeft">15dp</item>
+    </style>
+
     <!-- 引导页标题的样式 -->
     <style name="GuideTitle">
         <item name="android:layout_width">wrap_content</item>

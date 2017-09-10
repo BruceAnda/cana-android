@@ -1,20 +1,28 @@
 package cn.ac.ict.cana.newversion.activities
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.text.InputType
 import android.text.TextUtils
 import android.view.View
 import android.widget.AdapterView
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.db.bean.Batch
+import cn.ac.ict.cana.newversion.db.database
 import cn.ac.ict.cana.newversion.modules.guide.*
 import cn.ac.ict.cana.newversion.pagers.ExamPageFragment
 import cn.ac.ict.cana.newversion.utils.FileUtils
+import cn.ac.ict.cana.newversion.widget.InputDialog
 import kotlinx.android.synthetic.main.activity_patient_info.*
 import java.util.*
 
 /**
  * 病人信息页面
+ * 思路：
+ *      1. 一开始先创建一个UUID
  */
 class PatientInfoActivity : YouMengBaseActivity() {
 
@@ -49,6 +57,10 @@ class PatientInfoActivity : YouMengBaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_info)
 
+        // 数据批次的UUID
+        val randomUUID = UUID.randomUUID().toString()
+
+
         FileUtils.PATIENT_NAME = ""
         FileUtils.PATIENT_AGE = ""
         FileUtils.PATIENT_SEX = ""
@@ -65,7 +77,11 @@ class PatientInfoActivity : YouMengBaseActivity() {
         btn_save.setOnClickListener {
             val patient_name = edittext_patient_name.text?.toString()
             if (TextUtils.isEmpty(patient_name)) {
-                edittext_patient_name.error = "请输入病人名称！"
+                //edittext_patient_name.error = "请输入病人名称！"
+                tv_tip.visibility = View.VISIBLE
+                Handler().postDelayed(Runnable {
+                    tv_tip.visibility = View.GONE
+                }, 4000)
                 return@setOnClickListener
             }
             FileUtils.PATIENT_NAME = patient_name
@@ -73,7 +89,11 @@ class PatientInfoActivity : YouMengBaseActivity() {
 
             val patient_age = edittext_patient_age.text?.toString()
             if (TextUtils.isEmpty(patient_age)) {
-                edittext_patient_age.error = "请输入病人年龄"
+                //edittext_patient_age.error = "请输入病人年龄"
+                tv_tip.visibility = View.VISIBLE
+                Handler().postDelayed(Runnable {
+                    tv_tip.visibility = View.GONE
+                }, 4000)
                 return@setOnClickListener
             }
             FileUtils.PATIENT_AGE = patient_age
@@ -121,10 +141,65 @@ class PatientInfoActivity : YouMengBaseActivity() {
             target?.putExtra(ExamPageFragment.MENT_TYPE, menu_type)
             target?.putExtra(ExamPageFragment.MENU, menu)
             startActivity(target)
-            //FileUtils.batch = MD5.md5(System.currentTimeMillis().toString())
-            // 产生一个batch
-            FileUtils.batch = UUID.randomUUID().toString()
+
+            // 界面跳转的时候，保存数据
+            database.use {
+                // UUID
+                FileUtils.batch = randomUUID
+                // 保存Batch信息
+                val values = ContentValues()
+                values.put(Batch.TIME, System.currentTimeMillis())
+                values.put(Batch.BATCH, randomUUID)
+                // 病人信息
+                values.put(Batch.PATIENT_NAME, FileUtils.PATIENT_NAME)
+                values.put(Batch.PATIENT_AGE, FileUtils.PATIENT_AGE)
+                values.put(Batch.PATIENT_SEX, FileUtils.PATIENT_SEX)
+                values.put(Batch.PATIENT_MEDICINE, FileUtils.PATIENT_MEDICINE)
+                values.put(Batch.PATIENT_OPEN, FileUtils.SWITCHING_PERIOD)
+                // 插入数据库
+                insert(Batch.TABLE_NAME, null, values)
+            }
             finish()
         }
+    }
+
+    private val onPationNameChangeListener = object : InputDialog.OnInputContentChangeListener {
+        override fun onContentChange(text: String) {
+            if (!TextUtils.isEmpty(text)) {
+                edittext_patient_name.text = text
+            }
+        }
+    }
+    private val onPationtAgeChangeListener = object : InputDialog.OnInputContentChangeListener {
+        override fun onContentChange(text: String) {
+            if (!TextUtils.isEmpty(text)) {
+                edittext_patient_age.text = text
+            }
+        }
+    }
+    private val onPationMedicineChangeListener = object : InputDialog.OnInputContentChangeListener {
+        override fun onContentChange(text: String) {
+            if (!TextUtils.isEmpty(text)) {
+                edittext_patient_medicine.text = text
+            }
+        }
+    }
+
+    fun showPatientNameInput(view: View) {
+        val inputDialog = InputDialog(this@PatientInfoActivity, "病人姓名", InputType.TYPE_CLASS_TEXT)
+        inputDialog.onInputContentChangeListener = onPationNameChangeListener
+        inputDialog.show()
+    }
+
+    fun showPatientAgeInput(view: View) {
+        val inputDialog = InputDialog(this@PatientInfoActivity, "病人年龄", InputType.TYPE_CLASS_NUMBER)
+        inputDialog.onInputContentChangeListener = onPationtAgeChangeListener
+        inputDialog.show()
+    }
+
+    fun showPatientMedicineInput(view: View) {
+        val inputDialog = InputDialog(this@PatientInfoActivity, "使用药物", InputType.TYPE_CLASS_TEXT)
+        inputDialog.onInputContentChangeListener = onPationMedicineChangeListener
+        inputDialog.show()
     }
 }

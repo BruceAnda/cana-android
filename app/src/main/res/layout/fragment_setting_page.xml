@@ -17,4 +17,9 @@
         style="@style/BtnContrllerWhileStyle"
         android:text="关于我们" />
 
+    <TextView
+        android:id="@+id/btn_logout"
+        style="@style/BtnContrllerWhileStyle"
+        android:text="退出登录" />
+
 </LinearLayout>
