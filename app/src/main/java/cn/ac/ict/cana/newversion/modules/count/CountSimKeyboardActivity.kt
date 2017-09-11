@@ -306,7 +306,7 @@ open class CountSimKeyboardActivity : YouMengBaseActivity() {
             println("countData:" + toString)
             FileUtils.writeToFile(toString, filePath)
 
-            GzipUtil.compressForZip(filePath, filePath + ".gz")
+           // GzipUtil.compressForZip(filePath, filePath + ".gz")
         }
     }
 
@@ -323,9 +323,9 @@ open class CountSimKeyboardActivity : YouMengBaseActivity() {
             values.put(cn.ac.ict.cana.newversion.db.bean.History.BATCH, FileUtils.batch)
             values.put(cn.ac.ict.cana.newversion.db.bean.History.USERID, Dua.getInstance().currentDuaId)
             values.put(cn.ac.ict.cana.newversion.db.bean.History.TYPE, ModuleHelper.MODULE_COUNT)
-            values.put(cn.ac.ict.cana.newversion.db.bean.History.FILEPATH, FileUtils.filePath + ".gz")
+            values.put(cn.ac.ict.cana.newversion.db.bean.History.FILEPATH, FileUtils.filePath)
             values.put(cn.ac.ict.cana.newversion.db.bean.History.MARK, mark)
-            values.put(cn.ac.ict.cana.newversion.db.bean.History.ISUPLOAD, false)
+            values.put(cn.ac.ict.cana.newversion.db.bean.History.ISUPLOAD, "0")
             // 插入数据库
             insert(cn.ac.ict.cana.newversion.db.bean.History.TABLE_NAME, null, values)
         }

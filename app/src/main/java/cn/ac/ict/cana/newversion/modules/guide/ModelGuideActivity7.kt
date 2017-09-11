@@ -10,6 +10,7 @@ import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.contant.GlobleData
 import cn.ac.ict.cana.newversion.mode.History
 import cn.ac.ict.cana.newversion.modules.face.FaceMainActivity
+import cn.ac.ict.cana.newversion.modules.face.VideoCaptureActivity
 import cn.ac.ict.cana.newversion.modules.upload.UploadActivity
 import cn.ac.ict.cana.newversion.pagers.ExamPageFragment
 import cn.ac.ict.cana.newversion.utils.FileUtils
@@ -36,7 +37,7 @@ class ModelGuideActivity7 : YouMengBaseActivity() {
     }
 
     fun start(view: View) {
-        val intent = Intent(this@ModelGuideActivity7, FaceMainActivity::class.java)
+        val intent = Intent(this@ModelGuideActivity7, VideoCaptureActivity::class.java)
         startActivity(intent)
         finish()
     }

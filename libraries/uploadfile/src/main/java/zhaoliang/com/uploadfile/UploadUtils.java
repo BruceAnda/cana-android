@@ -5,11 +5,15 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.alibaba.sdk.android.oss.ClientConfiguration;
+import com.alibaba.sdk.android.oss.ClientException;
 import com.alibaba.sdk.android.oss.OSS;
 import com.alibaba.sdk.android.oss.OSSClient;
+import com.alibaba.sdk.android.oss.ServiceException;
 import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
 import com.alibaba.sdk.android.oss.callback.OSSProgressCallback;
+import com.alibaba.sdk.android.oss.common.OSSLog;
 import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
+import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
 import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
@@ -37,7 +41,7 @@ public class UploadUtils {
     private static String TAG = UploadUtils.class.getSimpleName();
 
     /**
-     * 初始化 这些参数都是阿里云的参数，具体获取方式请查看阿里云
+     * 初始化 这些参数都是阿里云的参数，具体获取方式请查看阿里云 https://help.aliyun.com/document_detail/32046.html?spm=5176.doc32047.6.699.mzSLfm
      *
      * @param endpoint
      * @param callbackAddress
@@ -67,17 +71,62 @@ public class UploadUtils {
         conf.setMaxConcurrentRequest(5); // 最大并发请求书，默认5个
         conf.setMaxErrorRetry(2); // 失败后最大重试次数，默认2次
 
+        OSSLog.enableLog(); //write local log file ,path is SDCard_path\OSSLog\logs.csv
+
+        //OSSCredentialProvider credentialProvider = new OSSStsTokenCredentialProvider("<StsToken.AccessKeyId>", "<StsToken.SecretKeyId>", "<StsToken.SecurityToken>");
+
         ossClient = new OSSClient(mContent, mEndpoint, credentialProvider, conf);
     }
 
-    /**
+    public static void asyncPutFile(String object,
+                                    String localFile, final OSSCompletedCallback<PutObjectRequest, PutObjectResult> userCallback,
+                                    final OSSProgressCallback<PutObjectRequest> userProgressCallback) {
+        // Construct an upload request
+        PutObjectRequest put = new PutObjectRequest(mBucket, object, localFile);
+        put.setProgressCallback(userProgressCallback);
+        ossClient.asyncPutObject(put, userCallback);
+
+
+       /* // You can set progress callback during asynchronous upload
+        put.setProgressCallback(new OSSProgressCallback<PutObjectRequest>() {
+            @Override
+            public void onProgress(PutObjectRequest request, long currentSize, long totalSize) {
+                Log.d("PutObject", "currentSize: " + currentSize + " totalSize: " + totalSize);
+            }
+        });
+
+        OSSAsyncTask task = ossClient.asyncPutObject(put, new OSSCompletedCallback<PutObjectRequest, PutObjectResult>() {
+            @Override
+            public void onSuccess(PutObjectRequest request, PutObjectResult result) {
+                Log.d("PutObject", "UploadSuccess");
+            }
+
+            @Override
+            public void onFailure(PutObjectRequest request, ClientException clientExcepion, ServiceException serviceException) {
+                // Request exception
+                if (clientExcepion != null) {
+                    // Local exception, such as a network exception
+                    clientExcepion.printStackTrace();
+                }
+                if (serviceException != null) {
+                    // Service exception
+                    Log.e("ErrorCode", serviceException.getErrorCode());
+                    Log.e("RequestId", serviceException.getRequestId());
+                    Log.e("HostId", serviceException.getHostId());
+                    Log.e("RawMessage", serviceException.getRawMessage());
+                }
+            }
+        });*/
+    }
+
+   /* *//**
      * 上传文件
      *
      * @param object
      * @param localFile
      * @param userCallback
      * @param userProgressCallback
-     */
+     *//*
     public static void asyncPutFile(String object,
                                     String localFile,
                                     @NonNull final OSSCompletedCallback<PutObjectRequest, PutObjectResult> userCallback,
@@ -114,7 +163,7 @@ public class UploadUtils {
         if (userProgressCallback != null) {
             put.setProgressCallback(userProgressCallback);
         }
-        /*
+        *//*
         put.setProgressCallback(new OSSProgressCallback<PutObjectRequest>() {
             @Override
             public void onProgress(PutObjectRequest request, long currentSize, long totalSize) {
@@ -124,7 +173,7 @@ public class UploadUtils {
                 ImageDisplayer.updateProgress(progress);
                 ImageDisplayer.displayInfo("上传进度: " + String.valueOf(progress) + "%");
             }
-        });*/
+        });*//*
 
         Log.i(TAG, "开始上传" + object + ":" + localFile);
         tasks.add(ossClient.asyncPutObject(put, userCallback));
@@ -133,6 +182,6 @@ public class UploadUtils {
     public static void cancelAllTask() {
         for (OSSAsyncTask task : tasks) {
             task.cancel();
-        }
-    }
+        }}
+*/
 }

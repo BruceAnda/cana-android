@@ -4,8 +4,11 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 
 import com.kymjs.rxvolley.RxVolley
 import com.kymjs.rxvolley.client.HttpCallback
@@ -23,6 +26,7 @@ import cn.ac.ict.cana.newversion.utils.FileUtils
 import com.alibaba.sdk.android.oss.ClientException
 import com.alibaba.sdk.android.oss.ServiceException
 import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback
+import com.alibaba.sdk.android.oss.callback.OSSProgressCallback
 import com.alibaba.sdk.android.oss.model.PutObjectRequest
 import com.alibaba.sdk.android.oss.model.PutObjectResult
 import com.lovearthstudio.duasdk.Dua
@@ -39,7 +43,7 @@ import java.io.File
  */
 class UploadActivity : Activity() {
 
-    /*internal var mHandler: Handler = object : Handler() {
+    internal var mHandler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             when (msg.what) {
                 CODE_UPLOAD -> progressDialog!!.setMessage("共" + fileNum + "个文件当前上传第" + currentFile + "个")
@@ -50,12 +54,12 @@ class UploadActivity : Activity() {
                 CODE_DISMISS_DIAOLG -> {
                     if (progressDialog != null && progressDialog!!.isShowing)
                         progressDialog!!.dismiss()
-                    startActivity(Intent(this@UploadActivity, MainActivityNew_::class.java))
+                    startActivity(Intent(this@UploadActivity, MainActivityNew::class.java))
                     finish()
                 }
             }
         }
-    }*/
+    }
     private var progressDialog: ProgressDialog? = null
     private var fileNum: Int = 0
     private var currentFile = 1
@@ -109,20 +113,14 @@ class UploadActivity : Activity() {
     private fun upload() {
         try {
             val history = list!![currentFile - 1]
-            var suffix = history.filePath.substring(history.filePath.lastIndexOf("."), history.filePath.length)
-            var newfileName = history.type + "_" + System.currentTimeMillis() + suffix
 
-            // http://api.ivita.org/event/2/parkins.walk/walkfile/-3/2
-            // String url = "http://api.ivita.org/event/" + Dua.getInstance().getCurrentDuaId() + "/" + history.type + "/" + fileName + "/0/0";
             val dbMark = history.mark
             val jsonObject = JSONObject(dbMark)
             val fileName = jsonObject.optString("file")
             Log.i(TAG, fileName)
 
             val url = "http://api.ivita.org/event"
-            //String mark = "{\"uid\":" + Dua.getInstance().getCurrentDuaUid() + ",\"data\":" + history.mark + ",\"type\":" + history.type
-            //+"}";
-            // post(url, mark);
+
             val params = HttpParams()
             params.put("uid", history.userID)
             params.put("data", history.mark)
@@ -131,39 +129,22 @@ class UploadActivity : Activity() {
             params.put("batch", FileUtils.batch)
             post(url, params)
 
-            UploadUtils.asyncPutFile(newfileName, history.filePath, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
-                override fun onSuccess(putObjectRequest: PutObjectRequest, putObjectResult: PutObjectResult) {
-                    var result = false
-                    Log.i(TAG, "上传成功！")
-                    try {
-                        // TODO: Change to Gson
-                        // updateHistoryUploadedById(history.id);
-                        result = true
-                    } catch (e: Exception) {
-                        Log.e("toJson", e.toString())
-                    }
+            val localFile = File(history.filePath)
+            if (!localFile.exists()) {
+                Toast.makeText(this@UploadActivity, "数据文件丢失", Toast.LENGTH_SHORT).show()
+                progressDialog?.dismiss()
+                return
+            }
 
-                }
-
-                override fun onFailure(putObjectRequest: PutObjectRequest, e: ClientException, e1: ServiceException) {
-                    Log.i(TAG, "上传失败！")
+            UploadUtils.asyncPutFile(fileName, history.filePath, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
+                override fun onSuccess(request: PutObjectRequest?, result: PutObjectResult?) {
+                    Log.d("PutObject", "UploadSuccess")
                     currentFile++
                     if (currentFile <= fileNum) {
                         upload()
-                        UI {
-                            progressDialog!!.setMessage("共" + fileNum + "个文件当前上传第" + currentFile + "个")
-                        }
-                        // mHandler.sendEmptyMessage(CODE_UPLOAD)
+                        mHandler.sendEmptyMessage(CODE_UPLOAD)
                     } else {
-                        // mHandler.sendEmptyMessage(CODE_UPLOAD_FINISH)
-                        UI {
-                            progressDialog!!.setMessage("上传完成！")
-                            Thread.sleep(1000)
-                            if (progressDialog != null && progressDialog!!.isShowing)
-                                progressDialog!!.dismiss()
-                            startActivity(Intent(this@UploadActivity, MainActivityNew::class.java))
-                            finish()
-                        }
+                        mHandler.sendEmptyMessage(CODE_UPLOAD_FINISH)
                     }
                     val file = File(history.filePath)
                     if (file.exists()) {
@@ -174,10 +155,27 @@ class UploadActivity : Activity() {
                         file1.delete()
                     }
                     database.use {
-                        update(History.TABLE_NAME, History.ISUPLOAD to true).whereSimple(History.FILEPATH, history.filePath).exec()
+                        update(History.TABLE_NAME, History.ISUPLOAD to "1").whereSimple(History.FILEPATH + " = ?", history.filePath).exec()
                     }
                 }
-            }, null)
+
+                override fun onFailure(request: PutObjectRequest?, clientException: ClientException?, serviceException: ServiceException?) {
+                    // Request exception
+                    clientException?.printStackTrace()
+                    if (serviceException != null) {
+                        // Service exception
+                        Log.e("ErrorCode", serviceException.getErrorCode());
+                        Log.e("RequestId", serviceException.getRequestId());
+                        Log.e("HostId", serviceException.getHostId());
+                        Log.e("RawMessage", serviceException.getRawMessage());
+                    }
+                }
+
+            }, OSSProgressCallback<PutObjectRequest> { request, currentSize, totalSize ->
+                Log.d("PutObject", "currentSize: $currentSize totalSize: $totalSize")
+                progressDialog?.max = totalSize.toInt()
+                progressDialog?.progress = currentSize.toInt()
+            })
         } catch (e: Exception) {
             e.printStackTrace()
             finish()
@@ -186,14 +184,13 @@ class UploadActivity : Activity() {
     }
 
     private fun initProgressDialog() {
-        progressDialog = ProgressDialog(this)
-        progressDialog!!.setTitle("提示！")
-        progressDialog!!.setMessage("共" + fileNum + "个文件当前上传第" + currentFile + "个")
-        progressDialog!!.show()
-        progressDialog!!.setCancelable(false)
-        progressDialog!!.max = 100
-        progressDialog!!.progress = 20
-        progressDialog!!.show()
+        progressDialog = ProgressDialog(this@UploadActivity)
+        progressDialog?.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL)
+        progressDialog?.setTitle("提示！")
+        progressDialog?.setMessage("共" + fileNum + "个文件当前上传第" + currentFile + "个")
+        progressDialog?.show()
+        progressDialog?.setCancelable(false)
+        progressDialog?.show()
     }
 
     fun post(url: String, params: HttpParams) {

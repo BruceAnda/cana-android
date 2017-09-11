@@ -40,7 +40,6 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
     private val TAG = FeedBackActivity::class.java.simpleName
 
     private val mTremors = arrayOf("Tremor_LR", "Tremor_LP", "Tremor_RR", "Tremor_RP")
-    private val mStands = arrayOf("Stand_L", "Stand_R")
     private val mTappers = arrayOf("Tapping_L", "Tapping_R")
 
     override fun onClick(v: View?) {
@@ -61,7 +60,17 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
                         }.show()
             R.id.btn_save -> {
                 val suffix = FileUtils.filePath.substring(FileUtils.filePath.lastIndexOf("."), FileUtils.filePath.length)
-                val fileName = "Parkins/" + MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}") + suffix
+                // val fileName = "Parkins/" + MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}") + suffix + ".gz"
+                var fileName: String
+                // 声音
+                if (ModuleHelper.MODULE_SOUND.equals(modelName)) {
+                    fileName = "Parkins/" + MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}") + ".3gp"
+                } else if (ModuleHelper.MODULE_FACE.equals(modelName)) {
+                    fileName = "Parkins/" + MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}") + ".mp4"
+                } else {
+                    //fileName = "Parkins/" + MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}") + ".gz"
+                    fileName = "Parkins/" + MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}") + ".txt"
+                }
 
                 if (ModuleHelper.MODULE_TREMOR.equals(modelName)) {
                     Log.i(TAG, "插入${modelName}数据")
@@ -146,6 +155,7 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
                         AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入行走平衡测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                             startActivity(Intent(this, ModelGuideActivity5::class.java))
                             writeStandData(filePath)
+                            finish()
                         }).setCancelable(false).show()
                     }
                     // 行走平衡
@@ -187,6 +197,7 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
                         AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("恭喜你完成了测试，请上传数据我们会对您的康复情况进行分析。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                             startActivity(Intent(this, UploadActivity::class.java))
                             writeFaceData(filePath)
+                            finish()
                         }).setCancelable(false).show()
                     }
                 }
@@ -195,10 +206,10 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
     }
 
     private fun writeFaceData(filePath: String) {
-        doAsync {
+        /*doAsync {
             GzipUtil.compressForZip(filePath, filePath + ".gz")
             finish()
-        }
+        }*/
     }
 
     private fun writeTapperData(filePath: String) {
@@ -211,7 +222,7 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
 
             FileUtils.writeToFile(jo.toString(), filePath)
 
-            GzipUtil.compressForZip(filePath, filePath + ".gz")
+            //  GzipUtil.compressForZip(filePath, filePath + ".gz")
         }
     }
 
@@ -223,7 +234,7 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
 
             FileUtils.writeToFile(jo.toString(), filePath)
 
-            GzipUtil.compressForZip(filePath, filePath + ".gz")
+            //  GzipUtil.compressForZip(filePath, filePath + ".gz")
         }
     }
 
@@ -237,15 +248,14 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
 
             FileUtils.writeToFile(jo.toString(), filePath)
 
-            GzipUtil.compressForZip(filePath, filePath + ".gz")
-            finish()
+            // GzipUtil.compressForZip(filePath, filePath + ".gz")
         }
     }
 
     private fun writeSoundData(filePath: String) {
-        doAsync {
+        /*doAsync {
             GzipUtil.compressForZip(filePath, filePath + ".gz")
-        }
+        }*/
     }
 
     private fun writeTremorData(filePath: String) {
@@ -260,7 +270,7 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
 
             FileUtils.writeToFile(jo.toString(), filePath)
 
-            GzipUtil.compressForZip(filePath, filePath + ".gz")
+            // GzipUtil.compressForZip(filePath, filePath + ".gz")
         }
     }
 
@@ -278,9 +288,14 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
             values.put(History.BATCH, FileUtils.batch)
             values.put(History.USERID, Dua.getInstance().currentDuaId)
             values.put(History.TYPE, modelName)
-            values.put(History.FILEPATH, FileUtils.filePath + ".gz")
+            if (ModuleHelper.MODULE_SOUND.equals(modelName) || ModuleHelper.MODULE_FACE.equals(modelName)) {
+                values.put(History.FILEPATH, FileUtils.filePath)
+            } else {
+                //values.put(History.FILEPATH, FileUtils.filePath + ".gz")
+                values.put(History.FILEPATH, FileUtils.filePath)
+            }
             values.put(History.MARK, mark)
-            values.put(History.ISUPLOAD, false)
+            values.put(History.ISUPLOAD, "0")
             // 插入数据库
             insert(History.TABLE_NAME, null, values)
         }

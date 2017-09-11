@@ -36,7 +36,7 @@ class HistoryDetailAdapter(var context: Context, var datas: List<History>, var t
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         fun bind(data: History, titles: HashMap<String, String>) {
             itemView.tv_test_title.text = titles[data.type]
-            if (data.isUpload.equals(1)) {
+            if (data.isUpload.contains("1")) {
                 itemView.iv_text_icon.setImageResource(R.drawable.is_upload_new)
             } else {
                 itemView.iv_text_icon.setImageResource(R.drawable.un_upload_new)

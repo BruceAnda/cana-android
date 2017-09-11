@@ -11,10 +11,6 @@ import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import com.lovearthstudio.duasdk.Dua;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +18,10 @@ import java.util.ArrayList;
 import cn.ac.ict.cana.helpers.DataBaseHelper;
 import cn.ac.ict.cana.newversion.mode.History;
 import cn.ac.ict.cana.providers.UserProvider;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import zhaoliang.com.uploadfile.UploadUtils;
 
 /**
@@ -190,7 +190,7 @@ public class HistoryProvider {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
-        client.newCall(request).enqueue(new Callback() {
+        /*client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
 
@@ -200,7 +200,7 @@ public class HistoryProvider {
             public void onResponse(Response response) throws IOException {
 
             }
-        });
+        });*/
     }
        /* ArrayList<Long> ids = getIds(items);
         ArrayList<History> histories = getHistoriesByIds(ids);

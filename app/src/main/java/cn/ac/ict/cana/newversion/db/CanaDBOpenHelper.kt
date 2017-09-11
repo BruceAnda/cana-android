@@ -53,7 +53,7 @@ class CanaDBOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "cananew", n
                 History.BATCH to TEXT,
                 History.USERID to TEXT,
                 History.FILEPATH to TEXT,
-                History.ISUPLOAD to BLOB,
+                History.ISUPLOAD to TEXT,
                 History.TYPE to TEXT,
                 History.MARK to TEXT
         )
