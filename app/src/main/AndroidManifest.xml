@@ -80,11 +80,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".newversion.activities.MainActivityNew_"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
-        <activity
             android:name=".activities.UserActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
@@ -277,6 +272,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.activities.MainActivityNew"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.activities.PatientInfoActivity"

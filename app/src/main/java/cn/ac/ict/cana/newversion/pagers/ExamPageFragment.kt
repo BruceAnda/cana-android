@@ -91,6 +91,7 @@ class ExamPageFragment : Fragment() {
         GlobleData.menu_type = menuType
         GlobleData.menu = menu
         startActivity(intent)
+
     }
 
 
