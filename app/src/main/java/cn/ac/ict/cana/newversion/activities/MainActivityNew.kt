@@ -37,7 +37,6 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 open class MainActivityNew : YouMengBaseActivity() {
 
-
     private var mMainAdapterNew: MainAdapterNew? = null
     @Bean
     private var toastManager: ToastManager? = null
@@ -159,7 +158,7 @@ open class MainActivityNew : YouMengBaseActivity() {
         }
     }
 
-    fun showProgressBar(show: Boolean, message: String) {
+    private fun showProgressBar(show: Boolean, message: String) {
         initProgressBar()
         if (show) {
             mProgressDialog!!.setMessage(message)

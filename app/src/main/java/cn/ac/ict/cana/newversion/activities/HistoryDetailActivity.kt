@@ -2,7 +2,6 @@ package cn.ac.ict.cana.newversion.activities
 
 import android.app.ProgressDialog
 import android.content.DialogInterface
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -16,6 +15,7 @@ import android.widget.Toast
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.adapter.HistoryDetailAdapter
+import cn.ac.ict.cana.newversion.constant.Constant
 import cn.ac.ict.cana.newversion.db.bean.Batch
 import cn.ac.ict.cana.newversion.db.bean.History
 import cn.ac.ict.cana.newversion.db.database
@@ -30,12 +30,11 @@ import com.alibaba.sdk.android.oss.model.PutObjectResult
 import com.kymjs.rxvolley.RxVolley
 import com.kymjs.rxvolley.client.HttpCallback
 import com.kymjs.rxvolley.client.HttpParams
+import com.lovearthstudio.duasdk.upload.UploadUtils
 import kotlinx.android.synthetic.main.activity_history_detail.*
-import org.jetbrains.anko.UI
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.db.update
 import org.json.JSONObject
-import zhaoliang.com.uploadfile.UploadUtils
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -192,7 +191,7 @@ class HistoryDetailActivity : AppCompatActivity() {
                 return
             }
 
-            UploadUtils.asyncPutFile(fileName, history.filePath, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
+            UploadUtils.asyncPutFile(Constant.DATA_FILE_BUCKET, fileName, history.filePath, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
                 override fun onSuccess(request: PutObjectRequest?, result: PutObjectResult?) {
                     Log.d("PutObject", "UploadSuccess")
                     currentFile++

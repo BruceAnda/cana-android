@@ -14,7 +14,7 @@ ext {
     floatingtextlibrary_version = "0.2.0"
     pretty_toast_version = "0.2.0"
     okhttp_version = "3.1.2"
-    duasdk_version = "0.6.4"
+    duasdk_version = "0.6.6"
     gson_version = "2.6.2"
     android_crop_version = "1.0.1@aar"
     wheelpicker_version = "1.1.1"

@@ -19,6 +19,7 @@ import cn.ac.ict.cana.R
 import cn.ac.ict.cana.activities.MainActivity
 import cn.ac.ict.cana.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.activities.MainActivityNew
+import cn.ac.ict.cana.newversion.constant.Constant
 import cn.ac.ict.cana.newversion.db.bean.History
 import cn.ac.ict.cana.newversion.db.database
 import cn.ac.ict.cana.newversion.db.parser.HistoryParser
@@ -30,12 +31,12 @@ import com.alibaba.sdk.android.oss.callback.OSSProgressCallback
 import com.alibaba.sdk.android.oss.model.PutObjectRequest
 import com.alibaba.sdk.android.oss.model.PutObjectResult
 import com.lovearthstudio.duasdk.Dua
+import com.lovearthstudio.duasdk.upload.UploadUtils
 import kotlinx.android.synthetic.main.activity_upload.*
 import org.jetbrains.anko.UI
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.db.update
 import org.json.JSONObject
-import zhaoliang.com.uploadfile.UploadUtils
 import java.io.File
 
 /**
@@ -136,7 +137,7 @@ class UploadActivity : Activity() {
                 return
             }
 
-            UploadUtils.asyncPutFile(fileName, history.filePath, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
+            UploadUtils.asyncPutFile(Constant.DATA_FILE_BUCKET, fileName, history.filePath, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
                 override fun onSuccess(request: PutObjectRequest?, result: PutObjectResult?) {
                     Log.d("PutObject", "UploadSuccess")
                     currentFile++
