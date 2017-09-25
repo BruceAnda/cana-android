@@ -21,7 +21,7 @@ import java.util.*
  */
 class CountGameActivity : YouMengBaseActivity() {
 
-    private val TAG = CountGameActivity::class.simpleName
+    private val TAG = CountGameActivity::class.java.simpleName
 
     private val mHandler = Handler()
     private var random: Random? = null

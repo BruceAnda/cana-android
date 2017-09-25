@@ -19,7 +19,6 @@ import java.util.TimerTask
 
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
-import cn.ac.ict.cana.helpers.ToastManager
 import cn.ac.ict.cana.newversion.adapter.MainAdapterNew
 import com.idescout.sql.SqlScoutServer
 import dmax.dialog.SpotsDialog
@@ -32,8 +31,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 open class MainActivityNew : YouMengBaseActivity() {
 
     private var mMainAdapterNew: MainAdapterNew? = null
-    @Bean
-    private var toastManager: ToastManager? = null
     private lateinit var timer: Timer
     internal var back = 1
     //  public ArrayList<Call> callArrayList;

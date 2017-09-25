@@ -201,15 +201,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActBar.FullScreen" />
         <activity
-            android:name=".newversion.modules.stride.StrideItemActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
             android:name=".newversion.modules.stride.StrideMainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name=".newversion.modules.stride.StrideWalkingActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
