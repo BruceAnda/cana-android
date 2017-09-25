@@ -10,7 +10,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.db.bean.Batch
 import cn.ac.ict.cana.newversion.db.database
 import cn.ac.ict.cana.newversion.modules.guide.*

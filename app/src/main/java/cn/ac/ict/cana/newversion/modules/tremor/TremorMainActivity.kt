@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity2
 import kotlinx.android.synthetic.main.activity_tremor_main2.*
 

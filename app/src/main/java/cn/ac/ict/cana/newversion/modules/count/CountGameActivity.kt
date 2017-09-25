@@ -1,4 +1,4 @@
-package cn.ac.ict.cana.parkionsdatacollection.model.count
+package cn.ac.ict.cana.newversion.modules.count
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,9 +10,10 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.AnimationSet
-import cn.ac.ict.cana.parkionsdatacollection.R
-import cn.ac.ict.cana.parkionsdatacollection.R.id.tv_num
-import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
+import cn.ac.ict.cana.R
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity
+import kotlinx.android.synthetic.main.activity_count_game.*
 import java.util.*
 
 /**

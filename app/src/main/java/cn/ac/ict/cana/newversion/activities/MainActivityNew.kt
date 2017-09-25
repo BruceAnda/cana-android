@@ -18,7 +18,7 @@ import java.util.Timer
 import java.util.TimerTask
 
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.helpers.ToastManager
 import cn.ac.ict.cana.newversion.adapter.MainAdapterNew
 import com.idescout.sql.SqlScoutServer

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
@@ -32,8 +33,11 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    /* 字体库 */
+    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
+    /* 友盟统计 */
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }
 repositories {
     mavenCentral()

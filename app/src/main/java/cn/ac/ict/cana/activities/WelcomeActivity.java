@@ -33,7 +33,7 @@ import org.json.JSONObject;
 
 import cn.ac.ict.cana.R;
 import cn.ac.ict.cana.newversion.activities.MainActivityNew;
-import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity;
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity;
 import cn.ac.ict.cana.newversion.login.LandPageActivity;
 import cn.refactor.lib.colordialog.ColorDialogPermission;
 import cn.refactor.lib.colordialog.ColorDialogPermissionDead;

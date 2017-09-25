@@ -1,4 +1,4 @@
-package cn.ac.ict.cana.parkionsdatacollection.model.count
+package cn.ac.ict.cana.newversion.modules.count
 
 import android.content.ContentValues
 import android.content.DialogInterface

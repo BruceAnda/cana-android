@@ -12,7 +12,7 @@ import android.view.View
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.activities.FeedBackActivity
-import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.mode.AccData
 import cn.ac.ict.cana.newversion.mode.GyroData
 import cn.ac.ict.cana.newversion.utils.FileUtils

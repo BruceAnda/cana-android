@@ -1,4 +1,4 @@
-package cn.ac.ict.cana.parkionsdatacollection.base;
+package cn.ac.ict.cana.newversion.base;
 
 import android.content.Context;
 import android.os.Bundle;

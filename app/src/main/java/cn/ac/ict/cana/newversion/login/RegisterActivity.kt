@@ -7,7 +7,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
+import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import com.lovearthstudio.duasdk.Dua
 import com.lovearthstudio.duasdk.DuaCallback
 import com.lovearthstudio.duasdk.DuaConfig
