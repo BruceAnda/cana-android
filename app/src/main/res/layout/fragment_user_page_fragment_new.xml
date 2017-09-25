@@ -62,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/tvIcon"
                 android:layout_alignParentRight="true"
+                android:clickable="false"
                 android:src="@drawable/angry" />
         </RelativeLayout>
 
@@ -90,7 +91,8 @@
                 android:layout_alignBottom="@id/tvName"
                 android:layout_alignParentRight="true"
                 android:background="@null"
-                android:text="安惠美"
+                android:clickable="false"
+                android:text="未填写"
                 android:textColor="@color/mainColor"
                 android:textSize="20sp" />
         </RelativeLayout>
@@ -122,7 +124,8 @@
                 android:layout_alignBottom="@id/tvSex"
                 android:layout_alignParentRight="true"
                 android:background="@null"
-                android:text="女"
+                android:clickable="false"
+                android:text="未填写"
                 android:textColor="@color/mainColor"
                 android:textSize="20sp" />
 
@@ -170,7 +173,8 @@
                 android:layout_alignBottom="@id/tvAge"
                 android:layout_alignParentRight="true"
                 android:background="@null"
-                android:text="56"
+                android:clickable="false"
+                android:text="未填写"
                 android:textColor="@color/mainColor"
                 android:textSize="20sp" />
         </RelativeLayout>
@@ -200,7 +204,8 @@
                 android:layout_alignBottom="@id/tvTitle"
                 android:layout_alignParentRight="true"
                 android:background="@null"
-                android:text="技师"
+                android:clickable="false"
+                android:text="未填写"
                 android:textColor="@color/mainColor"
                 android:textSize="20sp" />
         </RelativeLayout>
@@ -230,7 +235,8 @@
                 android:layout_alignBottom="@id/tvWork"
                 android:layout_alignParentRight="true"
                 android:background="@null"
-                android:text="首都医科大学宣武医院"
+                android:clickable="false"
+                android:text="未填写"
                 android:textColor="@color/mainColor"
                 android:textSize="20sp" />
         </RelativeLayout>
@@ -239,8 +245,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/user_info_line_height"
             android:background="@android:color/black" />
-
-
     </LinearLayout>
 
 </LinearLayout>

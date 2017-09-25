@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ToggleButton;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.activities.MainActivity_;
+import cn.ac.ict.cana.newversion.activities.MainActivityNew;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class TremorMainActivity extends Activity {
@@ -62,7 +62,7 @@ public class TremorMainActivity extends Activity {
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sDialog) {
-                            startActivity(new Intent(TremorMainActivity.this, MainActivity_.class));
+                            startActivity(new Intent(TremorMainActivity.this, MainActivityNew.class));
                         }
                     });
             sweetAlertDialog.show();

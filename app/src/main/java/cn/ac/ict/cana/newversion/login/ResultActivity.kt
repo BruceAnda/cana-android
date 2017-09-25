@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.newversion.activities.MainActivityNew
-import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
 
 /**
  * 显示结果的页面

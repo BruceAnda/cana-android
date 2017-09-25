@@ -54,6 +54,13 @@ public class FileUtils {
     public static List<TapperData> tapperLDatas;
     public static List<TapperData> tapperRDatas;
 
+    // 手臂下垂
+    public static List<AccData> accArmDroopLDatalist;
+    public static List<GyroData> gyroArmDroopLDataList;
+
+    public static List<AccData> accArmDroopRDatalist;
+    public static List<GyroData> gyroArmDroopRDataList;
+
     public static String batch = "";
 
 

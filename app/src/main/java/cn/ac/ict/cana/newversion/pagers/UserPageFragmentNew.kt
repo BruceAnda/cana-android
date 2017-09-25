@@ -15,7 +15,11 @@ import android.widget.AdapterView
 
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.newversion.widget.InputDialog
+import com.lovearthstudio.duasdk.Dua
+import com.lovearthstudio.duasdk.DuaCallback
 import kotlinx.android.synthetic.main.fragment_user_page_fragment_new.*
+import org.json.JSONException
+import org.json.JSONObject
 
 /**
  * 用户信息界面
@@ -46,41 +50,68 @@ class UserPageFragmentNew : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sharedPreferences = context.getSharedPreferences("user_info", Context.MODE_APPEND)
-        val userName = sharedPreferences.getString("user_name", "安惠美")
-        val userSex = sharedPreferences.getString("user_sex", "女")
-        val userAge = sharedPreferences.getString("user_age", "30")
-        val userTitle = sharedPreferences.getString("user_title", "技师")
-        val userWorkUnit = sharedPreferences.getString("user_work_unit", "首都医科大学宣武医院")
-
+        sharedPreferences = context.getSharedPreferences("profile", Context.MODE_APPEND)
+        val userName = sharedPreferences.getString("name", "未填写")
+        val sex = sharedPreferences.getString("sex", "未填写")
+        var userSex = ""
+        if ("M".equals(sex)) {
+            userSex = "男"
+        } else {
+            userSex = "女"
+        }
         tv_user_name.text = userName
         tv_user_sex.text = userSex
-        tv_user_age.text = userAge
-        tv_user_title.text = userTitle
-        tv_user_work_unit.text = userWorkUnit
+        val saying = sharedPreferences.getString("saying", "")
+        val list = saying.split(",*#,")
+        try {
+            val userAge = list[0]
+            tv_user_age.text = userAge
+            val userTitle = list[1]
+            tv_user_title.text = userTitle
+            val userWorkUnit = list[2]
+            tv_user_work_unit.text = userWorkUnit
+        } catch (e: Exception) {
+
+        }
 
         et_edit_user_info.setOnClickListener {
             changeState()
         }
 
         tv_user_name.setOnClickListener {
-            val inputDialog = InputDialog(context, "姓名", InputType.TYPE_CLASS_TEXT)
+            var conotentHint = tv_user_name.text.toString()
+            if (conotentHint.isEmpty()) {
+                conotentHint = "请输入您的姓名"
+            }
+            val inputDialog = InputDialog(context, "姓名", InputType.TYPE_CLASS_TEXT, conotentHint)
             inputDialog.onInputContentChangeListener = onUserNameChangeListener
             inputDialog.show()
         }
         spinner_user_sex.onItemSelectedListener = mSexItemSelectListener
         tv_user_age.setOnClickListener {
-            val inputDialog = InputDialog(context, "年龄", InputType.TYPE_CLASS_TEXT)
+            var conotentHint = tv_user_age.text.toString()
+            if (conotentHint.isEmpty()) {
+                conotentHint = "输入您的年龄"
+            }
+            val inputDialog = InputDialog(context, "年龄", InputType.TYPE_CLASS_NUMBER, conotentHint)
             inputDialog.onInputContentChangeListener = onUserAgeChangeListener
             inputDialog.show()
         }
         tv_user_title.setOnClickListener {
-            val inputDialog = InputDialog(context, "职称", InputType.TYPE_CLASS_TEXT)
+            var conotentHint = tv_user_title.text.toString()
+            if (conotentHint.isEmpty()) {
+                conotentHint = "输入您的职称"
+            }
+            val inputDialog = InputDialog(context, "职称", InputType.TYPE_CLASS_TEXT, conotentHint)
             inputDialog.onInputContentChangeListener = onUserTitleChangeListener
             inputDialog.show()
         }
         tv_user_work_unit.setOnClickListener {
-            val inputDialog = InputDialog(context, "工作单位", InputType.TYPE_CLASS_TEXT)
+            var conotentHint = tv_user_work_unit.text.toString()
+            if (conotentHint.isEmpty()) {
+                conotentHint = "输入您的工作单位"
+            }
+            val inputDialog = InputDialog(context, "工作单位", InputType.TYPE_CLASS_TEXT, conotentHint)
             inputDialog.onInputContentChangeListener = onUserWorkUnitChangeListener
             inputDialog.show()
         }
@@ -128,13 +159,14 @@ class UserPageFragmentNew : Fragment() {
      * 保存用户信息
      */
     private fun saveUserInfo() {
-        sharedPreferences.edit()
-                .putString("user_name", tv_user_name.text.toString())
-                .putString("user_sex", tv_user_sex.text.toString())
-                .putString("user_age", tv_user_age.text.toString())
-                .putString("user_title", tv_user_title.text.toString())
-                .putString("user_work_unit", tv_user_work_unit.text.toString())
-                .commit()
+        updateProfile("name", tv_user_name.text.toString())
+        val sex = tv_user_sex.text.toString()
+        if ("男".equals(sex)) {
+            updateProfile("sex", "M")
+        } else {
+            updateProfile("sex", "F")
+        }
+        updateProfile("saying", tv_user_age.text.toString() + ",*#," + tv_user_title.text.toString() + ",*#," + tv_user_work_unit.text.toString())
     }
 
     private val onUserNameChangeListener = object : InputDialog.OnInputContentChangeListener {
@@ -165,6 +197,28 @@ class UserPageFragmentNew : Fragment() {
                 tv_user_work_unit.text = text
             }
         }
+    }
+
+    /**
+     * 更新用户数据
+     */
+    fun updateProfile(key: String, value: Any) {
+        val jsonObject = JSONObject()
+        try {
+            jsonObject.put(key, value)
+            Dua.getInstance().setUserProfile(jsonObject, object : DuaCallback {
+                override fun onSuccess(result: Any) {
+                    //SharedPreferenceUtil.prefSetKey(activity, PREF_PROFILE, key, value.toString())
+                    sharedPreferences.edit().putString(key, value.toString()).commit()
+                }
+
+                override fun onError(status: Int, reason: String) {
+                }
+            })
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
     }
 
 }// Required empty public constructor

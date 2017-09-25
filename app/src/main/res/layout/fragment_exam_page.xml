@@ -75,7 +75,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
 
                 <TextView
                     android:id="@+id/tv_exam_single_test_menu1"
@@ -111,6 +112,11 @@
                     android:id="@+id/tv_exam_single_test_menu7"
                     style="@style/BtnContrllerWhileStyle"
                     android:text="@string/menu_face" />
+
+                <TextView
+                    android:id="@+id/tv_exam_single_test_menu8"
+                    style="@style/BtnContrllerWhileStyle"
+                    android:text="@string/menu_arm_droop" />
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

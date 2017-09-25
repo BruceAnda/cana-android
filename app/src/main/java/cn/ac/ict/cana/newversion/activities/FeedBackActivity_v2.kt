@@ -10,7 +10,7 @@ import android.widget.AdapterView
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.helpers.DataBaseHelper
 import cn.ac.ict.cana.helpers.ModuleHelper
-import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.mode.History
 import cn.ac.ict.cana.newversion.modules.guide.*
 import cn.ac.ict.cana.newversion.modules.tremor.TremorMainActivity
@@ -26,7 +26,6 @@ import kotlinx.android.synthetic.main.activity_feed_back_v2.*
 import org.jetbrains.anko.doAsync
 import org.json.JSONObject
 import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * 返回的Activity

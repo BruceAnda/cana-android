@@ -29,7 +29,7 @@
             android:layout_below="@id/icon_close"
             android:gravity="center"
             android:lines="2"
-            android:text="水果篮需要下列\n权限才能正常运行"
+            android:text="PD助手需要下列\n权限才能正常运行"
             android:textSize="22sp"
             android:textStyle="bold" />
 

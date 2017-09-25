@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context="cn.ac.ict.cana.newversion.modules.stand_v2.StandTestActivity">
+    tools:context="cn.ac.ict.cana.newversion.modules.stand.StandTestActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

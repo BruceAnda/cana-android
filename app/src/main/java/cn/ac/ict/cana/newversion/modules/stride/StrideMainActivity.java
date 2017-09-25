@@ -13,7 +13,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.activities.MainActivity_;
+import cn.ac.ict.cana.newversion.activities.MainActivityNew;
 import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity5;
 import cn.ac.ict.cana.newversion.utils.FileUtils;
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -42,7 +42,7 @@ public class StrideMainActivity extends Activity {
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sDialog) {
-                            startActivity(new Intent(StrideMainActivity.this, MainActivity_.class));
+                            startActivity(new Intent(StrideMainActivity.this, MainActivityNew.class));
                         }
                     });
             sweetAlertDialog.show();

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -18,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cengalabs.flatui.FlatUI;
 import com.lovearthstudio.duasdk.Dua;
 import com.lovearthstudio.duasdk.DuaCallback;
 import com.lovearthstudio.duasdk.util.ComUtil;
@@ -27,17 +28,13 @@ import com.pgyersdk.update.PgyUpdateManager;
 import com.pgyersdk.update.UpdateManagerListener;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cn.ac.ict.cana.R;
 import cn.ac.ict.cana.newversion.activities.MainActivityNew;
-import cn.ac.ict.cana.newversion.base.YouMengBaseActivity;
-import cn.ac.ict.cana.duaui.DuaActivityLogin;
+import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity;
 import cn.ac.ict.cana.newversion.login.LandPageActivity;
-import cn.refactor.lib.colordialog.ColorDialog;
 import cn.refactor.lib.colordialog.ColorDialogPermission;
 import cn.refactor.lib.colordialog.ColorDialogPermissionDead;
 import permissions.dispatcher.NeedsPermission;
@@ -69,7 +66,7 @@ public class WelcomeActivity extends YouMengBaseActivity implements Animation.An
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        EventBus.getDefault().register(this);
+        //  EventBus.getDefault().register(this);
         setContentView(R.layout.activity_welcome);
         activity_welcome = (LinearLayout) findViewById(R.id.activity_welcome);
         tv_welcome_name = (TextView) findViewById(R.id.tv_welcome_name);
@@ -181,7 +178,15 @@ public class WelcomeActivity extends YouMengBaseActivity implements Animation.An
             }
         });*/
         if (EasyPermissions.hasPermissions(WelcomeActivity.this, perms)) {
-            selectPager();
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (activeNetworkInfo != null && activeNetworkInfo.isAvailable()) {
+                selectPager();
+            } else {
+                Toast.makeText(this, "手机没有网络，数据将无法上传！", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(WelcomeActivity.this, MainActivityNew.class));
+                finish();
+            }
         } else {
             colorDialog.show();
         }
@@ -193,7 +198,8 @@ public class WelcomeActivity extends YouMengBaseActivity implements Animation.An
             public void onNoUpdateAvailable() {
                 Dua.DuaUser duaUser = Dua.getInstance().getCurrentDuaUser();
                 if (duaUser.logon) {
-                    startActivity(new Intent(WelcomeActivity.this, MainActivityNew.class));
+                     startActivity(new Intent(WelcomeActivity.this, MainActivityNew.class));
+                    //startActivity(new Intent(WelcomeActivity.this, CountSimKeyboardActivity.class));
                     finish();
                 } else {
                     startActivityForResult(new Intent(WelcomeActivity.this, LandPageActivity.class), 10086);
@@ -242,15 +248,19 @@ public class WelcomeActivity extends YouMengBaseActivity implements Animation.An
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
-        PgyUpdateManager.unregister();
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+        if (activeNetworkInfo != null && activeNetworkInfo.isAvailable()) {
+            PgyUpdateManager.unregister();
+        }
     }
 
-    /**
+   /* *//**
      * 登录成功调用
      *
      * @author zhaoliang
      * create at 16/11/8 下午3:06
-     */
+     *//*
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(String operator) {
         if (operator.equals(DuaActivityLogin.LOGIN_SUCCESS)) {
@@ -258,7 +268,7 @@ public class WelcomeActivity extends YouMengBaseActivity implements Animation.An
             startActivity(new Intent(this, MainActivityNew.class));
             finish();
         }
-    }
+    }*/
 
 
     /**
@@ -318,7 +328,15 @@ public class WelcomeActivity extends YouMengBaseActivity implements Animation.An
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     })
     public void showPermissions() {
-        selectPager();
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+        if (activeNetworkInfo != null && activeNetworkInfo.isAvailable()) {
+            selectPager();
+        } else {
+            Toast.makeText(this, "手机没有网络，数据将无法上传！", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(WelcomeActivity.this, MainActivityNew.class));
+            finish();
+        }
     }
 
     private String[] perms = {

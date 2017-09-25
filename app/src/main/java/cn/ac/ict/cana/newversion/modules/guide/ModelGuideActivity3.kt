@@ -6,10 +6,10 @@ import android.support.v7.app.AlertDialog
 import android.view.View
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.helpers.ModuleHelper
-import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.contant.GlobleData
 import cn.ac.ict.cana.newversion.mode.History
-import cn.ac.ict.cana.newversion.modules.sound_v2.SoundTestActivity
+import cn.ac.ict.cana.newversion.modules.sound.SoundTestActivity
 import cn.ac.ict.cana.newversion.pagers.ExamPageFragment
 import cn.ac.ict.cana.newversion.utils.FileUtils
 import kotlinx.android.synthetic.main.activity_model_guide3.*

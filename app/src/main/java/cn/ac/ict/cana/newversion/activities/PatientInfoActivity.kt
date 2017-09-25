@@ -8,8 +8,9 @@ import android.text.InputType
 import android.text.TextUtils
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Toast
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.db.bean.Batch
 import cn.ac.ict.cana.newversion.db.database
 import cn.ac.ict.cana.newversion.modules.guide.*
@@ -18,6 +19,7 @@ import cn.ac.ict.cana.newversion.utils.FileUtils
 import cn.ac.ict.cana.newversion.widget.InputDialog
 import kotlinx.android.synthetic.main.activity_patient_info.*
 import java.util.*
+import java.util.regex.Pattern
 
 /**
  * 病人信息页面
@@ -26,8 +28,8 @@ import java.util.*
  */
 class PatientInfoActivity : YouMengBaseActivity() {
 
-    private val sex = arrayOf("男", "女")
-    private val open = arrayOf("关", "开")
+    private val sex = arrayOf("M", "F")
+    private val open = arrayOf("0", "1")
 
     private val mOnSexItemSelectListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -135,6 +137,9 @@ class PatientInfoActivity : YouMengBaseActivity() {
                         ExamPageFragment.MENU_FACE -> {
                             target = Intent(this@PatientInfoActivity, ModelGuideActivity7::class.java)
                         }
+                        ExamPageFragment.MENU_ARM_DROOP -> {
+                            target = Intent(this@PatientInfoActivity, ModelGuideActivity8::class.java)
+                        }
                     }
                 }
             }
@@ -165,40 +170,72 @@ class PatientInfoActivity : YouMengBaseActivity() {
 
     private val onPationNameChangeListener = object : InputDialog.OnInputContentChangeListener {
         override fun onContentChange(text: String) {
-            if (!TextUtils.isEmpty(text)) {
+            var reg = "^(([\u4e00-\u9fa5]{2,8})|([a-zA-Z]{2,16}))$"
+            if (!TextUtils.isEmpty(text) && Pattern.matches(reg, text)) {
                 edittext_patient_name.text = text
+            } else {
+                Toast.makeText(this@PatientInfoActivity, "请输入合法的姓名", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+    fun isAge(age: String): Boolean {
+        var isTrue = false
+        if (age != null && age != "") {
+            val pattern = Pattern.compile("[0-9]*")
+            if (pattern.matcher(age).matches()) {
+                val ageInt = age.toInt()
+                if (ageInt in 1..119) {
+                    isTrue = true
+                }
+            }
+        }
+        return isTrue
+    }
+
     private val onPationtAgeChangeListener = object : InputDialog.OnInputContentChangeListener {
         override fun onContentChange(text: String) {
-            if (!TextUtils.isEmpty(text)) {
+            if (!TextUtils.isEmpty(text) && isAge(text)) {
                 edittext_patient_age.text = text
+            } else {
+                Toast.makeText(this@PatientInfoActivity, "请输入合法的年龄", Toast.LENGTH_SHORT).show()
             }
         }
     }
     private val onPationMedicineChangeListener = object : InputDialog.OnInputContentChangeListener {
         override fun onContentChange(text: String) {
-            if (!TextUtils.isEmpty(text)) {
+            if (!TextUtils.isEmpty(text) && (!text.contains(" ") && (!text.contains(";")))) {
                 edittext_patient_medicine.text = text
             }
         }
     }
 
     fun showPatientNameInput(view: View) {
-        val inputDialog = InputDialog(this@PatientInfoActivity, "病人姓名", InputType.TYPE_CLASS_TEXT)
+        var conotentHint = edittext_patient_name.text.toString()
+        if (conotentHint.isEmpty()) {
+            conotentHint = "输入病人姓名"
+        }
+        val inputDialog = InputDialog(this@PatientInfoActivity, "病人姓名", InputType.TYPE_CLASS_TEXT, conotentHint)
         inputDialog.onInputContentChangeListener = onPationNameChangeListener
         inputDialog.show()
     }
 
     fun showPatientAgeInput(view: View) {
-        val inputDialog = InputDialog(this@PatientInfoActivity, "病人年龄", InputType.TYPE_CLASS_NUMBER)
+        var conotentHint = edittext_patient_age.text.toString()
+        if (conotentHint.isEmpty()) {
+            conotentHint = "输入病人年龄"
+        }
+        val inputDialog = InputDialog(this@PatientInfoActivity, "病人年龄", InputType.TYPE_CLASS_NUMBER, conotentHint)
         inputDialog.onInputContentChangeListener = onPationtAgeChangeListener
         inputDialog.show()
     }
 
     fun showPatientMedicineInput(view: View) {
-        val inputDialog = InputDialog(this@PatientInfoActivity, "使用药物", InputType.TYPE_CLASS_TEXT)
+        var conotentHint = edittext_patient_medicine.text.toString()
+        if (conotentHint.isEmpty()) {
+            conotentHint = "输入病人使用的药物，多个药物用逗号分隔"
+        }
+        val inputDialog = InputDialog(this@PatientInfoActivity, "使用药物", InputType.TYPE_CLASS_TEXT, conotentHint)
         inputDialog.onInputContentChangeListener = onPationMedicineChangeListener
         inputDialog.show()
     }

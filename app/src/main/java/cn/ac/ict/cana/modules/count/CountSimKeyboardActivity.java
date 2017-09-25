@@ -30,7 +30,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.events.NewHistoryEvent;
 import cn.ac.ict.cana.helpers.ModuleHelper;
 import cn.ac.ict.cana.models.History;
 import cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity;
@@ -43,7 +42,7 @@ public class CountSimKeyboardActivity extends Activity {
     private String randomStr;
     private String version;
     private TextView nextet;
-    private Button nextbtn;
+    private Button count_simkeyboard_confirmBtn;
     private Intent intent;
     private int times;
     private boolean isRight;
@@ -137,8 +136,7 @@ public class CountSimKeyboardActivity extends Activity {
         randomStr = randomStr.substring(0, 6);
         nextet = (TextView) findViewById(R.id.count_simkeyboard_tv);
         nextet.setInputType(EditorInfo.TYPE_CLASS_PHONE);
-        nextbtn = (Button) findViewById(R.id.count_simkeyboard_confirmBtn);
-        nextbtn.setOnClickListener(new View.OnClickListener() {
+        count_simkeyboard_confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String str = nextet.getText().toString().trim();
@@ -316,7 +314,7 @@ public class CountSimKeyboardActivity extends Activity {
         editor.putString("HistoryFilePath", filePath);
         editor.apply();
 //        Log.d("CountSaveToStorage", String.valueOf(history.id));
-        EventBus.getDefault().post(new NewHistoryEvent());
+       // EventBus.getDefault().post(new NewHistoryEvent());
 
 //        Toast.makeText(getApplicationContext(), CountEvaluation.evaluation(history),Toast.LENGTH_SHORT).show();
     }

@@ -45,7 +45,8 @@ public class History {
                 ext = ".mp4";
                 break;
             case "Sound":
-                ext = ".3gp";
+                //ext = ".3gp";
+                ext = ".wav";
                 break;
             default:
                 ext = ".txt";

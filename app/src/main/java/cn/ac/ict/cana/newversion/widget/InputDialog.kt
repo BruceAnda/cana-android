@@ -11,14 +11,17 @@ import kotlinx.android.synthetic.main.input_dialog.*
 /**
  * Created by zhaoliang on 2017/9/11.
  */
-class InputDialog(context: Context?, var titleMessage: String, var cInputType: Int) : Dialog(context) {
+class InputDialog(context: Context?, var titleMessage: String, var cInputType: Int, val conotentHint: String) : Dialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.input_dialog)
         tv_title.text = titleMessage
-        // et_content.inputType = cInputType
+        et_content.inputType = cInputType
+        et_content.hint = conotentHint
+        et_content.setLines(4)
+        et_content.setHorizontallyScrolling(false)
         btn_ok.setOnClickListener {
             val text = et_content.text.toString()
             onInputContentChangeListener.onContentChange(text)

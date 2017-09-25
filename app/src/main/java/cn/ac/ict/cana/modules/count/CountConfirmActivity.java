@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.events.NewHistoryEvent;
 import cn.ac.ict.cana.helpers.ModuleHelper;
 import cn.ac.ict.cana.models.History;
 
@@ -140,7 +139,7 @@ public class CountConfirmActivity extends Activity {
         editor.apply();
 
 //        Log.d("CountSaveToStorage", String.valueOf(history.id));
-        EventBus.getDefault().post(new NewHistoryEvent());
+        //EventBus.getDefault().post(new NewHistoryEvent());
 
 //        Toast.makeText(getApplicationContext(), CountEvaluation.evaluation(history),Toast.LENGTH_SHORT).show();
     }

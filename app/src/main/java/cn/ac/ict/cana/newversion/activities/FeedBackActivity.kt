@@ -5,13 +5,12 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import cn.ac.ict.cana.R
 import cn.ac.ict.cana.helpers.ModuleHelper
-import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.bean.AccAndGyroData
 import cn.ac.ict.cana.newversion.contant.GlobleData
 import cn.ac.ict.cana.newversion.db.bean.History
@@ -28,8 +27,6 @@ import com.lovearthstudio.duasdk.util.encryption.MD5
 import kotlinx.android.synthetic.main.activity_feed_back_v2.*
 import org.jetbrains.anko.doAsync
 import org.json.JSONObject
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * 返回的Activity
@@ -38,7 +35,6 @@ import java.util.*
 class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
 
     private val TAG = FeedBackActivity::class.java.simpleName
-
     private val mTremors = arrayOf("Tremor_LR", "Tremor_LP", "Tremor_RR", "Tremor_RP")
     private val mTappers = arrayOf("Tapping_L", "Tapping_R")
 
@@ -79,8 +75,9 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_medicine\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"switching_period\":\"${FileUtils.SWITCHING_PERIOD}\"," +
+                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
+                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
+                            "\"filever\":\"${1}\"," +
                             "\"file\":\"${fileName}\"}"
                     insertDB(data)
                 } else {
@@ -90,8 +87,9 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_medicine\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"switching_period\":\"${FileUtils.SWITCHING_PERIOD}\"," +
+                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
+                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
+                            "\"filever\":\"${1}\"," +
                             "\"file\":\"${fileName}\"}"
                     insertDB(data)
                 }
@@ -194,9 +192,22 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
                         writeFaceData(filePath)
                         finish()
                     } else {
+                        AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("即将进入手臂下垂测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                            startActivity(Intent(this, ModelGuideActivity8::class.java))
+                            writeFaceData(filePath)
+                            finish()
+                        }).setCancelable(false).show()
+                    }
+                } else if (ModuleHelper.MODULE_ARM_DROOP.equals(modelName)) {
+                    var filePath = FileUtils.filePath
+                    if (GlobleData.menu_type == ExamPageFragment.MENU_TYPE_SINGLE) {
+                        startActivity(Intent(this@FeedBackActivity, UploadActivity::class.java))
+                        writeArmDroopData(filePath)
+                        finish()
+                    } else {
                         AlertDialog.Builder(this@FeedBackActivity).setTitle("提示").setMessage("恭喜你完成了测试，请上传数据我们会对您的康复情况进行分析。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
                             startActivity(Intent(this, UploadActivity::class.java))
-                            writeFaceData(filePath)
+                            writeArmDroopData(filePath)
                             finish()
                         }).setCancelable(false).show()
                     }
@@ -205,12 +216,20 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
         }
     }
 
-    private fun writeFaceData(filePath: String) {
-        /*doAsync {
-            GzipUtil.compressForZip(filePath, filePath + ".gz")
-            finish()
-        }*/
+    private fun writeArmDroopData(filePath: String) {
+        doAsync {
+            var jo = JSONObject()
+
+            jo.put("type", "stand")
+            jo.put("Stand_L", JSON.toJSONString(AccAndGyroData(FileUtils.accArmDroopLDatalist, FileUtils.gyroArmDroopLDataList)))
+            jo.put("Stand_R", JSON.toJSONString(AccAndGyroData(FileUtils.accArmDroopRDatalist, FileUtils.gyroArmDroopRDataList)))
+
+            FileUtils.writeToFile(jo.toString(), filePath)
+
+        }
     }
+
+    fun writeFaceData(filePath: String) {}
 
     private fun writeTapperData(filePath: String) {
         doAsync {
@@ -341,7 +360,6 @@ class FeedBackActivity : YouMengBaseActivity(), View.OnClickListener {
     }
 
     var modelName: String? = null
-    private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed_back_v2)

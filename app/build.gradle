@@ -12,11 +12,12 @@ android {
             storePassword '123456'
         }
     }
-    compileSdkVersion 25
-    buildToolsVersion "26.0.0"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "cn.ac.ict.cana"
         minSdkVersion 18
+       // useLibrary("com.lovearthstudio.duasdk")
         targetSdkVersion 23
         versionCode 8
         versionName "2.0"
@@ -58,9 +59,9 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.anko:anko-sqlite:$anko_version"
     // 支持 GIF 动图，需要添加
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile 'com.android.support:support-v4:24.2.1'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
     compile 'com.github.devlight.navigationtabbar:navigationtabbar:1.2.5'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.github.eluleci:flatui:3.0.0'
@@ -76,13 +77,15 @@ dependencies {
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.github.hotchemi:permissionsdispatcher:2.3.2'
     compile 'com.alibaba:fastjson:1.1.59.android'
-    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
     compile 'com.facebook.fresco:fresco:0.12.0'
     compile 'com.facebook.fresco:animated-gif:0.12.0'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
+    compile 'com.idescout.sql:sqlscout-server:2.0'
+    implementation project(':parkinsdatacollection')
 }
 repositories {
     mavenCentral()
+    google()
 }

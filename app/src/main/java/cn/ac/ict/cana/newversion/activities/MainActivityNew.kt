@@ -6,28 +6,22 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 
 import com.gigamole.navigationtabbar.ntb.NavigationTabBar
 import com.pushlink.android.PushLink
 
 import org.androidannotations.annotations.Bean
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 import java.util.ArrayList
-import java.util.Locale
 import java.util.Timer
 import java.util.TimerTask
 
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
-import cn.ac.ict.cana.events.CheckedItemChangedEvent
-import cn.ac.ict.cana.events.ResponseEvent
+import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
 import cn.ac.ict.cana.helpers.ToastManager
 import cn.ac.ict.cana.newversion.adapter.MainAdapterNew
+import com.idescout.sql.SqlScoutServer
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -52,6 +46,7 @@ open class MainActivityNew : YouMengBaseActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+        SqlScoutServer.create(this, packageName)
 
         mactivityManager = LocalActivityManager(this, true)
         mactivityManager!!.dispatchCreate(savedInstanceState)
@@ -106,49 +101,6 @@ open class MainActivityNew : YouMengBaseActivity() {
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onResponseEvent(event: ResponseEvent) {
-        if (event.success) {
-            success += 1
-        } else {
-            failed += 1
-        }
-        if (success + failed >= event.total) {
-            finishUpload()
-        }
-    }
-
-    private fun finishUpload() {
-        if (failed + success == 0) {
-            return
-        }
-        showProgressBar(false, "")
-        if (failed > 0) {
-            toastManager!!.show(String.format(Locale.CHINA, resources.getString(R.string.upload_failed), success, failed))
-        } else {
-            toastManager!!.show(resources.getString(R.string.upload_success))
-        }
-        success = 0
-        failed = 0
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onCheckedItemChangedEvent(event: CheckedItemChangedEvent) {
-        val uploadButton = findViewById(R.id.bt_upload) as Button
-        if (event.count == 0) {
-            uploadButton.isEnabled = false
-        } else {
-            uploadButton.isEnabled = true
-        }
-    }
-
-    fun cancelUpload() {
-        /*  Log.d("cancelUpload", "Number of upload call: " + callArrayList.size());
-        for (Call call : callArrayList) {
-            call.cancel();
-        }*/
-    }
-
     //ProgressBar
     private fun initProgressBar() {
         if (mProgressDialog == null) {
@@ -168,16 +120,6 @@ open class MainActivityNew : YouMengBaseActivity() {
         }
     }
 
-    public override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    public override fun onStop() {
-        EventBus.getDefault().unregister(this)
-        super.onStop()
-    }
-
     override fun onBackPressed() {
         Log.d("onBackPressed", back.toString() + "Function entered")
         if (back == 1) {
@@ -190,7 +132,6 @@ open class MainActivityNew : YouMengBaseActivity() {
             }
             timer.schedule(tt, 2000)
         } else {
-            cancelUpload()
             finish()
         }
     }
@@ -205,13 +146,9 @@ open class MainActivityNew : YouMengBaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.i(TAG, "onActivityResult")
-        // DuaActivityProfile duaActivityProfile = (DuaActivityProfile) mactivityManager.getActivity("one");
-        //  duaActivityProfile.onActivityResult(requestCode, resultCode, data);
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        // DuaActivityProfile duaActivityProfile = (DuaActivityProfile) mactivityManager.getActivity("one");
-        // duaActivityProfile.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

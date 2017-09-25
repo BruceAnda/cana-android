@@ -8,7 +8,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.adapters.ExamAdapter;
 import cn.ac.ict.cana.helpers.ModuleHelper;
 import cn.ac.ict.cana.models.Exam;
 
@@ -21,7 +20,7 @@ public class ExamPage {
     static public View InitialExamPageView(Context context){
         View view = LayoutInflater.from(context).inflate(R.layout.pageview_exam, null, false);
 
-        final ListView lvExam = (ListView) view.findViewById(R.id.lv_exam);
+       /* final ListView lvExam = (ListView) view.findViewById(R.id.lv_exam);
         ArrayList<Exam> examList = new ArrayList<>();
         final ExamAdapter examAdapter = new ExamAdapter(context);
 
@@ -31,7 +30,7 @@ public class ExamPage {
         }
 
         examAdapter.setList(examList);
-        lvExam.setAdapter(examAdapter);
+        lvExam.setAdapter(examAdapter);*/
 
         return view;
     }

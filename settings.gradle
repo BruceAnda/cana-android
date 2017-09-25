@@ -1,2 +1,2 @@
-include ':app', ':libraries:duaui', ':libraries:popup', ':libraries:ColorDialog', ':libraries:uploadfile'
+include ':app', ':libraries:duaui', ':libraries:popup', ':libraries:ColorDialog', ':libraries:uploadfile', ':parkinsdatacollection'
 

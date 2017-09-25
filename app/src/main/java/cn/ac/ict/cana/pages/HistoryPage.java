@@ -8,8 +8,6 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.activities.MainActivity;
-import cn.ac.ict.cana.adapters.HistoryAdapter;
 import cn.ac.ict.cana.helpers.DataBaseHelper;
 import cn.ac.ict.cana.helpers.ModuleHelper;
 import cn.ac.ict.cana.models.History;
@@ -40,7 +38,7 @@ public class HistoryPage {
         for (History history : historyList) {
             mChild.get(mGroup.indexOf(history.type)).add(history);
         }
-        final HistoryAdapter historyAdapter = new HistoryAdapter(context, treeView, mGroup, mChild);
+       /* final HistoryAdapter historyAdapter = new HistoryAdapter(context, treeView, mGroup, mChild);
         treeView.setAdapter(historyAdapter);
 
         Button uploadButton = (Button) view.findViewById(R.id.bt_upload);
@@ -81,7 +79,7 @@ public class HistoryPage {
                 historyProvider.deleteHistories(Ids);
                 historyAdapter.removeItems(Ids);
             }
-        });
+        });*/
         return view;
     }
 }

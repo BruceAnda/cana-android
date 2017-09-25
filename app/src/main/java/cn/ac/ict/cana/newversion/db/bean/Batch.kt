@@ -28,11 +28,11 @@ class Batch(var patientName: String, var time: Long, var batch: String) : Parcel
     }
 
     companion object CREATOR : Parcelable.Creator<Batch> {
-        val TABLE_NAME = "Batch"
+        val TABLE_NAME = "batch"
 
         val ID = "Id"
         val TIME = "Time"
-        val BATCH = "Batch"
+        val BATCH = "batch"
 
         // 病人信息
         val PATIENT_NAME = "PatientInfo"

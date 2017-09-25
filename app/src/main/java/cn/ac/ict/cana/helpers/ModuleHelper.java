@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.activities.FeedBackActivity;
-import cn.ac.ict.cana.activities.MainActivity_;
 import cn.ac.ict.cana.models.History;
 import cn.ac.ict.cana.modules.count.CountEvaluation;
 import cn.ac.ict.cana.modules.count.CountMainActivity;
@@ -22,6 +20,8 @@ import cn.ac.ict.cana.modules.stride.StrideItemActivity;
 import cn.ac.ict.cana.modules.tapper.TapperEvaluation;
 import cn.ac.ict.cana.modules.tapper.TapperMainActivity;
 import cn.ac.ict.cana.modules.tremor.TremorMainActivity;
+import cn.ac.ict.cana.newversion.activities.FeedBackActivity;
+import cn.ac.ict.cana.newversion.activities.MainActivityNew;
 
 /**
  * Author: saukymo
@@ -35,6 +35,7 @@ public class ModuleHelper {
     public final static String MODULE_STRIDE = "Stride";
     public final static String MODULE_TAPPER = "Tapper";
     public final static String MODULE_TREMOR = "Tremor";
+    public final static String MODULE_ARM_DROOP = "ArmDroop";
 
     public final static ArrayList<String> ModuleList = new ArrayList<>(Arrays.asList(MODULE_COUNT, MODULE_TREMOR, MODULE_SOUND, MODULE_STAND, MODULE_STRIDE, MODULE_TAPPER, MODULE_FACE));
 
@@ -57,6 +58,8 @@ public class ModuleHelper {
                 return context.getString(R.string.module_tapper);
             case MODULE_FACE:
                 return "面部表情";
+            case MODULE_ARM_DROOP:
+                return "手臂下垂";
             default:
                 return "";
         }
@@ -86,7 +89,7 @@ public class ModuleHelper {
                 module = SoundMainActivity.class;
                 break;
             default:
-                module = MainActivity_.class;
+                module = MainActivityNew.class;
         }
         return module;
     }

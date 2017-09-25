@@ -9,7 +9,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.adapters.UserAdapter;
 import cn.ac.ict.cana.helpers.DataBaseHelper;
 import cn.ac.ict.cana.models.User;
 import cn.ac.ict.cana.providers.UserProvider;
@@ -26,12 +25,12 @@ public class UserPage{
 
         final ArrayList<User> userList = userProvider.getUsers();
         Log.d("MainAdapter", userList.toString());
-        final ListView lvUser = (ListView) view.findViewById(R.id.lv_user);
+      /*  final ListView lvUser = (ListView) view.findViewById(R.id.lv_user);
         final UserAdapter userAdapter = new UserAdapter(context);
 
         userAdapter.setList(userList);
         lvUser.setAdapter(userAdapter);
-
+*/
         return view;
     }
 }

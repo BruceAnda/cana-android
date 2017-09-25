@@ -5,9 +5,9 @@ import android.app.Application;
 import com.cengalabs.flatui.FlatUI;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.lovearthstudio.duasdk.Dua;
+import com.lovearthstudio.duasdk.upload.UploadUtils;
 import com.pgyersdk.crash.PgyCrashManager;
 
-import zhaoliang.com.uploadfile.UploadUtils;
 
 /**
  * Created by zhaoliang on 2017/6/22.

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="cn.ac.ict.cana">
 
+
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -77,10 +78,6 @@
         <activity
             android:name=".activities.MainActivity_"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name=".activities.UserActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
@@ -159,14 +156,6 @@
             android:name=".modules.sound.SoundMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActBar.FullScreen" />
-        <activity
-            android:name=".activities.FeedBackActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name=".activities.MedicalInfoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <!-- Module: Tremor -->
         <activity
@@ -186,13 +175,13 @@
             android:name="UMENG_CHANNEL"
             android:value="GooglePlay" />
 
-        <activity android:name=".newversion.base.YouMengBaseActivity" />
+        <activity android:name=".parkionsdatacollection.base.YouMengBaseActivity" />
         <activity
-            android:name=".newversion.modules.count.CountGameActivity"
+            android:name="cn.ac.ict.cana.parkionsdatacollection.model.count.CountGameActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActBar.FullScreen" />
         <activity
-            android:name=".newversion.modules.count.CountSimKeyboardActivity"
+            android:name="cn.ac.ict.cana.parkionsdatacollection.model.count.CountSimKeyboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActBar.FullScreen" />
         <activity
@@ -223,18 +212,6 @@
             android:name=".newversion.modules.stride.StrideWalkingActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name=".newversion.modules.tapper.TapperMainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".newversion.modules.tapper.TapperTestingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".newversion.modules.tremor.TremorMainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".newversion.modules.tremor.TremorTestingActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.modules.guide.ModelGuideActivity"
             android:screenOrientation="portrait" />
@@ -284,22 +261,22 @@
             android:name=".newversion.modules.face.VideoCaptureActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".newversion.modules.tapper_v2.TapperTestActivity"
+            android:name=".newversion.modules.tapper.TapperTestActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".newversion.modules.stand_v2.StandTestActivity"
+            android:name=".newversion.modules.stand.StandTestActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".newversion.modules.tremor_v2.TremorMainActivity"
+            android:name=".newversion.modules.tremor.TremorMainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.activities.FeedBackActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".newversion.modules.tremor_v2.TremorTestActivity"
+            android:name=".newversion.modules.tremor.TremorTestActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".newversion.modules.sound_v2.SoundTestActivity"
+            android:name=".newversion.modules.sound.SoundTestActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".newversion.activities.HistoryDetailActivity"
@@ -311,8 +288,12 @@
             android:name=".newversion.login.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".newversion.modules.armdroop.ArmDroopTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".newversion.login.ResultActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".newversion.modules.guide.ModelGuideActivity8"></activity>
     </application>
 
 </manifest>

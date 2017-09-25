@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ToggleButton;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.activities.MainActivity_;
+import cn.ac.ict.cana.newversion.activities.MainActivityNew;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class StandMainActivity extends Activity {
@@ -61,7 +61,7 @@ public class StandMainActivity extends Activity {
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sDialog) {
-                            startActivity(new Intent(StandMainActivity.this, MainActivity_.class));
+                            startActivity(new Intent(StandMainActivity.this, MainActivityNew.class));
                         }
                     });
             sweetAlertDialog.show();

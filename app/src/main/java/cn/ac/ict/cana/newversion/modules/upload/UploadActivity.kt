@@ -1,6 +1,7 @@
 package cn.ac.ict.cana.newversion.modules.upload
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
@@ -16,7 +17,6 @@ import com.kymjs.rxvolley.client.HttpParams
 
 
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.activities.MainActivity
 import cn.ac.ict.cana.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.activities.MainActivityNew
 import cn.ac.ict.cana.newversion.constant.Constant
@@ -30,10 +30,8 @@ import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback
 import com.alibaba.sdk.android.oss.callback.OSSProgressCallback
 import com.alibaba.sdk.android.oss.model.PutObjectRequest
 import com.alibaba.sdk.android.oss.model.PutObjectResult
-import com.lovearthstudio.duasdk.Dua
 import com.lovearthstudio.duasdk.upload.UploadUtils
 import kotlinx.android.synthetic.main.activity_upload.*
-import org.jetbrains.anko.UI
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.db.update
 import org.json.JSONObject
@@ -72,6 +70,7 @@ class UploadActivity : Activity() {
     private var numStride: Int = 0
     private var numTapper: Int = 0
     private var numFace: Int = 0
+    private var numArmDroop: Int = 0
 
     lateinit var list: List<History>
 
@@ -91,6 +90,7 @@ class UploadActivity : Activity() {
                     history.type == ModuleHelper.MODULE_STRIDE -> numStride++
                     history.type == ModuleHelper.MODULE_TAPPER -> numTapper++
                     history.type == ModuleHelper.MODULE_FACE -> numFace++
+                    history.type == ModuleHelper.MODULE_ARM_DROOP -> numArmDroop++
                 }
             }
         }
@@ -102,6 +102,7 @@ class UploadActivity : Activity() {
         tv_stride!!.text = "行走平衡($numStride)"
         tv_tapper!!.text = "手指灵敏($numTapper)"
         tv_face!!.text = "面部表情($numFace)"
+        tv_arm_droop.text = "手臂下垂($numArmDroop)"
 
     }
 
@@ -127,8 +128,9 @@ class UploadActivity : Activity() {
             params.put("data", history.mark)
             params.put("type", history.type)
             params.put("tag", "Parkinson")
-            params.put("batch", FileUtils.batch)
-            post(url, params)
+            params.put("batch", history.batch)
+
+            Log.i(TAG, params.toString())
 
             val localFile = File(history.filePath)
             if (!localFile.exists()) {
@@ -140,6 +142,20 @@ class UploadActivity : Activity() {
             UploadUtils.asyncPutFile(Constant.DATA_FILE_BUCKET, fileName, history.filePath, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
                 override fun onSuccess(request: PutObjectRequest?, result: PutObjectResult?) {
                     Log.d("PutObject", "UploadSuccess")
+                    RxVolley.post(url, params, object : HttpCallback() {
+                        override fun onSuccess(t: String?) {
+                            Log.i(TAG, "上传成功！" + t)
+                            var result = JSONObject(t)
+                            database.use {
+                                update(History.TABLE_NAME, History.ISUPLOAD to "1").whereSimple(History.FILEPATH + " = ?", history.filePath).exec()
+                            }
+                        }
+
+                        override fun onFailure(errorNo: Int, strMsg: String?) {
+                            Log.i(TAG, "上传失败" + errorNo.toString() + "------" + strMsg)
+                            android.support.v7.app.AlertDialog.Builder(this@UploadActivity).setTitle("提示").setMessage("数据有错误！$errorNo#$strMsg").show()
+                        }
+                    })
                     currentFile++
                     if (currentFile <= fileNum) {
                         upload()
@@ -155,9 +171,8 @@ class UploadActivity : Activity() {
                     if (file1.exists()) {
                         file1.delete()
                     }
-                    database.use {
-                        update(History.TABLE_NAME, History.ISUPLOAD to "1").whereSimple(History.FILEPATH + " = ?", history.filePath).exec()
-                    }
+
+
                 }
 
                 override fun onFailure(request: PutObjectRequest?, clientException: ClientException?, serviceException: ServiceException?) {
@@ -192,20 +207,6 @@ class UploadActivity : Activity() {
         progressDialog?.show()
         progressDialog?.setCancelable(false)
         progressDialog?.show()
-    }
-
-    fun post(url: String, params: HttpParams) {
-        Log.i(TAG, "url:" + url + "-------params:" + params.jsonParams)
-
-        RxVolley.post(url, params, object : HttpCallback() {
-            override fun onSuccess(t: String?) {
-                Log.i(TAG, t)
-            }
-
-            override fun onFailure(errorNo: Int, strMsg: String?) {
-                Log.i(TAG, errorNo.toString() + "------" + strMsg)
-            }
-        })
     }
 
     companion object {

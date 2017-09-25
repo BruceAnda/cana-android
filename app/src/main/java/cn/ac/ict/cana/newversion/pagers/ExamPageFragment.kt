@@ -32,6 +32,7 @@ class ExamPageFragment : Fragment() {
         val MENU_STRIDE = 5
         val MENU_TAPPER = 6
         val MENU_FACE = 7
+        val MENU_ARM_DROOP = 8
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -79,6 +80,9 @@ class ExamPageFragment : Fragment() {
         tv_exam_single_test_menu7.setOnClickListener {
             toPatientInfo(MENU_TYPE_SINGLE, MENU_FACE)
         }
+        tv_exam_single_test_menu8.setOnClickListener {
+            toPatientInfo(MENU_TYPE_SINGLE, MENU_ARM_DROOP)
+        }
     }
 
     /**
@@ -91,7 +95,6 @@ class ExamPageFragment : Fragment() {
         GlobleData.menu_type = menuType
         GlobleData.menu = menu
         startActivity(intent)
-
     }
 
 

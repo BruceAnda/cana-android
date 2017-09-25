@@ -20,7 +20,6 @@ import cn.ac.ict.cana.newversion.db.bean.Batch
 import cn.ac.ict.cana.newversion.db.bean.History
 import cn.ac.ict.cana.newversion.db.database
 import cn.ac.ict.cana.newversion.db.parser.HistoryParser
-import cn.ac.ict.cana.newversion.utils.FileUtils
 import com.alibaba.sdk.android.oss.ClientException
 import com.alibaba.sdk.android.oss.ServiceException
 import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback
@@ -75,7 +74,7 @@ class HistoryDetailActivity : AppCompatActivity() {
     }
 
     private val TAG = HistoryDetailActivity::class.java.simpleName
-    private val titles = arrayOf("数字记忆", "震颤情况", "语言能力", "站立平衡", "行走平衡", "手指灵敏", "面部表情")
+    private val titles = arrayOf("数字记忆", "震颤情况", "语言能力", "站立平衡", "行走平衡", "手指灵敏", "面部表情", "手臂下垂")
     private val titlesMap = HashMap<String, String>()
     lateinit var unUploadhistoryList: List<History>
 
@@ -94,6 +93,7 @@ class HistoryDetailActivity : AppCompatActivity() {
         titlesMap.put(ModuleHelper.MODULE_STRIDE, titles[4])
         titlesMap.put(ModuleHelper.MODULE_TAPPER, titles[5])
         titlesMap.put(ModuleHelper.MODULE_FACE, titles[6])
+        titlesMap.put(ModuleHelper.MODULE_ARM_DROOP, titles[7])
 
         Log.i(TAG, "onCreate:batch:" + batch.batch + ":" + batch.time + ":" + batch.patientName)
 
@@ -165,24 +165,21 @@ class HistoryDetailActivity : AppCompatActivity() {
         try {
             val history = unUploadhistoryList!![currentFile - 1]
 
-            // http://api.ivita.org/event/2/parkins.walk/walkfile/-3/2
-            // String url = "http://api.ivita.org/event/" + Dua.getInstance().getCurrentDuaId() + "/" + history.type + "/" + fileName + "/0/0";
             val dbMark = history.mark
             val jsonObject = JSONObject(dbMark)
             val fileName = jsonObject.optString("file")
             Log.i(TAG, fileName)
 
             val url = "http://api.ivita.org/event"
-            //String mark = "{\"uid\":" + Dua.getInstance().getCurrentDuaUid() + ",\"data\":" + history.mark + ",\"type\":" + history.type
-            //+"}";
-            // post(url, mark);
+
             val params = HttpParams()
             params.put("uid", history.userID)
             params.put("data", history.mark)
             params.put("type", history.type)
             params.put("tag", "Parkinson")
-            params.put("batch", FileUtils.batch)
-            post(url, params)
+            params.put("batch", history.batch)
+            Log.i(TAG, params.toString())
+            // post(url, params)
 
             val localFile = File(history.filePath)
             if (!localFile.exists()) {
@@ -194,6 +191,20 @@ class HistoryDetailActivity : AppCompatActivity() {
             UploadUtils.asyncPutFile(Constant.DATA_FILE_BUCKET, fileName, history.filePath, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
                 override fun onSuccess(request: PutObjectRequest?, result: PutObjectResult?) {
                     Log.d("PutObject", "UploadSuccess")
+                    RxVolley.post(url, params, object : HttpCallback() {
+                        override fun onSuccess(t: String?) {
+                            Log.i(TAG, "上传成功！" + t)
+                            var result = JSONObject(t)
+                            database.use {
+                                update(History.TABLE_NAME, History.ISUPLOAD to "1").whereSimple(History.FILEPATH + " = ?", history.filePath).exec()
+                            }
+                        }
+
+                        override fun onFailure(errorNo: Int, strMsg: String?) {
+                            Log.i(TAG, "上传失败" + errorNo.toString() + "------" + strMsg)
+                            android.support.v7.app.AlertDialog.Builder(this@HistoryDetailActivity).setTitle("提示").setMessage("数据有错误！$errorNo#$strMsg").show()
+                        }
+                    })
                     currentFile++
                     if (currentFile <= fileNum) {
                         upload()
@@ -208,9 +219,6 @@ class HistoryDetailActivity : AppCompatActivity() {
                     val file1 = File(history.filePath.substring(0, history.filePath.lastIndexOf(".")))
                     if (file1.exists()) {
                         file1.delete()
-                    }
-                    database.use {
-                        update(History.TABLE_NAME, History.ISUPLOAD to "1").whereSimple(History.FILEPATH + " = ?", history.filePath).exec()
                     }
                 }
 
@@ -247,19 +255,5 @@ class HistoryDetailActivity : AppCompatActivity() {
         progressDialog?.show()
         progressDialog?.setCancelable(false)
         progressDialog?.show()
-    }
-
-    fun post(url: String, params: HttpParams) {
-        Log.i(TAG, "url:" + url + "-------params:" + params.jsonParams)
-
-        RxVolley.post(url, params, object : HttpCallback() {
-            override fun onSuccess(t: String?) {
-                Log.i(TAG, t)
-            }
-
-            override fun onFailure(errorNo: Int, strMsg: String?) {
-                Log.i(TAG, errorNo.toString() + "------" + strMsg)
-            }
-        })
     }
 }

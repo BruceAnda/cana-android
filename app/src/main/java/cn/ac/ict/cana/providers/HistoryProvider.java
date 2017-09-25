@@ -17,7 +17,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
-import cn.ac.ict.cana.events.ResponseEvent;
 import cn.ac.ict.cana.helpers.DataBaseHelper;
 import cn.ac.ict.cana.models.History;
 import cn.ac.ict.cana.models.User;
@@ -221,13 +220,13 @@ public class HistoryProvider {
                     } catch (Exception e) {
                         Log.e("toJson", e.toString());
                     }
-                    EventBus.getDefault().post(new ResponseEvent(result, history.id, total, groupPosition, childPosition));
+                  //  EventBus.getDefault().post(new ResponseEvent(result, history.id, total, groupPosition, childPosition));
                 }
 
                 @Override
                 public void onFailure(PutObjectRequest putObjectRequest, ClientException e, ServiceException e1) {
                     //EventBus.getDefault().post(new ResponseEvent(false, history.id, total, groupPosition, childPosition));
-                    EventBus.getDefault().post(new ResponseEvent(true, history.id, total, groupPosition, childPosition));
+                 //   EventBus.getDefault().post(new ResponseEvent(true, history.id, total, groupPosition, childPosition));
                 }
             }, null);
         }

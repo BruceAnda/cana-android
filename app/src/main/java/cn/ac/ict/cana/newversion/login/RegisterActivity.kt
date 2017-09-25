@@ -4,18 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
+import cn.ac.ict.cana.parkionsdatacollection.base.YouMengBaseActivity
 import com.lovearthstudio.duasdk.Dua
 import com.lovearthstudio.duasdk.DuaCallback
 import com.lovearthstudio.duasdk.DuaConfig
 import kotlinx.android.synthetic.main.activity_register_phone.*
+import java.util.regex.Pattern
 
 /**
  * 注册页面
  */
 class RegisterActivity : YouMengBaseActivity() {
+
+    private val TAG = RegisterActivity::class.java.simpleName
 
     private var isForgetPassword = false
 
@@ -79,7 +83,8 @@ class RegisterActivity : YouMengBaseActivity() {
                 })
             }
             1 -> {
-                vfCode = input
+               // vfCode = input
+                vfCode = "FFFFFF"
                 // 输入验证码
                 Dua.getInstance().checkVfCode(phone, vfCode, object : DuaCallback {
                     override fun onSuccess(result: Any) {
@@ -99,21 +104,25 @@ class RegisterActivity : YouMengBaseActivity() {
                 })
             }
             2 -> {
+                val reg = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
                 // 输入密码
-                if (input.length < 6) {
-                    et_input.error = "密码长度小于6或错误"
+               // if (input.length < 6) {
+                if (!Pattern.matches(reg, input)) {
+                    //et_input.error = "密码长度小于6或错误"
+                    et_input.error = "6-21字母和数字"
                     return
                 } else {
                     password = input
                     val role = "member"
                     val in_vode = ""
                     val type = "T"
-                    var name = ""
-                    var sex = ""
-                    var birthday = ""
+                    var name = "未填写"
+                    var sex = "M"
+                    var birthday = "19911001"
                     var avatar_url = ""
                     val duaCallback = object : DuaCallback {
                         override fun onSuccess(str: Any) {
+                            Log.i(TAG, "注册成功！")
                             Dua.getInstance().login("+86-" + phone, password, " Dua . Default ", object : DuaCallback {
                                 override fun onSuccess(s: Any) {
                                     // 跳转到结果
@@ -135,13 +144,14 @@ class RegisterActivity : YouMengBaseActivity() {
                         }
 
                         override fun onError(status: Int, str: String) {
+                            Log.i(TAG, "注册失败！")
                             var reason: String? = DuaConfig.errCode[status]
                             if (reason == null) {
                                 reason = str
                             }
                         }
                     }
-                    if (!isForgetPassword) {
+                    if (isForgetPassword) {
                         Dua.getInstance().register(phone, password, role, vfCode, in_vode,
                                 type, name, sex, birthday, avatar_url, duaCallback)
                     } else {
@@ -159,8 +169,8 @@ class RegisterActivity : YouMengBaseActivity() {
                         }
                         Dua.getInstance().resetPwd(phone, vfCode, password, resetPasswordCallBack)
                     }
-                    startActivity(Intent(this@RegisterActivity, ResultActivity::class.java))
-                    finish()
+                   /* startActivity(Intent(this@RegisterActivity, ResultActivity::class.java))
+                    finish()*/
                 }
             }
         }
