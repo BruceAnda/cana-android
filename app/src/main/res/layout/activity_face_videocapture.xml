@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true">
 
-    <cn.ac.ict.cana.newversion.modules.face.view.VideoCaptureView
+    <cn.ac.ict.cana.modules.face.view.VideoCaptureView
         android:id="@+id/videocapture_videocaptureview_vcv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
