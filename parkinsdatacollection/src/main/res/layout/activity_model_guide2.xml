@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/freebie_9"
+    android:gravity="center_horizontal"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    tools:context="cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity">
+
+    <TextView
+        style="@style/GuideTitle"
+        android:text="2.震颤检测" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/GuideContentStyle"
+            android:text="本环节分为四个部分，请根据提示完成相应动作并尽量保持静止。开始之前，请您找到一把椅子并坐下。准备好后点击进入测试。" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/model_guide2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="50dp">
+
+        <TextView
+            style="@style/BtnControllerOrangeStyle"
+            android:onClick="start"
+            android:text="开始检测" />
+
+        <TextView
+            android:id="@+id/btn_pre"
+            style="@style/BtnControllerOrangeStyle"
+            android:onClick="pre"
+            android:text="返回上一项测试" />
+
+        <TextView
+            android:id="@+id/btn_skip"
+            style="@style/BtnControllerOrangeStyle"
+            android:onClick="next"
+            android:text="跳过本项测试" />
+    </LinearLayout>
+</LinearLayout>

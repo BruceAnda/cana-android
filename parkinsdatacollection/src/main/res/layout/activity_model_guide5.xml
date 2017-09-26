@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/freebie_9"
+    android:gravity="center_horizontal"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    tools:context="cn.ac.ict.cana.newversion.modules.guide.ModelGuideActivity">
+
+    <TextView
+        style="@style/GuideTitle"
+        android:text="5.行走平衡" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_stride_tips"
+            style="@style/GuideContentStyle"
+            android:text="点击开始测试后，坐在椅子上， 讲设备放于胸前，倒数5秒开始后，完成起立、行走、转身、行走、坐下的动作。" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/model_guide5" />
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_bottom">
+
+        <LinearLayout
+            android:id="@+id/ll_controller_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/BtnControllerOrangeStyle"
+                android:onClick="start"
+                android:text="开始检测" />
+
+            <TextView
+                android:id="@+id/btn_pre"
+                style="@style/BtnControllerOrangeStyle"
+                android:onClick="pre"
+                android:text="返回上一项测试" />
+
+            <TextView
+                android:id="@+id/btn_skip"
+                style="@style/BtnControllerOrangeStyle"
+                android:onClick="next"
+                android:text="跳过本项测试" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_count_down"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="5"
+            android:textColor="@color/mainColor"
+            android:textSize="100sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/ll_finish"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="正常测试...\n完成后点击完成测试"
+                android:textColor="@color/mainColor"
+                android:textSize="18sp" />
+
+            <Button
+                style="@style/BtnControllerOrangeStyle"
+                android:onClick="finishTest"
+                android:text="完成测试" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

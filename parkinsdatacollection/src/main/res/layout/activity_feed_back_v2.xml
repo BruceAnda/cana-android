@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/mainColor"
+    android:keepScreenOn="true"
+    android:scrollbars="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mainColor"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+        android:paddingEnd="@dimen/material_component_button_text_left_and_right_padding"
+        android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+        android:paddingTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvMainTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="MDS-UPDRS评分"
+                android:textColor="@color/material_light_white"
+                android:textSize="40sp" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/material_component_cards_space_between_cards"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/user_info_bg"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+            android:paddingEnd="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
+            <!--Title-->
+            <TextView
+                android:id="@+id/tv_module_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:text="hello"
+                android:textColor="@color/mainColor"
+                android:textSize="@dimen/material_component_text_title_text_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_score_tip"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/rating"
+                    android:textColor="@color/mainColor" />
+
+                <Spinner
+                    android:id="@+id/spinner_pd_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_margin="5dip"
+                    android:entries="@array/array_pdlevel"
+                    android:gravity="center"
+                    android:includeFontPadding="true"
+                    android:lineSpacingMultiplier="1.5"
+                    android:maxLines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:prompt="@string/pd_level"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_score2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_score_tip2"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/rating"
+                    android:textColor="@color/freebie_2" />
+
+                <Spinner
+                    android:id="@+id/spinner_pd_level2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_margin="5dip"
+                    android:entries="@array/array_pdlevel"
+                    android:gravity="center"
+                    android:includeFontPadding="true"
+                    android:lineSpacingMultiplier="1.5"
+                    android:maxLines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:prompt="@string/pd_level"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_score3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_score_tip3"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/rating"
+                    android:textColor="@color/freebie_2" />
+
+                <Spinner
+                    android:id="@+id/spinner_pd_level3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_margin="5dip"
+                    android:entries="@array/array_pdlevel"
+                    android:gravity="center"
+                    android:includeFontPadding="true"
+                    android:lineSpacingMultiplier="1.5"
+                    android:maxLines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:prompt="@string/pd_level"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_score4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_score_tip4"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/rating"
+                    android:textColor="@color/freebie_2" />
+
+                <Spinner
+                    android:id="@+id/spinner_pd_level4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_margin="5dip"
+                    android:entries="@array/array_pdlevel"
+                    android:gravity="center"
+                    android:includeFontPadding="true"
+                    android:lineSpacingMultiplier="1.5"
+                    android:maxLines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:prompt="@string/pd_level"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+        </LinearLayout>
+        <!--evalution tips guide-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/material_component_cards_space_between_cards"
+            android:background="@drawable/user_info_bg"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+            android:paddingEnd="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/evaluation_guide_name"
+                android:textColor="@color/mainColor" />
+
+
+            <TextView
+                android:id="@+id/evaluation_guide_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1.5"
+                android:textColor="@color/mainColor" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_save"
+            style="@style/HistoryDetailBtnStyle"
+            android:text="@string/btn_save" />
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            style="@style/HistoryDetailBtnStyle"
+            android:text="@string/btn_cancel" />
+
+    </LinearLayout>
+
+</ScrollView>

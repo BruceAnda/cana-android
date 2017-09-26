@@ -1,0 +1,265 @@
+<resources>
+    <string name="app_name">PD助手</string>
+    <string name="welcome_tip">帕金森病智慧医疗联合实验室</string>
+    <string name="welcome_name">中科 宣武\n v1.2</string>
+    <string name="second_back">再点击一次退出</string>
+    <string name="about">帕金森病智慧医疗联合实验室\n中国科学院计算技术研究所\n首都医科大学宣武医院</string>
+    <string name="device">尚未实现</string>
+    <string name="logs">尚未实现</string>
+    <string name="support">技术联系电话:010-62600809</string>
+    <string name="default_feedback">无初步结果</string>
+    <string name="change_volume">请调大音量以听取语音提示!</string>
+    <!-- numbers -->
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+
+    <!-- permission -->
+    <string name="permission_tips">请点击下面的按钮并允许权限</string>
+    <string name="permission_granted">已经允许的权限有:</string>
+    <string name="permission_denied">权限被拒绝</string>
+    <string name="permission_remained">还需要允许%1$d项权限</string>
+
+    <!-- dialog -->
+    <string name="dialog_title">测试结果</string>
+    <string name="dialog_content">是否保存此次结果</string>
+
+    <!-- button -->
+    <string name="btn_add">添加</string>
+    <string name="btn_continue">继续</string>
+    <string name="btn_upload">上传</string>
+    <string name="btn_upload_all">全部上传</string>
+    <string name="btn_delete">删除</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_save">保存</string>
+    <string name="btn_confirm">确认</string>
+    <string name="btn_begin">开始测试</string>
+    <string name="btn_start_record">开始录音</string>
+    <string name="btn_finish">完成测试</string>
+    <string name="btn_discard">不保存</string>
+    <string name="btn_next_btn">下一题</string>
+    <string name="btn_stop_record">结束录音</string>
+
+    <!-- page -->
+    <string name="page_exam">检测</string>
+    <string name="page_user">用户</string>
+    <string name="page_history">数据</string>
+    <string name="page_char">图表</string>
+    <string name="page_setting">设置</string>
+
+    <!-- module -->
+    <string name="module_count">数字记忆</string>
+    <!-- <string name="module_face">面部表情</string>-->
+    <string name="module_face">震颤情况</string>
+    <string name="module_sound">语言能力</string>
+    <string name="module_stand">站立平衡</string>
+    <string name="module_stride">行走平衡</string>
+    <string name="module_tapper">手指灵敏</string>
+
+    <!-- upload -->
+    <string name="upload_success">上传完成!</string>
+    <string name="upload_failed">%1$d项上传成功, %2$d项上传失败, 请检查您的网络是否稳定</string>
+
+    <!-- setting -->
+    <string name="setting_tips">此页面功能未完成</string>
+    <string name="setting_device">设备信息</string>
+    <string name="setting_logs">运行日志</string>
+    <string name="setting_support">支持与帮助</string>
+    <string name="setting_about">关于我们</string>
+
+    <!-- User -->
+    <string name="user_tips">选择一个用户或添加一个新用户</string>
+    <string name="user_name">名字</string>
+    <string name="user_age">年龄</string>
+    <string name="user_gender">性别</string>
+    <string name="user_male">男</string>
+    <string name="user_female">女</string>
+    <string name="user_clinicalnumber">门诊/住院编号</string>
+    <string name="user_studynumber">研究编号</string>
+    <string name="user_identification">身份证号</string>
+    <!-- Count -->
+   <!-- <string name="count_tips">\n请您记住接下来出现的数字，选择图片版或语音版进行记忆测试！</string>-->
+    <string name="count_tips">\n此部分将检测您的记忆情况，记住屏幕中出现的数字，并依次进行输入。请做好准备，点击开始按钮。</string>
+    <string name="count_hint">请输入看到的数字</string>
+    <string name="count_times">正确!一共进行了%1$d次尝试。您的输入为:</string>
+    <string name="count_right_answer">正确的答案是%1$s。</string>
+    <string name="count_wrong_answer">输入有误!\n\n一共尝试了%1$d次。</string>
+    <string name="count_listen_carefully_begin">请仔细听接下来朗读的数字，叮声后开始</string>
+    <string name="count_listen_carefully_finish">请仔细听\n记住其中的数字</string>
+    <string name="count_sim_delete">删除</string>
+    <string name="count_sim_clear">清空</string>
+    <string name="count_sim_input">请输入数字</string>
+    <string name="input_hint">提示</string>
+    <string name="input_full_hint">有效数字是6位数，您的输入已满。\n请点击确定验证答案或删除重新输入。</string>
+
+    <string name="countt_try_input">您的输入为：\n</string>
+    <string name="countt_input_rightanswer">\n您的输入正确！\n\n</string>
+    <string name="countt_input_wronganswer">\n您的输入错误！\n\n</string>
+    <string name="countt_right_answer">正确答案是：</string>
+    <string name="count_test_version_sound">语音版</string>
+    <string name="count_test_version_picture">图片版</string>
+
+    <!-- Face -->
+    <string name="face_tips">本测试将录制您的面部表情，请将手机上举，录制过程中保持摄像头与您的双眼在同一水平，并保证面部完整的出现在画面中。请仔细聆听语音，按照提示完成相应动作。</string>
+    <string name="face_task_1">请闭眼</string>
+    <string name="face_task_2">请放松，直视前方</string>
+    <string name="face_task_3">请微笑并露出牙齿</string>
+    <string name="face_finish_error">视频拍摄失败，错误:</string>
+
+    <!-- Sound -->
+    <string name="sound_task_1">请大声清楚的完成以下两项语言测试，注意录音时，嘴尽量靠近话筒，距离在5cm以内，如图所示，尽量声音洪亮，准备好后请点击开始录音。</string>
+    <string name="sound_complete">完成</string>
+    <string name="sound_recoding">正在录音...</string>
+
+
+    <!-- Stand -->
+    <string name="stand_image_description">示例图</string>
+    <string name="stand_tips">点击开始测试后，手持设备，双手交叉抱肩，倒计时5秒钟后，测试正式开始，请保持上述姿势，单腿站立10秒钟。左脚和右脚分别完成。</string>
+    <string name="stand_left">左脚</string>
+    <string name="stand_right">右脚</string>
+    <string name="stand_chooseFoot">请选择抬起脚:</string>
+    <array name="stand_tips_new">
+        <item>点击开始后，手持设备，双手抱肩，抬起左脚，持续10秒钟。</item>
+        <item>点击开始后，手持设备，双手抱肩，抬起右脚，持续10秒钟。</item>
+    </array>
+    <array name="foot">
+        <item>左脚</item>
+        <item>右脚</item>
+    </array>
+
+    <!-- Stride -->
+    <string name="stride_image_description">示例图</string>
+    <string name="stride_main_tip">请将设备放置于胸前,完成起立、行走、转身、行走、坐下,点击开始测试,5秒钟后测试开始。</string>
+    <string name="stride_trail_numbers">测试来回次数</string>
+    <string name="stride_distance">每次测试行走距离</string>
+    <string name="stride_prepare">请做好准备</string>
+    <string name="stride_testing">正在测试</string>
+    <string name="stride_next_turn">即将检测</string>
+    <string name="stride_btn_text">完成</string>
+    <string name="stride_tug_btn">Tug测试</string>
+    <string name="stride_walking_btn">行走1分钟</string>
+    <string name="stride_walking_tip">请将设备置于胸前，持续行走1分钟，点击开始按钮后5秒钟测试开始。</string>
+    <string name="stride_walking_carryon">若无法坚持行走，请点击结束</string>
+    <!-- Tapper -->
+    <string name="tapper_index_finger">食指</string>
+    <string name="tapper_middle_finger">中指</string>
+    <string name="tapper_tips">请用食指和中指以最快的速度，最大幅度交替点击按钮。点击开始测试，倒计时5秒后，测试正式开始。</string>
+    <string name="tapper_count_down">测试倒计时: %d</string>
+    <string name="tapper_main_hand">请选择测试手:</string>
+    <string name="tapper_main_lefthand">左手</string>
+    <string name="tapper_main_righthand">右手</string>
+    <string name="tapper_image_description">示例图</string>
+    <string name="tapper_main_tip">请点击开始测试按钮,进入测试页面</string>
+    <array name="hand">
+        <item>左手</item>
+        <item>右手</item>
+    </array>
+
+    <!-- tremor -->
+    <string name="select_phone_position">请选择那只手拿手机</string>
+    <string name="select_feature">请选择测试类别</string>
+    <string name="tremor_tips">点击开始测试后，单手持设备，倒计时5秒钟后，测试正式开始，请保持选择的姿势，等待20秒钟。左手和右手分别完成。</string>
+    <string name="left_hand">左手</string>
+    <string name="right_hand">右手</string>
+    <string name="staticed">静止性</string>
+    <string name="posture">姿势性</string>
+    <array name="tremor_tips">
+        <item>请用左手握住手机，点击开始后，双手自然下垂，持续20秒钟。</item>
+        <item>请用左手握住手机，点击开始后，左手向前平举至与肩同高，持续20秒钟。</item>
+        <item>请用右手握住手机，点击开始后，双手自然下垂，持续20秒钟。</item>
+        <item>请用右手握住手机，点击开始后，左手向前平举至与肩同高，持续20秒钟。</item>
+    </array>
+    <array name="tremor_title">
+        <item>静止性震颤</item>
+        <item>静止性震颤</item>
+        <item>运行性震颤</item>
+        <item>运动性震颤</item>
+    </array>
+
+    <!-- Feedback -->
+    <string name="input_doctor_name">请输入医生姓名并进行评分</string>
+    <string name="doctor_name">医生姓名:</string>
+    <string name="doctor_name_hint">请输入医生姓名</string>
+    <string name="rating">评分:</string>
+    <string name="please_evaluate">请评估此次测试:</string>
+    <string name="save_success">保存成功</string>
+    <string name="are_you_sure">你确定吗?</string>
+    <string name="cannot_recover">请注意,该操作将无法进行恢复。</string>
+    <string name="test_time">测试时间:</string>
+    <string name="test_user">测试用户:</string>
+    <string name="initial_result">初步结果:</string>
+
+    <array name="SoundQueston">
+        <item>1.昨天晚上，您在哪吃的晚餐，吃了些什么?</item>
+        <item>2.请大声的朗读以下这段话：\n今天天气不错，风和日丽的。</item>
+    </array>
+
+    <string name="tips_medical_info">请仔细如实填写一下信息！</string>
+    <string name="take_pd_medicine">是否服用治疗帕金森病的药物：</string>
+    <string name="clinical_status_current">目前的临床状态：</string>
+    <string name="take_left_medicine">是否服用左旋多巴类药物：</string>
+    <string name="time_since_last">距离上次服药时间(分钟)：</string>
+    <string name="open_era">开期</string>
+    <string name="close_era">关期</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <!-- TODO: Translate to Chinese -->
+    <string name="attention">Attention</string>
+    <string name="not_support">Your device cannot support this test.</string>
+
+    <!--Evaluation guide-->
+    <string name="pd_level">PD等级</string>
+    <string name="evaluation_guide_name">评分指导</string>
+    <string name="evaluation_guide_count">数字记忆评估</string>
+    <string name="evaluation_guide_face">0：正常：正常的面部表情。\n1：轻微：轻度的面具脸，仅有瞬目频率的减少。\n2：轻度：除了瞬目频率减少外，下面部也有表情减少，也即口周的运动减少，如自发性微笑减少，但嘴唇没有分开。\n3：中度：有面具脸，嘴唇在嘴部不动时有时会张开。\n4：重度：有面具脸，嘴唇在嘴部不动时大多数情况下是张开的。</string>
+    <string name="evaluation_guide_sound">0：正常：没有言语问题。\n1：轻微：丧失正常的音调，发音或音量，但所有的字句仍能很容易听懂。\n2：轻度：丧失正常的音调，发音或音量，有少数字句不清楚，但总体上语句还是能较容易听懂。\n3：中度：患者语言难以理解。尽管不是所有的语句都难以听懂，但至少是有一些已很难听懂。\n4：重度：患者大部分的语言难以听懂或难以理解</string>
+    <string name="evaluation_guide_stand">0：正常：没有问题，可以快速毫不迟疑的站起来。\n1：轻微：站起来的速度比正常慢；或是需要尝试一次以上；或是需要往前坐才能站起来。但是不需要扶扶手。\n2：轻度：自己手扶扶手即可轻松站起来。\n3：中度：需要扶扶手，但容易再跌回椅子上；或是需要尝试一次以上才能扶着扶手站起来，但还是不需要别人帮助。\n4：重度：没有别人帮助的情况下站不起来。</string>
+    <string name="evaluation_guide_stride">0：正常：没有问题。\n1：轻微：轻微的步态损害但可以独立行走。\n2：轻度：有明显的步态损害但还可以独立行走。\n3：中度：需要辅助工具才能安全的行走（拐杖或助行器）但不需要别人的帮助。\n4：重度：完全不能行走或是只有在别人的帮助下才能行走。</string>
+    <string name="evaluation_guide_tapper">0：正常：没有问题。\n1：轻微：有下列情形之一：a）手指拍打动作的正常节律被一次或两次中断或迟疑打断；b）动作轻微变慢；c）手指拍打的幅度在接近第10次时减小。\n2：轻度： 有下列情形之一：a）在手指拍打的过程中有3到5次的停顿。b）动作轻度缓慢；c）手指拍打的幅度在拍打次数到一半时即开始减小。\n3：中度：有下列情形之一：a）手指拍打过程中有5次以上的停顿或是至少有一次较长时间的冻结（僵住）；b）动作中度变慢；c）手指拍打的幅度从拍打的第一次即开始逐渐减小。\n4：重度：由于动作的迟缓，中断或是幅度的减少患者不能或是几乎不能完成此项动作。</string>
+    <string name="evaluation_guide_none">暂无提示</string>
+
+    <string name="show_camera">Show camera preview</string>
+    <string name="show_contacts">Show and add contacts</string>
+    <string name="main_introduction">Click the buttons below to show a camera preview or access the contacts database.\nNote that the contacts option is only available on Android M to illustrate the use of optional, M-only permissions that are not requested on lower SDK platforms.</string>
+    <string name="permission_camera_rationale">Camera permission is needed to show the camera preview.</string>
+    <string name="permission_contacts_rationale">这些权限是程序正常运行必须的权限，请点击允许.</string>
+    <string name="permission_camera_denied">Camera permission was denied. Please consider granting it in order to access the camera!</string>
+    <string name="permission_camera_never_askagain">Camera permission was denied with never ask again.</string>
+    <string name="button_allow">确定</string>
+    <string name="button_deny">取消</string>
+
+
+    <string name="dua_app_name">DuaSdk</string>
+    <string name="dua_prompt_tel">手机号</string>
+    <string name="dua_prompt_pwd">请输入6位以上密码</string>
+    <string name="dua_prompt_newpwd">请输入6位以上的新密码</string>
+    <string name="dua_prompt_repwd">请再输入一次密码</string>
+    <string name="dua_prompt_renewpwd">请再次输入新密码</string>
+    <string name="dua_prompt_vf_code">手机短信验证码</string>
+    <string name="dua_button_get_vf_code">获取验证码</string>
+    <string name="dua_button_last_step">上一步</string>
+    <string name="dua_button_next_step">下一步</string>
+    <string name="dua_button_complete">完成</string>
+    <string name="dua_action_sign_in">登录</string>
+    <string name="dua_action_sign_up">注册账号</string>
+    <string name="dua_action_ensure">确定</string>
+    <string name="dua_action_forget_pwd">忘记密码</string>
+    <string name="dua_prompt_sex">您是...?</string>
+    <string name="dua_prompt_laststep">还差一步</string>
+    <string name="dua_prompt_nickname">给自己起个昵称吧~15个字以内哦</string>
+    <string name="dua_button_pick">选择</string>
+    <string name="confirm">确定</string>
+    <string name="dua_prompt_birthday">您的生日</string>
+    <string name="dua_prompt_birthday_example">1984年8月8日</string>
+    <string name="dua_action_cancel">取消</string>
+    <string name="radio_male">男</string>
+    <string name="radio_female">女</string>
+</resources>
+

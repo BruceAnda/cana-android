@@ -42,7 +42,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
-    compile files('libs/JKalman.jar')
     /* 友盟统计 */
     compile rootProject.ext.dependencies["WheelPicker"]
     compile rootProject.ext.dependencies["glide"]

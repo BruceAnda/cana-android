@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainColor"
+    android:keepScreenOn="true"
+    android:scrollbars="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+        android:paddingEnd="@dimen/material_component_button_text_left_and_right_padding"
+        android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+        android:paddingTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvMainTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="录入病人信息"
+                android:textColor="@color/material_light_white"
+                android:textSize="40sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/user_info_bg"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+            android:paddingEnd="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingStart="@dimen/material_component_button_text_left_and_right_padding"
+            android:paddingTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/user_info_margin_top">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="病人姓名:"
+                    android:textColor="@color/mainColor"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/edittext_patient_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="点击输入"
+                    android:onClick="showPatientNameInput"
+                    android:padding="5dp"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/user_info_line_height"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/user_info_margin_top">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="病人性别:"
+                    android:textColor="@color/mainColor"
+                    android:textSize="30sp" />
+
+                <Spinner
+                    android:id="@+id/spinner_patient_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_margin="5dip"
+                    android:entries="@array/pd_sex"
+                    android:gravity="center"
+                    android:includeFontPadding="true"
+                    android:lineSpacingMultiplier="1.5"
+                    android:maxLines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:prompt="@string/pd_level"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/user_info_line_height"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/user_info_margin_top">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="病人年龄:"
+                    android:textColor="@color/mainColor"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/edittext_patient_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="点击输入"
+                    android:onClick="showPatientAgeInput"
+                    android:padding="5dp"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/user_info_line_height"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/user_info_margin_top">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="使用药物:"
+                    android:textColor="@color/mainColor"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/edittext_patient_medicine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:hint="点击输入"
+                    android:onClick="showPatientMedicineInput"
+                    android:padding="5dp"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/user_info_line_height"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/user_info_margin_top">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="用药开关期:"
+                    android:textColor="@color/mainColor"
+                    android:textSize="30sp" />
+
+                <Spinner
+                    android:id="@+id/spinner_patient_open"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_margin="5dip"
+                    android:entries="@array/pd_open"
+                    android:gravity="center"
+                    android:includeFontPadding="true"
+                    android:lineSpacingMultiplier="1.5"
+                    android:maxLines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:prompt="@string/pd_level"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/user_info_line_height"
+                android:background="@android:color/black" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="输入信息有误"
+            android:textColor="@color/mainColor7"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_save"
+            style="@style/HistoryDetailBtnStyle"
+            android:text="开始测试" />
+    </LinearLayout>
+</ScrollView>

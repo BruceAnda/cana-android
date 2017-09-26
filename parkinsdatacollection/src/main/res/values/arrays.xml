@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="red_wine">
+        <item>#ff670729</item>
+        <item>#ff7a0c2d</item>
+        <item>#ff96092d</item>
+        <item>#ffa10a37</item>
+        <item>#ffbf013b</item>
+    </string-array>
+
+    <string-array name="polluted_waves">
+        <item>#394948</item>
+        <item>#5a7874</item>
+        <item>#499092</item>
+        <item>#43abae</item>
+        <item>#6ecfd2</item>
+    </string-array>
+
+    <string-array name="medical_express">
+        <item>#a3a3a3</item>
+        <item>#bbbbbb</item>
+        <item>#cccccc</item>
+        <item>#dddddd</item>
+        <item>#eeeeee</item>
+    </string-array>
+
+    <string-array name="vertical_ntb">
+        <item>#df5a55</item>
+        <item>#f9bb72</item>
+        <item>#76afcf</item>
+        <item>#dd6495</item>
+        <item>#72d3b4</item>
+        <item>#563d91</item>
+        <item>#56342e</item>
+        <item>#8c9f58</item>
+    </string-array>
+
+
+    <integer-array name="freebie_theme">
+        <item>@color/freebie_4</item> <!-- really much darker color of main color -->
+        <item>@color/freebie_9</item> <!-- a bit darker color of your main color -->
+        <item>@color/freebie_2</item> <!-- main color of your theme -->
+        <item>@color/freebie_9</item> <!-- really much lighter color of main color -->
+    </integer-array>
+
+    <integer-array name="freebie_edittext">
+        <item>@color/freebie_4</item> <!-- really much darker color of main color -->
+        <item>@color/freebie_9</item> <!-- a bit darker color of your main color -->
+        <item>@color/freebie_1</item> <!-- main color of your theme -->
+        <item>@color/freebie_2</item> <!-- really much lighter color of main color -->
+    </integer-array>
+
+    <integer-array name="freebie_reverse_edit_text">
+        <item>@color/freebie_4</item> <!-- really much darker color of main color -->
+        <item>@color/freebie_3</item> <!-- a bit darker color of your main color -->
+        <item>@color/freebie_2</item> <!-- main color of your theme -->
+        <item>@color/freebie_1</item> <!-- really much lighter color of main color -->
+    </integer-array>
+
+    <integer-array name="freebie_toggle">
+        <item>@color/freebie_4</item> <!-- really much darker color of main color -->
+        <item>@color/freebie_1</item> <!-- a bit darker color of your main color -->
+        <item>@color/freebie_2</item> <!-- main color of your theme -->
+        <item>@color/freebie_1</item> <!-- really much lighter color of main color -->
+    </integer-array>
+
+    <string-array name="array_pdlevel">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="pd_sex">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+
+    <string-array name="pd_open">
+        <item>关</item>
+        <item>开</item>
+    </string-array>
+
+</resources>

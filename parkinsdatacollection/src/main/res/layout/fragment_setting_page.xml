@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainColor"
+    android:gravity="center"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/btn_setting_support"
+        style="@style/BtnContrllerWhileStyle"
+        android:text="技术支持" />
+
+    <TextView
+        android:id="@+id/btn_setting_about"
+        style="@style/BtnContrllerWhileStyle"
+        android:text="关于我们" />
+
+    <TextView
+        android:id="@+id/btn_logout"
+        style="@style/BtnContrllerWhileStyle"
+        android:text="退出登录" />
+
+</LinearLayout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainColor"
+    tools:context="cn.ac.ict.cana.newversion.login.LandPageActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_land"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mainColor">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_above="@id/tv_center"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/bg_head" />
+
+        <TextView
+            android:id="@+id/tv_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="PD  助手"
+            android:textColor="@color/material_light_white"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/btn_login"
+            style="@style/BtnContrllerWhileStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
+            android:onClick="toLogin"
+            android:text="登录" />
+
+        <TextView
+            android:id="@+id/btn_register"
+            style="@style/BtnContrllerWhileStyle"
+            android:layout_above="@id/btn_login"
+            android:onClick="toRegister"
+            android:text="注册" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_exam_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:onClick="back"
+            android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
+        <EditText
+            android:id="@+id/et_password"
+            style="@style/LoginEditTextStyle"
+            android:layout_above="@id/tv_forgot_password"
+            android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+            android:hint="请输输入密码"
+            android:inputType="textPassword"
+            android:paddingLeft="15dp" />
+
+        <EditText
+            android:id="@+id/et_phone_num"
+            style="@style/LoginEditTextStyle"
+            android:layout_above="@id/et_password"
+            android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
+            android:hint="请输输入手机号"
+            android:inputType="phone"
+            android:paddingLeft="15dp" />
+
+        <TextView
+            android:id="@+id/tv_forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btn_second_login"
+            android:layout_alignRight="@id/btn_second_login"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="10dp"
+            android:onClick="forgotPassword"
+            android:text="忘记密码?"
+            android:textColor="@color/material_light_white" />
+
+        <TextView
+            android:id="@+id/btn_second_login"
+            style="@style/BtnContrllerWhileStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
+            android:onClick="login"
+            android:text="登录" />
+
+        <TextView
+            android:id="@+id/tv_second_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/et_phone_num"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:text="PD  助手"
+            android:textColor="@color/material_light_white"
+            android:textSize="35sp" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_above="@id/tv_second_center"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/bg_head" />
+    </RelativeLayout>
+</FrameLayout>
