@@ -1,17 +1,14 @@
 package cn.ac.ict.cana.newversion.modules.stride;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.content.ContextCompat;
@@ -21,20 +18,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.helpers.ModuleHelper;
+import cn.ac.ict.cana.newversion.helpers.ModuleHelper;
 import cn.ac.ict.cana.newversion.activities.FeedBackActivity;
 import cn.ac.ict.cana.newversion.mode.AccData;
 import cn.ac.ict.cana.newversion.mode.GyroData;
 import cn.ac.ict.cana.newversion.utils.FileUtils;
-import jama.Matrix;
-import jkalman.JKalman;
 
 public class GoActivity extends Activity {
     private static final String TAG = GoActivity.class.getSimpleName();

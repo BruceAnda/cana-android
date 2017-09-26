@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.helpers.ModuleHelper
+import cn.ac.ict.cana.newversion.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.bean.AccAndGyroData
 import cn.ac.ict.cana.newversion.contant.GlobleData

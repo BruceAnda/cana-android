@@ -1,4 +1,4 @@
-package cn.ac.ict.cana.activities;
+package cn.ac.ict.cana.newversion.activities;
 
 import android.Manifest;
 import android.content.Context;
@@ -32,7 +32,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.cana.newversion.activities.MainActivityNew;
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity;
 import cn.ac.ict.cana.newversion.login.LandPageActivity;
 import cn.refactor.lib.colordialog.ColorDialogPermission;

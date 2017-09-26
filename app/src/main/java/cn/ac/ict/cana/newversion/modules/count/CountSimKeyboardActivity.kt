@@ -17,7 +17,7 @@ import android.widget.GridLayout
 import android.widget.TextView
 import android.widget.Toast
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.helpers.ModuleHelper
+import cn.ac.ict.cana.newversion.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.contant.GlobleData
 import cn.ac.ict.cana.newversion.db.database

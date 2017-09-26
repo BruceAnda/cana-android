@@ -10,7 +10,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.helpers.ModuleHelper
+import cn.ac.ict.cana.newversion.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.activities.FeedBackActivity
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.mode.AccData

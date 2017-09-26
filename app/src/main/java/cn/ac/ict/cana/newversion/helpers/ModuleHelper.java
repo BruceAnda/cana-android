@@ -1,4 +1,4 @@
-package cn.ac.ict.cana.helpers;
+package cn.ac.ict.cana.newversion.helpers;
 
 import android.content.Context;
 

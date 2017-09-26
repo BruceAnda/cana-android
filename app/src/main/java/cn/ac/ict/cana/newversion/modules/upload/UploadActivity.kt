@@ -1,7 +1,6 @@
 package cn.ac.ict.cana.newversion.modules.upload
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +16,7 @@ import com.kymjs.rxvolley.client.HttpParams
 
 
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.helpers.ModuleHelper
+import cn.ac.ict.cana.newversion.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.activities.MainActivityNew
 import cn.ac.ict.cana.newversion.constant.Constant
 import cn.ac.ict.cana.newversion.db.bean.History

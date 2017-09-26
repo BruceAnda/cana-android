@@ -52,7 +52,7 @@
         </provider>
 
         <activity
-            android:name=".activities.WelcomeActivity"
+            android:name=".newversion.activities.WelcomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/WelcomeTheme">
             <intent-filter>

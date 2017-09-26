@@ -11,7 +11,7 @@ import android.os.CountDownTimer
 import android.support.v7.app.AlertDialog
 import android.view.View
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.helpers.ModuleHelper
+import cn.ac.ict.cana.newversion.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.activities.FeedBackActivity
 import cn.ac.ict.cana.newversion.base.YouMengBaseActivity
 import cn.ac.ict.cana.newversion.contant.GlobleData

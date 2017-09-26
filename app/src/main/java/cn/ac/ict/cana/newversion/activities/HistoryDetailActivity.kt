@@ -13,7 +13,7 @@ import android.view.View
 import android.widget.Toast
 
 import cn.ac.ict.cana.R
-import cn.ac.ict.cana.helpers.ModuleHelper
+import cn.ac.ict.cana.newversion.helpers.ModuleHelper
 import cn.ac.ict.cana.newversion.adapter.HistoryDetailAdapter
 import cn.ac.ict.cana.newversion.constant.Constant
 import cn.ac.ict.cana.newversion.db.bean.Batch
