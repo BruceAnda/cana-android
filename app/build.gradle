@@ -13,21 +13,23 @@ android {
         }
     }
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "cn.ac.ict.cana"
+        applicationId "cn.ac.ict.canaui2"
         minSdkVersion 18
        // useLibrary("com.lovearthstudio.duasdk")
         targetSdkVersion 23
         versionCode 8
         versionName "2.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+
     }
     lintOptions {
         checkReleaseBuilds false
@@ -53,7 +55,6 @@ dependencies {
     compile rootProject.ext.dependencies["easypermissions"]
     compile rootProject.ext.dependencies["gridPasswordView"]
     compile project(':libraries:popup')
-    compile project(':libraries:ColorDialog')
     compile project(':libraries:uploadfile')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.anko:anko-sqlite:$anko_version"
@@ -81,7 +82,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
     compile 'com.idescout.sql:sqlscout-server:2.0'
-    implementation project(':parkinsdatacollection')
+    implementation project(':ParkinsonDataCollection')
 }
 repositories {
     mavenCentral()

@@ -17,7 +17,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 读写sdcard，storage等等 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 允许程序录制音频 -->
 
-
     <!-- 可选 -->
     <uses-permission android:name="android.permission.READ_LOGS" />
 
@@ -42,7 +41,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="cn.ac.ict.cana.fileprovider"
+            android:authorities="cn.ac.ict.canaui2.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -51,7 +50,7 @@
         </provider>
 
         <activity
-            android:name=".activities.WelcomeActivity"
+            android:name="cn.ac.ict.cana.features.activities.WelcomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/WelcomeTheme">
             <intent-filter>
@@ -61,51 +60,33 @@
             </intent-filter>
         </activity>
 
-        <!-- Module: Count -->
         <activity
-            android:name=".modules.count.CountGameActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
-        <activity
-            android:name=".modules.count.CountSimKeyboardActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
-
-        <!-- Module: Stride -->
-        <activity
-            android:name=".modules.stride.GoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActBar.FullScreen" />
-        <activity
-            android:name=".modules.stride.StrideMainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-
-        <!-- Module: Stand -->
-
+            android:name="cn.ac.ict.cana.features.activities.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
         <!-- Module: Face -->
         <activity
-            android:name=".modules.face.FaceMainActivity"
+            android:name="cn.ac.ict.canalib.modules.face.FaceMainActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".modules.face.VideoCaptureActivity"
+            android:name="cn.ac.ict.canalib.modules.face.VideoCaptureActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
-        <!-- Module: Tapper -->
+        <activity android:name=".features.activities.HistoryDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".features.activities.PatientInfoActivity"
+            android:screenOrientation="portrait" />
 
+        <!-- Module: Tapper -->
 
 
         <!-- Module: Sound -->
 
 
         <!-- Module: Tremor -->
-        <activity
-            android:name=".modules.tremor.TremorMainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
 
         <!-- 友盟key -->
@@ -116,78 +97,15 @@
             android:name="UMENG_CHANNEL"
             android:value="GooglePlay" />
 
-        <activity android:name=".parkionsdatacollection.base.YouMengBaseActivity" />
-
-
-        <activity
-            android:name=".modules.guide.ModelGuideActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".modules.guide.ModelGuideActivity2"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".modules.guide.ModelGuideActivity3"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".modules.guide.ModelGuideActivity4"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".modules.guide.ModelGuideActivity5"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".modules.guide.ModelGuideActivity6"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".modules.guide.ModelGuideActivity7"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".modules.upload.UploadActivity"
-            android:screenOrientation="portrait" />
-
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat" />
 
         <activity
-            android:name=".activities.MainActivityNew"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.PatientInfoActivity"
+            android:name="cn.ac.ict.canalib.activities.ScoreActivity"
             android:screenOrientation="portrait" />
 
-        <activity
-            android:name=".modules.tapper.TapperTestActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".modules.stand.StandTestActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.FeedBackActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".modules.tremor.TremorTestActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".modules.sound.SoundTestActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.HistoryDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".login.LandPageActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".login.RegisterActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".modules.armdroop.ArmDroopTestActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".login.ResultActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".modules.guide.ModelGuideActivity8"></activity>
     </application>
 
 </manifest>

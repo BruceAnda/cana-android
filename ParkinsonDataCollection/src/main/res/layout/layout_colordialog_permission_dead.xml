@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/llBkg2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitle2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/llContent2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:minHeight="60dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minWidth="250dp">
+
+                <ImageView
+                    android:id="@+id/ivContent2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvContent2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:text="不开启存储权限或手机权限将关闭水果篮，确定不开启吗？"
+                    android:textSize="16sp"
+                    android:visibility="visible" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llBkg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/llContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:minHeight="60dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minWidth="250dp">
+
+                <ImageView
+                    android:id="@+id/ivContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:text="不开启存储权限或手机权限将关闭水果篮，确定不开启吗？"
+                    android:visibility="visible" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llBtnGroup2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btnPositive2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/sel_def_gray_left"
+            android:clickable="true"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:text="取消"
+            android:textColor="#676767"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/btn_negative"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/sel_def_gray_left"
+            android:clickable="true"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:text="开启权限"
+            android:textColor="#676767"
+            android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="1px"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:background="#929292" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnNegative2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/sel_def_gray_right"
+            android:clickable="true"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:text="确定"
+            android:textColor="#676767"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/btn_positive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/sel_def_gray_right"
+            android:clickable="true"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:text="关闭应用"
+            android:textColor="#676767"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llBtnGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/btnPositive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/sel_def_gray_left"
+            android:clickable="true"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:text="取消"
+            android:textColor="#676767"
+            android:visibility="gone" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="1px"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:background="#929292" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnNegative"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/sel_def_gray_right"
+            android:clickable="true"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:text="确定"
+            android:textColor="#676767"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

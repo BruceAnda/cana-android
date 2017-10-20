@@ -12,6 +12,7 @@ android {
         versionCode rootProject .ext.android.versionCode
         versionName rootProject .ext.android.versionName
     }
+    buildToolsVersion '26.0.2'
 }
 
 

@@ -59,7 +59,7 @@
         <TextView
             android:id="@+id/btn_finish"
             style="@style/BtnControllerOrangeStyle"
-            android:onClick="finishTest"
+            android:onClick="toScore"
             android:text="完成测试"
             android:visibility="gone" />
     </LinearLayout>
