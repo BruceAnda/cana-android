@@ -2,7 +2,7 @@ package cn.ac.ict.cana.features.activities.login
 
 import android.os.Bundle
 import android.view.View
-import cn.ac.ict.canalib.R
+import cn.ac.ict.cana.R
 import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.common.ParkinsDataCollection
 

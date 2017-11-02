@@ -54,6 +54,7 @@ import cn.ac.ict.canalib.modules.face.view.VideoCaptureView
 import cn.ac.ict.canalib.R
 import cn.ac.ict.canalib.db.bean.HistoryData
 import cn.ac.ict.canalib.db.database
+import cn.ac.ict.canalib.modules.guide.ModelGuideActivity7
 import cn.ac.ict.canalib.utils.FileUtils
 import com.lovearthstudio.duasdk.Dua
 import org.jetbrains.anko.doAsync
@@ -61,7 +62,7 @@ import org.jetbrains.anko.doAsync
 class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorderInterface {
 
     private var mVideoRecorded = false
-    internal var mVideoFile: VideoFile? = null
+    private var mVideoFile: VideoFile? = null
     private var mCaptureConfiguration: CaptureConfiguration? = null
 
     private var mVideoCaptureView: VideoCaptureView? = null
@@ -72,14 +73,13 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
     private var mp3: MediaPlayer? = null
     internal var timer: Timer? = null
     internal lateinit var mHandler: Handler
-    internal lateinit var tt: TimerTask
+    private lateinit var tt: TimerTask
     internal var i = 0
     internal lateinit var iv_bt: ImageView
 
     val videoThumbnail: Bitmap?
         get() {
-            val thumbnail = ThumbnailUtils.createVideoThumbnail(mVideoFile!!.fullPath,
-                    Thumbnails.FULL_SCREEN_KIND)
+            val thumbnail = ThumbnailUtils.createVideoThumbnail(mVideoFile?.fullPath, Thumbnails.FULL_SCREEN_KIND)
             if (thumbnail == null) {
                 CLog.d(CLog.ACTIVITY, "Failed to generate video preview")
             }
@@ -128,7 +128,7 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
         }
 
         mp1 = MediaPlayer.create(applicationContext, R.raw.face_hint_1)
-        mp1!!.setOnCompletionListener {
+        mp1?.setOnCompletionListener {
             try {
                 iv_bt.performClick()
                 timer = Timer(true)
@@ -144,7 +144,7 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
             }
         }
         mp2 = MediaPlayer.create(applicationContext, R.raw.face_hint_2)
-        mp2!!.setOnCompletionListener {
+        mp2?.setOnCompletionListener {
             timer = Timer(true)
             tt = object : TimerTask() {
                 override fun run() {
@@ -155,7 +155,7 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
             timer!!.schedule(tt, 0, 1000)
         }
         mp3 = MediaPlayer.create(applicationContext, R.raw.face_hint_3)
-        mp3!!.setOnCompletionListener {
+        mp3?.setOnCompletionListener {
             timer = Timer(true)
             tt = object : TimerTask() {
                 override fun run() {
@@ -170,8 +170,8 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
         tvHint = findViewById<View>(R.id.tv_hint) as TextView
         //   if (mVideoCaptureView == null) return; // Wrong orientation
 
-        tvHint!!.text = getString(R.string.face_task_1)
-        tvHint!!.background.alpha = 100
+        tvHint?.text = getString(R.string.face_task_1)
+        tvHint?.background?.alpha = 100
         iv_bt.visibility = View.INVISIBLE
         Handler().postDelayed({ mp1!!.start() }, 1000)
 
@@ -355,7 +355,7 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
      */
     private fun writeData() {
         doAsync {
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$path", "0", ModuleHelper.MODULE_DATATYPE_FACE, "")
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$path", "0", ModuleHelper.MODULE_DATATYPE_FACE, "", "")
             insertDB(historyData)
         }
     }
@@ -379,7 +379,7 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, FaceMainActivity::class.java))
+        startActivity(Intent(this, ModelGuideActivity7::class.java))
         finish()
     }
 

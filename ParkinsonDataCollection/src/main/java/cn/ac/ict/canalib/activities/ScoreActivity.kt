@@ -54,47 +54,47 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                 if (ModuleHelper.MODULE_TREMOR.equals(modelName)) {
                     Log.i(TAG, "插入${modelName}数据")
                     val datalp = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_TREMOR_LP, datalp)
 
                     val datalr = "{\"score\":\"${score2}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_TREMOR_LR, datalr)
 
                     val datarp = "{\"score\":\"${score3}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_TREMOR_RP, datarp)
 
                     val datarr = "{\"score\":\"${score4}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_TREMOR_RR, datarr)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
                         startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
@@ -110,14 +110,14 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                 } else if (ModuleHelper.MODULE_SOUND.equals(modelName)) {
                     Log.i(TAG, "插入${modelName}数据")
                     var data = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.wav\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.wav\"}"
 
                     updataHistory(ModuleHelper.MODULE_DATATYPE_SOUND, data)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
@@ -133,25 +133,25 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                 } else if (ModuleHelper.MODULE_STAND.equals(modelName)) {
 
                     var datal = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_STAND_L, datal)
 
                     var datar = "{\"score\":\"${score2}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_STAND_R, datar)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
                         startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
@@ -168,14 +168,14 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                     Log.i(TAG, "插入${modelName}数据")
 
                     var data = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
 
                     updataHistory(ModuleHelper.MODULE_DATATYPE_STRIDE, data)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
@@ -191,25 +191,25 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                 } else if (ModuleHelper.MODULE_TAPPER.equals(modelName)) {
 
                     var datal = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_TAPPING_L, datal)
 
                     var datar = "{\"score\":\"${score2}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_TAPPING_R, datar)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
                         startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
@@ -224,14 +224,14 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                 } else if (ModuleHelper.MODULE_FACE.equals(modelName)) {
 
                     var data = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.mp4\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.mp4\"}"
 
                     updataHistory(ModuleHelper.MODULE_DATATYPE_FACE, data)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
@@ -246,25 +246,25 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                 } else if (ModuleHelper.MODULE_ARM_DROOP.equals(modelName)) {
 
                     var datal = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_ARMDROOP_L, datal)
 
                     var datar = "{\"score\":\"${score2}\"," +
-                            "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                             "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                             "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                             "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                             "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
+                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_ARMDROOP_R, datar)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
                         startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))

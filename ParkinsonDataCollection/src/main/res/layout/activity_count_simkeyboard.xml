@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:keepScreenOn="true">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
         android:orientation="vertical">
 
         <TextView
@@ -55,8 +54,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="1dp">
 
@@ -145,6 +143,24 @@
                     android:onClick="deleteText"
                     android:text="删除" />
             </LinearLayout>
+
+
+            <!-- 定义一个横跨4列的按钮 -->
+            <TextView
+                android:id="@+id/count_simkeyboard_confirmBtn"
+                style="@style/BtnControllerOrangeStyle"
+                android:layout_marginLeft="@dimen/count_sim_key_margin"
+                android:layout_marginRight="@dimen/count_sim_key_margin"
+                android:text="确定" />
+
+            <TextView
+                android:id="@+id/btn_continue"
+                style="@style/BtnControllerOrangeStyle"
+                android:layout_marginBottom="@dimen/margin_bottom"
+                android:layout_marginLeft="@dimen/count_sim_key_margin"
+                android:layout_marginRight="@dimen/count_sim_key_margin"
+                android:onClick="next"
+                android:text="无法记住,跳过本项测试" />
         </LinearLayout>
 
         <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -156,21 +172,5 @@
             android:rowCount="6"
             android:visibility="gone" />
 
-        <!-- 定义一个横跨4列的按钮 -->
-        <TextView
-            android:id="@+id/count_simkeyboard_confirmBtn"
-            style="@style/BtnControllerOrangeStyle"
-            android:layout_marginLeft="@dimen/count_sim_key_margin"
-            android:layout_marginRight="@dimen/count_sim_key_margin"
-            android:text="确定" />
-
-        <TextView
-            android:id="@+id/btn_continue"
-            style="@style/BtnControllerOrangeStyle"
-            android:layout_marginBottom="@dimen/margin_bottom"
-            android:layout_marginLeft="@dimen/count_sim_key_margin"
-            android:layout_marginRight="@dimen/count_sim_key_margin"
-            android:onClick="next"
-            android:text="无法记住,跳过本项测试" />
     </LinearLayout>
 </ScrollView>

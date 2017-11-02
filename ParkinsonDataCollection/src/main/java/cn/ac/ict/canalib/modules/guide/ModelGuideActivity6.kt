@@ -11,6 +11,7 @@ import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.modules.tapper.TapperTestActivity
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.ModelGuideBaseActivity
 import cn.ac.ict.canalib.common.Tapping
 import cn.ac.ict.canalib.helpers.MenuHelper
 import cn.ac.ict.canalib.utils.FileUtils
@@ -21,16 +22,13 @@ import kotlin.collections.ArrayList
 /**
  * 手指灵敏
  */
-class ModelGuideActivity6 : BaseActivity() {
+class ModelGuideActivity6 : ModelGuideBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide6)
 
-        if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-            btn_pre.visibility = View.GONE
-            btn_skip.visibility = View.GONE
-        }
+        init()
 
         var controller = Fresco.newDraweeControllerBuilder()
                 .setUri(Uri.parse("res://" + packageName + "/" + R.drawable.tapping))
@@ -40,12 +38,31 @@ class ModelGuideActivity6 : BaseActivity() {
 
     }
 
+    private fun init() {
+        handlerMenu()
+        handlerSound()
+    }
+
+    private fun handlerMenu() {
+        if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
+            btn_pre.visibility = View.GONE
+            btn_skip.visibility = View.GONE
+        }
+    }
+
+    private fun handlerSound() {
+        createMediaPlayer(R.raw.guide6)
+    }
+
     override fun onResume() {
         super.onResume()
+        handlerFile()
+    }
+
+    private fun handlerFile() {
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_TAPPER)
         FileUtils.tappingL = Tapping("Tapping_L", ArrayList())
         FileUtils.tappingR = Tapping("Tapping_R", ArrayList())
-
     }
 
     fun start(view: View) {

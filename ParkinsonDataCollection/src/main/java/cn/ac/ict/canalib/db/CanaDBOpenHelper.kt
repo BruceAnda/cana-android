@@ -10,7 +10,7 @@ import org.jetbrains.anko.db.*
 /**
  * 使用 anko 重新设计的Sqlite
  */
-class CanaDBOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "cananew", null, 1) {
+class CanaDBOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "cananew", null, 2) {
 
     companion object {
         private var instance: CanaDBOpenHelper? = null
@@ -54,6 +54,7 @@ class CanaDBOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "cananew", n
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         // current do nothing
+        db?.execSQL("alter table ${HistoryData.TABLE_NAME} add ${HistoryData.OTHER} TEXT")
     }
 
 }

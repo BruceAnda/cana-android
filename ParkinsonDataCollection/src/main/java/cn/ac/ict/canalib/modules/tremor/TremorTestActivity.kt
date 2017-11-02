@@ -203,7 +203,7 @@ class TremorTestActivity : BaseActivity() {
      */
     private fun writeData(tremor: Tremor) {
         doAsync {
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$filesDir${File.separator}${UUID.randomUUID()}.txt", "0", tremor.type, "")
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$filesDir${File.separator}${UUID.randomUUID()}.txt", "0", tremor.type, "", "")
             val data = JSON.toJSONString(tremor)
             Log.i("Tremor", data)
             FileUtils.writeToFile(data, historyData.filePath)

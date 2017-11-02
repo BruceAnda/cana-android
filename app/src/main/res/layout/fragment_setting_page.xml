@@ -18,6 +18,11 @@
         android:text="关于我们" />
 
     <TextView
+        android:id="@+id/btn_setting_audio"
+        style="@style/BtnContrllerWhileStyle"
+        android:text="关闭声音" />
+
+    <TextView
         android:id="@+id/btn_logout"
         style="@style/BtnContrllerWhileStyle"
         android:text="退出登录" />

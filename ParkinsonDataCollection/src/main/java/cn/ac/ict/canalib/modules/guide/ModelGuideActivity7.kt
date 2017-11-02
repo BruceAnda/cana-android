@@ -10,6 +10,7 @@ import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.modules.face.VideoCaptureActivity
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.ModelGuideBaseActivity
 import cn.ac.ict.canalib.helpers.MenuHelper
 import cn.ac.ict.canalib.utils.FileUtils
 import kotlinx.android.synthetic.main.activity_model_guide7.*
@@ -17,20 +18,37 @@ import kotlinx.android.synthetic.main.activity_model_guide7.*
 /**
  * 面部表情
  */
-class ModelGuideActivity7 : BaseActivity() {
+class ModelGuideActivity7 : ModelGuideBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide7)
 
+        init()
+    }
+
+    private fun init() {
+        handlerMenu()
+        handlerSound()
+    }
+
+    private fun handlerMenu() {
         if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
             btn_pre.visibility = View.GONE
             btn_skip.visibility = View.GONE
         }
     }
 
+    private fun handlerSound() {
+        createMediaPlayer(R.raw.guide7)
+    }
+
     override fun onResume() {
         super.onResume()
+        handlerFile()
+    }
+
+    private fun handlerFile() {
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_FACE)
     }
 

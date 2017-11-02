@@ -1,6 +1,7 @@
 package cn.ac.ict.canalib.modules.guide
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.View
@@ -10,6 +11,7 @@ import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.modules.count.CountGameActivity
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.ModelGuideBaseActivity
 import cn.ac.ict.canalib.common.Memory
 import cn.ac.ict.canalib.helpers.MenuHelper
 import cn.ac.ict.canalib.utils.FileUtils
@@ -17,24 +19,49 @@ import kotlinx.android.synthetic.main.activity_model_guide.*
 import kotlin.collections.ArrayList
 
 /**
- * 数字记忆
+ * 数字记忆引导页
  */
-class ModelGuideActivity : BaseActivity() {
+class ModelGuideActivity : ModelGuideBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide)
 
+        init()
+    }
+
+    /**
+     * 初始化操作
+     */
+    private fun init() {
+        handlerMenu()
+        handlerSound()
+    }
+
+    /**
+     * 处理菜单
+     */
+    private fun handlerMenu() {
         if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
             btn_skip.visibility = View.GONE
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
+    /**
+     * 处理文件
+     */
+    private fun handlerFile() {
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_COUNT)
         FileUtils.memory = Memory("Memory", ArrayList())
+    }
+
+    private fun handlerSound() {
+        createMediaPlayer(R.raw.guide)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        handlerFile()
     }
 
     /**

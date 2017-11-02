@@ -155,7 +155,7 @@ class ArmDroopTestActivity : BaseActivity() {
      */
     private fun writeData(armDroop: ArmDroop) {
         doAsync {
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", armDroop.type, "")
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", armDroop.type, "", "")
             val data = JSON.toJSONString(armDroop)
             Log.i("ArmDroop", data)
             FileUtils.writeToFile(data, historyData.filePath)

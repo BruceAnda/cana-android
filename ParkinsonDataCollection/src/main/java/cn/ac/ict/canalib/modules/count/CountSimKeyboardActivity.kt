@@ -75,7 +75,7 @@ open class CountSimKeyboardActivity : BaseActivity() {
         isNotFull = true
         pool = SoundPool(11, AudioManager.STREAM_MUSIC, 0)
         poolMap = HashMap()
-        source = intArrayOf(R.raw.counts0, R.raw.counts1, R.raw.counts2, R.raw.counts3, R.raw.counts4, R.raw.counts5, R.raw.counts6, R.raw.counts7, R.raw.counts8, R.raw.counts9, R.raw.counts_del)
+        source = intArrayOf(R.raw.count0, R.raw.count1, R.raw.count2, R.raw.count3, R.raw.count4, R.raw.count5, R.raw.count6, R.raw.count7, R.raw.count8, R.raw.count9, R.raw.delete)
 
         for (i in 0..10) {
             //   poolMap.put("index" + i, pool.load(this, source[i], 1));
@@ -257,18 +257,16 @@ open class CountSimKeyboardActivity : BaseActivity() {
         } else {
             FileUtils.memory.data.add(memoryData)
             // 存储数据，数字模块不需要打分
-            val suffix = FileUtils.filePath.substring(FileUtils.filePath.lastIndexOf("."), FileUtils.filePath.length)
-            val fileName = "Parkins/" + MD5.md5("${Dua.getInstance().currentDuaUid}${System.currentTimeMillis()}") + suffix
 
             val data = "{\"score\":\"${0}\"," +
-                    "\"doctor\":\"${Dua.getInstance().duaUser.name}\"," +
+                    "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                     "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                     "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
                     "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
                     "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
                     "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
                     "\"filever\":\"${1}\"," +
-                    "\"file\":\"$fileName\"}"
+                    "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
             insertDB(data)
             var filePath = FileUtils.filePath
             // 单项测试

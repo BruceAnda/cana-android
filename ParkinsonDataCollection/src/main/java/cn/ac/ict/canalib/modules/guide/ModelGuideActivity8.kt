@@ -11,6 +11,7 @@ import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.modules.armdroop.ArmDroopTestActivity
 import cn.ac.ict.canalib.modules.upload.UploadActivity
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.ModelGuideBaseActivity
 import cn.ac.ict.canalib.common.ArmDroop
 import cn.ac.ict.canalib.common.ArmDroopData
 import cn.ac.ict.canalib.helpers.MenuHelper
@@ -21,20 +22,38 @@ import java.util.ArrayList
 /**
  * 手臂下垂
  */
-class ModelGuideActivity8 : BaseActivity() {
+class ModelGuideActivity8 : ModelGuideBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide8)
 
+
+        init()
+    }
+
+    private fun init() {
+        handlerMenu()
+        handlerSound()
+    }
+
+    private fun handlerMenu() {
         if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
             btn_pre.visibility = View.GONE
             btn_skip.visibility = View.GONE
         }
     }
 
+    private fun handlerSound() {
+        createMediaPlayer(R.raw.guide8)
+    }
+
     override fun onResume() {
         super.onResume()
+        handlerFile()
+    }
+
+    private fun handlerFile() {
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_STAND)
         FileUtils.armDroopL = ArmDroop("ArmDroop_L", ArmDroopData(ArrayList(), ArrayList()))
         FileUtils.armDroopR = ArmDroop("ArmDroop_R", ArmDroopData(ArrayList(), ArrayList()))

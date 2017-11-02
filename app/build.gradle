@@ -19,8 +19,8 @@ android {
         minSdkVersion 18
        // useLibrary("com.lovearthstudio.duasdk")
         targetSdkVersion 23
-        versionCode 8
-        versionName "2.0"
+        versionCode 9
+        versionName "2.0.1"
     }
 
     buildTypes {

@@ -155,7 +155,7 @@ class StandTestActivity : BaseActivity() {
      */
     private fun writeData(stand: Stand) {
         doAsync {
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", stand.type, "")
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", stand.type, "", "")
             val data = JSON.toJSONString(stand)
             Log.i("Stand", data)
             FileUtils.writeToFile(data, historyData.filePath)

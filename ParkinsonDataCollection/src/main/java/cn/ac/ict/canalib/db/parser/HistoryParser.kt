@@ -8,6 +8,6 @@ import org.jetbrains.anko.db.RowParser
  */
 class HistoryParser<T> : RowParser<HistoryData> {
     override fun parseRow(columns: Array<Any?>): HistoryData {
-        return HistoryData(columns[0].toString(), columns[1].toString(), columns[2].toString(), columns[3].toString(), columns[4].toString(), columns[5].toString())
+        return HistoryData(columns[0].toString(), columns[1].toString(), columns[2].toString(), columns[3].toString(), columns[4].toString(), columns[5].toString(), columns[6].toString())
     }
 }

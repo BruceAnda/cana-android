@@ -6,6 +6,7 @@ import com.pgyersdk.crash.PgyCrashManager
 
 import cn.ac.ict.cana.common.CanaUIIntent
 import cn.ac.ict.canalib.common.ParkinsDataCollection
+import com.lovearthstudio.duasdk.upload.UploadUtils
 
 
 /**
@@ -16,6 +17,8 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        UploadUtils.initOSS()
 
         PgyCrashManager.register(this)
 

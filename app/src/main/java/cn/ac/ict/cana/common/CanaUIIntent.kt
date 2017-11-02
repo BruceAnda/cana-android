@@ -15,7 +15,7 @@ class CanaUIIntent : UIIntent {
     }
 
     override fun uploadFinish(context: Context) {
-        toMain(context)
+      //  toMain(context)
     }
 
     override fun toTest(context: Context) {

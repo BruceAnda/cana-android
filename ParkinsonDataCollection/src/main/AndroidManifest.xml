@@ -1,11 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.ac.ict.canalib" >
+    package="cn.ac.ict.canalib">
 
     <application
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActBar.FullScreen">
-
 
         <!-- Module: Count -->
         <activity
@@ -17,22 +17,20 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActBar.FullScreen" />
 
-
         <!-- Module: Stand -->
 
 
         <!-- Module: Face -->
         <activity
-            android:name="cn.ac.ict.canalib.modules.face.FaceMainActivity"
+            android:name=".modules.face.FaceMainActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name="cn.ac.ict.canalib.modules.face.VideoCaptureActivity"
+            android:name=".modules.face.VideoCaptureActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <!-- Module: Tapper -->
-
 
 
         <!-- Module: Sound -->
@@ -44,7 +42,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
-
         <!-- 友盟key -->
         <meta-data
             android:name="UMENG_APPKEY"
@@ -54,8 +51,6 @@
             android:value="GooglePlay" />
 
         <activity android:name=".base.BaseActivity" />
-
-
         <activity
             android:name=".modules.guide.ModelGuideActivity"
             android:screenOrientation="portrait" />
@@ -80,13 +75,10 @@
         <activity
             android:name=".modules.upload.UploadActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat" />
-
-
         <activity
             android:name=".modules.tapper.TapperTestActivity"
             android:screenOrientation="portrait" />
@@ -94,7 +86,7 @@
             android:name=".modules.stand.StandTestActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.ac.ict.canalib.activities.ScoreActivity"
+            android:name=".activities.ScoreActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".modules.tremor.TremorTestActivity"
@@ -102,7 +94,6 @@
         <activity
             android:name=".modules.sound.SoundTestActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="cn.ac.ict.cana.features.activities.login.LandPageActivity"
             android:screenOrientation="portrait" />
@@ -115,7 +106,8 @@
         <activity
             android:name="cn.ac.ict.cana.features.activities.login.ResultActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".modules.guide.ModelGuideActivity8"></activity>
+        <activity android:name=".modules.guide.ModelGuideActivity8" />
+        <activity android:name=".base.ModelGuideBaseActivity"></activity>
     </application>
 
 </manifest>

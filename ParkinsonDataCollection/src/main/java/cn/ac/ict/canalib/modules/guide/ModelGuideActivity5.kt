@@ -18,6 +18,7 @@ import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.ModelGuideBaseActivity
 import cn.ac.ict.canalib.common.Acc
 import cn.ac.ict.canalib.common.Gyro
 import cn.ac.ict.canalib.common.Stride
@@ -30,6 +31,7 @@ import com.alibaba.fastjson.JSON
 import com.lovearthstudio.duasdk.Dua
 import kotlinx.android.synthetic.main.activity_model_guide5.*
 import org.jetbrains.anko.doAsync
+import org.json.JSONObject
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
@@ -37,24 +39,40 @@ import kotlin.collections.ArrayList
 /**
  * 行走平衡
  */
-class ModelGuideActivity5 : BaseActivity() {
+class ModelGuideActivity5 : ModelGuideBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide5)
 
+        init()
+    }
+
+    private fun init() {
+        handlerMenu()
+        handlerSound()
+    }
+
+    private fun handlerMenu() {
         if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
             btn_pre.visibility = View.GONE
             btn_skip.visibility = View.GONE
         }
     }
 
+    private fun handlerSound() {
+        createMediaPlayer(R.raw.guide5)
+    }
+
     override fun onResume() {
         super.onResume()
+        handlerFile()
+    }
+
+    private fun handlerFile() {
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_STRIDE)
         FileUtils.stride = Stride("Stride", StrideData(ArrayList(), ArrayList()))
         FileUtils.strideData = StrideData(ArrayList(), ArrayList())
-
     }
 
     fun pre(view: View) {
@@ -78,6 +96,7 @@ class ModelGuideActivity5 : BaseActivity() {
      */
     fun start(view: View) {
         // 启动倒计时
+        stop()
         ll_controller_button.visibility = View.GONE
         tv_count_down.visibility = View.VISIBLE
         CountDown(5000, 1000).start()
@@ -107,6 +126,20 @@ class ModelGuideActivity5 : BaseActivity() {
         }
     }
 
+    private val mStepEventListener = object : SensorEventListener {
+        override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+
+        }
+
+        override fun onSensorChanged(event: SensorEvent) {
+            if (event.values[0] == 1.0F) {
+                mDetector++
+            }
+        }
+    }
+
+    private var mDetector: Float = 0.toFloat()//步行探测器
+
     fun initSensors() {
         FileUtils.strideData = StrideData(ArrayList(), ArrayList())
         sm = getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -115,6 +148,9 @@ class ModelGuideActivity5 : BaseActivity() {
                 SensorManager.SENSOR_DELAY_GAME)
         sm.registerListener(mGyroEventListener,
                 sm.getDefaultSensor(Sensor.TYPE_GYROSCOPE),
+                SensorManager.SENSOR_DELAY_GAME)
+        sm.registerListener(mStepEventListener,
+                sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR),
                 SensorManager.SENSOR_DELAY_GAME)
     }
 
@@ -138,7 +174,9 @@ class ModelGuideActivity5 : BaseActivity() {
      */
     private fun writeData(stride: Stride) {
         doAsync {
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", stride.type, "")
+            val other = JSONObject()
+            other.put("step", mDetector)
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", stride.type, "", other.toString())
             val data = JSON.toJSONString(stride)
             Log.i("Stride", data)
             FileUtils.writeToFile(data, historyData.filePath)
@@ -146,10 +184,13 @@ class ModelGuideActivity5 : BaseActivity() {
         }
     }
 
+    private val TAG = ModelGuideActivity5::class.java.simpleName
+
     /**
      * 把数据文件路径插入到数据库
      */
     private fun insertDB(historyData: HistoryData) {
+        Log.i(TAG, "$historyData")
         database.use {
             // 历史数据
             val values = ContentValues()

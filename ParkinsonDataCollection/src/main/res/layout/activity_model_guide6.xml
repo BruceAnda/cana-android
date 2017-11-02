@@ -24,7 +24,7 @@
 
         <TextView
             style="@style/GuideContentStyle"
-            android:text="用右手食指、中指以最快速度交替敲击两个蓝色圆钮。点击开始测试。" />
+            android:text="分别用左右手食指、中指以最快速度交替敲击两个蓝色圆钮。点击开始测试。" />
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/model_guide6"

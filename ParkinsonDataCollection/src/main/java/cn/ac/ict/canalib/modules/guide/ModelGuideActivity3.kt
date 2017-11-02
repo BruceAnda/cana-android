@@ -10,6 +10,7 @@ import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.modules.sound.SoundTestActivity
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.ModelGuideBaseActivity
 import cn.ac.ict.canalib.helpers.MenuHelper
 import cn.ac.ict.canalib.utils.FileUtils
 import kotlinx.android.synthetic.main.activity_model_guide3.*
@@ -17,21 +18,38 @@ import kotlinx.android.synthetic.main.activity_model_guide3.*
 /**
  * 语言测试
  */
-class ModelGuideActivity3 : BaseActivity() {
+class ModelGuideActivity3 : ModelGuideBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide3)
 
+        init()
+    }
+
+    private fun init() {
+        handlerMenu()
+        handlerSound()
+    }
+
+    private fun handlerMenu() {
         if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
             btn_pre.visibility = View.GONE
             btn_skip.visibility = View.GONE
         }
     }
 
+    private fun handlerFile() {
+        FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_SOUND)
+    }
+
+    private fun handlerSound() {
+        createMediaPlayer(R.raw.guide3)
+    }
+
     override fun onResume() {
         super.onResume()
-        FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_SOUND)
+        handlerFile()
     }
 
     fun start(view: View) {

@@ -10,6 +10,7 @@ import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.modules.stand.StandTestActivity
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.ModelGuideBaseActivity
 import cn.ac.ict.canalib.common.Stand
 import cn.ac.ict.canalib.common.StandData
 import cn.ac.ict.canalib.helpers.MenuHelper
@@ -20,26 +21,41 @@ import kotlin.collections.ArrayList
 /**
  * 站立平衡
  */
-class ModelGuideActivity4 : BaseActivity() {
+class ModelGuideActivity4 : ModelGuideBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide4)
 
+        init()
+    }
+
+    private fun init() {
+        handlerMenu()
+        handlerSound()
+    }
+
+    private fun handlerMenu() {
         if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
             btn_pre.visibility = View.GONE
             btn_skip.visibility = View.GONE
         }
     }
 
+    private fun handlerSound() {
+        createMediaPlayer(R.raw.guide4)
+    }
+
     override fun onResume() {
         super.onResume()
+        handlerFile()
+    }
+
+    private fun handlerFile() {
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_STAND)
         FileUtils.standL = Stand("Stand_L", StandData(ArrayList(), ArrayList()))
         FileUtils.standR = Stand("Stand_R", StandData(ArrayList(), ArrayList()))
         FileUtils.standData = StandData(ArrayList(), ArrayList())
-
-
     }
 
     fun start(view: View) {

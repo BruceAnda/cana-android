@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_tremor_main2.*
 class TremorMainActivity : BaseActivity() {
 
     private var isAction = false
-    private val tipsTitle = arrayOf("静止性震颤", "运动性震颤")
+    private val tipsTitle = arrayOf("静止性震颤", "动作性震颤")
     private val tipsContent = arrayOf("静坐在椅子上，手持手机自然下垂放在腿上，保持完全放松状态。如图所示。", "静坐在椅子上，手持手机自然下垂放在腿上，保持完全放松状态。如图所示。")
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -73,7 +73,7 @@ class SoundTestActivity : AppCompatActivity() {
         when (currentQustion) {
             1 -> {
                 tv_sound_title.text = "1、请大声读出一下文字"
-                tv_sount_tip.text = "今天你在哪吃的晚餐，吃了些什么？"
+                tv_sount_tip.text = "请您告诉我，您昨天晚上在什么地方吃的什么？"
                 btn_sound.text = "完成"
             }
             2 -> {
@@ -98,7 +98,7 @@ class SoundTestActivity : AppCompatActivity() {
      */
     private fun writeData() {
         doAsync {
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$filesDir${File.separator}$path", "0", ModuleHelper.MODULE_DATATYPE_SOUND, "")
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$filesDir${File.separator}$path", "0", ModuleHelper.MODULE_DATATYPE_SOUND, "", "")
             insertDB(historyData)
         }
     }

@@ -2,9 +2,11 @@ package cn.ac.ict.canalib.modules.upload
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -40,10 +42,19 @@ import java.io.File
  */
 class UploadActivity : Activity() {
 
+    private val TAG = UploadActivity::class.java.name
+    private val CODE_UPLOAD = 0
+    private val CODE_UPLOAD_FINISH = 1
+    private val CODE_DISMISS_DIAOLG = 2
+    private val CODE_FINNISH_UI = 3
+
     internal var mHandler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             when (msg.what) {
-                CODE_UPLOAD -> progressDialog!!.setMessage("共" + fileNum + "个文件当前上传第" + currentFile + "个")
+                CODE_UPLOAD -> {
+                    progressDialog!!.setMessage("共" + fileNum + "个文件当前上传第" + currentFile + "个")
+                    upload()
+                }
                 CODE_UPLOAD_FINISH -> {
                     progressDialog!!.setMessage("上传完成！")
                     sendEmptyMessageDelayed(CODE_DISMISS_DIAOLG, 1000)
@@ -52,6 +63,30 @@ class UploadActivity : Activity() {
                     if (progressDialog != null && progressDialog!!.isShowing)
                         progressDialog!!.dismiss()
                     ParkinsDataCollection.uiIntent.uploadFinish(this@UploadActivity)
+
+                    // 检测以前有没有未上传的数据
+                    database.use {
+
+                        // 查询本次测试
+                        list = select(HistoryData.TABLE_NAME).whereSimple("${HistoryData.ISUPLOAD} = ?", "0").parseList(HistoryParser<HistoryData>())
+                        if (list.isNotEmpty()) {
+                            currentFile = 1
+                            fileNum = list.size
+                            AlertDialog.Builder(this@UploadActivity)
+                                    .setTitle("提示")
+                                    .setMessage("发现以前有${list.size}条数据没有上传，是否现在上传？")
+                                    .setNegativeButton("取消", { dialog, which -> sendEmptyMessage(CODE_FINNISH_UI) })
+                                    .setPositiveButton("上传") { dialog, which ->
+                                        initProgressDialog()
+                                        upload()
+                                    }
+                                    .show()
+                        } else {
+                            sendEmptyMessage(CODE_FINNISH_UI)
+                        }
+                    }
+                }
+                CODE_FINNISH_UI -> {
                     finish()
                 }
             }
@@ -77,7 +112,13 @@ class UploadActivity : Activity() {
         setContentView(R.layout.activity_upload)
 
         database.use {
-            list = select(HistoryData.TABLE_NAME).whereSimple(HistoryData.BATCH + " = ?", FileUtils.batch).parseList(HistoryParser<HistoryData>())
+
+            // 查询本次测试
+            list = select(HistoryData.TABLE_NAME).where("(${HistoryData.BATCH} = {batch} and ${HistoryData.ISUPLOAD} = {isupload})",
+                    "batch" to FileUtils.batch,
+                    "isupload" to "0").parseList(HistoryParser<HistoryData>())
+
+            // list = select(HistoryData.TABLE_NAME).whereSimple(HistoryData.BATCH + " = ?", FileUtils.batch).parseList(HistoryParser<HistoryData>())
             fileNum = list.size
             for (history in list) {
                 when {
@@ -132,7 +173,11 @@ class UploadActivity : Activity() {
 
             val localFile = File(history.filePath)
             if (!localFile.exists()) {
-                Toast.makeText(this@UploadActivity, "数据文件丢失", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(this@UploadActivity, "数据文件丢失", Toast.LENGTH_SHORT).show()
+                // 本地数据文件不存在，更新数据库上传状态
+                database.use {
+                    update(HistoryData.TABLE_NAME, HistoryData.ISUPLOAD to "1").whereSimple(HistoryData.FILEPATH + " = ?", history.filePath).exec()
+                }
                 progressDialog?.dismiss()
                 return
             }
@@ -143,7 +188,6 @@ class UploadActivity : Activity() {
                     RxVolley.post(url, params, object : HttpCallback() {
                         override fun onSuccess(t: String?) {
                             Log.i(TAG, "上传成功！" + t)
-                            var result = JSONObject(t)
                             database.use {
                                 update(HistoryData.TABLE_NAME, HistoryData.ISUPLOAD to "1").whereSimple(HistoryData.FILEPATH + " = ?", history.filePath).exec()
                             }
@@ -156,7 +200,6 @@ class UploadActivity : Activity() {
                     })
                     currentFile++
                     if (currentFile <= fileNum) {
-                        upload()
                         mHandler.sendEmptyMessage(CODE_UPLOAD)
                     } else {
                         mHandler.sendEmptyMessage(CODE_UPLOAD_FINISH)
@@ -169,8 +212,6 @@ class UploadActivity : Activity() {
                     if (file1.exists()) {
                         file1.delete()
                     }
-
-
                 }
 
                 override fun onFailure(request: PutObjectRequest?, clientException: ClientException?, serviceException: ServiceException?) {
@@ -178,10 +219,10 @@ class UploadActivity : Activity() {
                     clientException?.printStackTrace()
                     if (serviceException != null) {
                         // Service exception
-                        Log.e("ErrorCode", serviceException.getErrorCode());
-                        Log.e("RequestId", serviceException.getRequestId());
-                        Log.e("HostId", serviceException.getHostId());
-                        Log.e("RawMessage", serviceException.getRawMessage());
+                        Log.e("ErrorCode", serviceException.errorCode)
+                        Log.e("RequestId", serviceException.requestId)
+                        Log.e("HostId", serviceException.hostId)
+                        Log.e("RawMessage", serviceException.rawMessage)
                     }
                 }
 
@@ -205,13 +246,5 @@ class UploadActivity : Activity() {
         progressDialog?.show()
         progressDialog?.setCancelable(false)
         progressDialog?.show()
-    }
-
-    companion object {
-
-        private val TAG = UploadActivity::class.java.name
-        private val CODE_UPLOAD = 0
-        private val CODE_UPLOAD_FINISH = 1
-        private val CODE_DISMISS_DIAOLG = 2
     }
 }

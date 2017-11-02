@@ -17,6 +17,7 @@ import cn.ac.ict.cana.features.pagers.ExamPageFragment
 import cn.ac.ict.canalib.R
 import cn.ac.ict.canalib.utils.FileUtils
 import cn.ac.ict.cana.features.widget.InputDialog
+import com.lovearthstudio.duasdk.Dua
 import kotlinx.android.synthetic.main.activity_patient_info.*
 import java.util.*
 import java.util.regex.Pattern
@@ -62,12 +63,17 @@ class PatientInfoActivity : BaseActivity() {
         // 数据批次的UUID
         val randomUUID = UUID.randomUUID().toString()
 
-
+        FileUtils.DOCTOR = ""
         FileUtils.PATIENT_NAME = ""
         FileUtils.PATIENT_AGE = ""
         FileUtils.PATIENT_SEX = ""
         FileUtils.PATIENT_MEDICINE = ""
 
+
+        val name = Dua.getInstance().duaUser.name
+        if (!TextUtils.isEmpty(name)) {
+            FileUtils.DOCTOR = name
+        }
         // 性别默认为男
         FileUtils.PATIENT_SEX = sex[0]
         // 开关期

@@ -12,6 +12,8 @@ import java.io.RandomAccessFile
 
 object FileUtils {
 
+    var batch = ""
+    var DOCTOR = ""
     var PATIENT_NAME = ""
     var PATIENT_SEX = ""
     var PATIENT_AGE = ""
@@ -46,7 +48,6 @@ object FileUtils {
     lateinit var armDroopR: ArmDroop
     lateinit var armDroopData: ArmDroopData
 
-    var batch = ""
 
     var filePath = ""
     private lateinit var randomAccessFile: RandomAccessFile

@@ -20,6 +20,7 @@ import com.alibaba.fastjson.JSON
 import com.lovearthstudio.duasdk.Dua
 import kotlinx.android.synthetic.main.activity_tapper_test.*
 import org.jetbrains.anko.doAsync
+import org.json.JSONObject
 import java.io.File
 import java.util.*
 
@@ -133,7 +134,49 @@ class TapperTestActivity : BaseActivity() {
      */
     private fun writeData(tapper: Tapping) {
         doAsync {
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", tapper.type, "")
+            var successNum: Float = 0F
+            var firstBtn = ""
+            var secondBtn = ""
+            var totalNum: Float = 0F
+            // 计算交替比率
+            totalNum = tapper.data.size.toFloat()
+            val first = tapper.data[0].btn
+            // 判断第一个是L的话，后面每个奇数都是L
+            if ("L" == first) {
+                firstBtn = "L"
+                secondBtn = "R"
+            } else {
+                firstBtn = "R"
+                secondBtn = "L"
+            }
+
+            for (i in 0 until totalNum.toInt()) {
+                val item = tapper.data[i]
+                if (i % 2 == 0) {
+                    // 偶数 0 2 4 位置的都是L
+                    if (item.btn == firstBtn) {
+                        successNum++
+                    }
+                } else {
+                    // 奇数 1 3 5 位置的都是R
+                    if (item.btn == secondBtn) {
+                        successNum++
+                    }
+                }
+            }
+            val trueall = successNum / totalNum
+
+            // 计算平均速率
+            val firstTime = tapper.data[0].time
+            val lastTime = tapper.data[totalNum.toInt() - 1].time
+
+            val avgspeed = totalNum / (lastTime - firstTime)
+
+            val other = JSONObject()
+            other.put("tureall", trueall)
+            other.put("abgspeed", avgspeed)
+
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", tapper.type, "", other.toString())
             val data = JSON.toJSONString(tapper)
             Log.i("Tapper", data)
             FileUtils.writeToFile(data, historyData.filePath)
@@ -145,6 +188,7 @@ class TapperTestActivity : BaseActivity() {
      * 把数据文件路径插入到数据库
      */
     private fun insertDB(historyData: HistoryData) {
+        Log.i(TAG, "$historyData")
         database.use {
             // 历史数据
             val values = ContentValues()

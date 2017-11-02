@@ -10,6 +10,8 @@ import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.modules.tremor.TremorMainActivity
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.ModelGuideBaseActivity
+import cn.ac.ict.canalib.common.Memory
 import cn.ac.ict.canalib.common.Tremor
 import cn.ac.ict.canalib.common.TremorData
 import cn.ac.ict.canalib.helpers.MenuHelper
@@ -20,12 +22,25 @@ import kotlin.collections.ArrayList
 /**
  * 震颤测试
  */
-class ModelGuideActivity2 : BaseActivity() {
+class ModelGuideActivity2 : ModelGuideBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide2)
 
+        init()
+    }
+
+    private fun init() {
+        handlerMenu()
+        handlerSound()
+    }
+
+    private fun handlerSound() {
+        createMediaPlayer(R.raw.guide2)
+    }
+
+    private fun handlerMenu() {
         if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
             btn_pre.visibility = View.GONE
             btn_skip.visibility = View.GONE
@@ -34,14 +49,21 @@ class ModelGuideActivity2 : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        handlerFile()
+    }
+
+    /**
+     * 处理文件
+     */
+    private fun handlerFile() {
         FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_TREMOR)
         FileUtils.tremorRR = Tremor(ModuleHelper.MODULE_DATATYPE_TREMOR_RR, TremorData(ArrayList(), ArrayList()))
         FileUtils.tremorRP = Tremor(ModuleHelper.MODULE_DATATYPE_TREMOR_RP, TremorData(ArrayList(), ArrayList()))
         FileUtils.tremorLR = Tremor(ModuleHelper.MODULE_DATATYPE_TREMOR_LR, TremorData(ArrayList(), ArrayList()))
         FileUtils.tremorLP = Tremor(ModuleHelper.MODULE_DATATYPE_TREMOR_LP, TremorData(ArrayList(), ArrayList()))
         FileUtils.tremorData = TremorData(ArrayList(), ArrayList())
-
     }
+
 
     fun start(view: View) {
         val intent = Intent(this@ModelGuideActivity2, TremorMainActivity::class.java)
