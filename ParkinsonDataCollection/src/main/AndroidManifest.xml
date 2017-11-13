@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.ac.ict.canalib">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:supportsRtl="true"
@@ -107,7 +109,13 @@
             android:name="cn.ac.ict.cana.features.activities.login.ResultActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".modules.guide.ModelGuideActivity8" />
-        <activity android:name=".base.ModelGuideBaseActivity"></activity>
+        <activity android:name=".base.AudioBaseActivity" />
+        <activity android:name=".activities.TestingReportActivity" />
+        <activity android:name=".modules.modulesnew.tremor.TremorTestActivity" />
+        <activity android:name=".modules.modulesnew.stand.StandTestActivity" />
+        <activity android:name=".modules.modulesnew.armdroop.ArmDroopTestActivity" />
+        <activity android:name=".modules.modulesnew.sound.SoundTestActivity" />
+        <activity android:name=".activities.TestingReportNewActivity"></activity>
     </application>
 
 </manifest>

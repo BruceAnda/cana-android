@@ -3,15 +3,15 @@ package cn.ac.ict.canalib.modules.tremor
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.modules.guide.ModelGuideActivity2
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import kotlinx.android.synthetic.main.activity_tremor_main2.*
 
 /**
  * 震颤主页面
  */
-class TremorMainActivity : BaseActivity() {
+class TremorMainActivity : AudioBaseActivity() {
 
     private var isAction = false
     private val tipsTitle = arrayOf("静止性震颤", "动作性震颤")

@@ -29,4 +29,10 @@
     <dimen name="margin_bottom">50dp</dimen>
     <dimen name="count_sim_key_margin">20dp</dimen>
     <dimen name="count_simkeyboard_height">70dp</dimen>
+
+    <dimen name="test_title_text_size">36sp</dimen>
+    <dimen name="test_tip_text_size">18sp</dimen>
+    <dimen name="tv_testing_report_padding">10dp</dimen>
+    <dimen name="testing_report_chart_height">120dp</dimen>
+    <dimen name="testReportingMargin">10dp</dimen>
 </resources>

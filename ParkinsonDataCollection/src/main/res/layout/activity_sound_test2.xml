@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/freebie_9"
+    android:gravity="center_horizontal"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_sound_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="1、请大声读出下面文字"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_sount_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:text="今天天气不错，风和日丽的。"
+        android:textColor="@color/mainColor"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/tv_sound_title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="2、回答下面问题"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_sount_tip2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:text="请您告诉我，您昨天晚上在什么地方吃的什么？"
+        android:textColor="@color/mainColor"
+        android:textSize="26sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="50dp">
+
+        <ImageView
+            android:id="@+id/iv_sound_mic"
+            android:layout_width="200dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="microphone" />
+
+        <TextView
+            android:id="@+id/tv_sound_test_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在录音..."
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/btn_sound"
+            style="@style/BtnControllerOrangeStyle"
+            android:onClick="startRecord"
+            android:text="开始录音" />
+    </LinearLayout>
+</LinearLayout>

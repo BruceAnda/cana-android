@@ -13,7 +13,11 @@ class MemoryData(
         var level: Int,
         var reply: String,
         var reply2: String
-)
+) {
+    override fun toString(): String {
+        return "(正确答案='$answer', 等级=$level, 第一次回答='$reply', 第二次回答='$reply2')"
+    }
+}
 
 /**
  * 震颤模块数据模型
@@ -24,8 +28,8 @@ class Tremor(
 )
 
 class TremorData(
-        var acc: ArrayList<Acc>,
-        var gyro: ArrayList<Gyro>
+        var acc: ArrayList<XYZ>,
+        var gyro: ArrayList<XYZ>
 )
 
 /**
@@ -44,8 +48,8 @@ class Stand(
 )
 
 class StandData(
-        var acc: ArrayList<Acc>,
-        var gyro: ArrayList<Gyro>
+        var acc: ArrayList<XYZ>,
+        var gyro: ArrayList<XYZ>
 )
 
 /**
@@ -57,8 +61,8 @@ class Stride(
 )
 
 class StrideData(
-        var acc: ArrayList<Acc>,
-        var gyro: ArrayList<Gyro>
+        var acc: ArrayList<XYZ>,
+        var gyro: ArrayList<XYZ>
 )
 
 
@@ -91,20 +95,14 @@ class ArmDroop(
 )
 
 class ArmDroopData(
-        var acc: ArrayList<Acc>,
-        var gyro: ArrayList<Gyro>
+        var acc: ArrayList<XYZ>,
+        var gyro: ArrayList<XYZ>
 )
 
-class Acc(
+class XYZ(
         var t: Long,
         var x: Double,
         var y: Double,
-        var z: Double
-)
-
-class Gyro(
-        var t: Long,
-        var x: Double,
-        var y: Double,
-        var z: Double
+        var z: Double,
+        var a: Double
 )

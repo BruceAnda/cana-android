@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.ac.ict.cana.newversion.login.ResultActivity">
+    tools:mContext="cn.ac.ict.cana.newversion.login.ResultActivity">
 
     <RelativeLayout
         android:id="@+id/rl_land"

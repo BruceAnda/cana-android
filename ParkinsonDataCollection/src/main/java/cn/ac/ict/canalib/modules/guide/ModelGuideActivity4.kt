@@ -5,15 +5,14 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.View
 import cn.ac.ict.canalib.helpers.ModuleHelper
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
-import cn.ac.ict.canalib.modules.stand.StandTestActivity
 import cn.ac.ict.canalib.R
-import cn.ac.ict.canalib.base.ModelGuideBaseActivity
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.Stand
 import cn.ac.ict.canalib.common.StandData
 import cn.ac.ict.canalib.helpers.MenuHelper
+import cn.ac.ict.canalib.modules.modulesnew.stand.StandTestActivity
 import cn.ac.ict.canalib.utils.FileUtils
 import kotlinx.android.synthetic.main.activity_model_guide4.*
 import kotlin.collections.ArrayList
@@ -21,7 +20,24 @@ import kotlin.collections.ArrayList
 /**
  * 站立平衡
  */
-class ModelGuideActivity4 : ModelGuideBaseActivity() {
+class ModelGuideActivity4 : AudioBaseActivity() {
+
+    override fun onPause() {
+        super.onPause()
+
+        pasue()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        stop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        release()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +65,7 @@ class ModelGuideActivity4 : ModelGuideBaseActivity() {
     override fun onResume() {
         super.onResume()
         handlerFile()
+        play()
     }
 
     private fun handlerFile() {
@@ -63,6 +80,7 @@ class ModelGuideActivity4 : ModelGuideBaseActivity() {
          intent.putExtra("level", 0)
          startActivity(intent)
          finish()*/
+        FileUtils.hasTestFour = true
         val intent = Intent(this@ModelGuideActivity4, StandTestActivity::class.java)
         startActivity(intent)
         finish()

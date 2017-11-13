@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_sound_test.*
 import java.io.File
 import omrecorder.*
 import org.jetbrains.anko.doAsync
+import org.json.JSONObject
 import java.util.*
 
 
@@ -98,9 +99,31 @@ class SoundTestActivity : AppCompatActivity() {
      */
     private fun writeData() {
         doAsync {
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$filesDir${File.separator}$path", "0", ModuleHelper.MODULE_DATATYPE_SOUND, "", "")
+            val other = JSONObject()
+            val tone = tone()
+            val volume = volume()
+            other.put("tone", tone)
+            other.put("volume", volume)
+
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$filesDir${File.separator}$path", "0", ModuleHelper.MODULE_DATATYPE_SOUND, "", other.toString())
             insertDB(historyData)
         }
+    }
+
+    /**
+     * 计算音量
+     */
+    private fun volume(): Float {
+
+        return 0.5F
+    }
+
+    /**
+     * 计算音调
+     */
+    private fun tone(): Float {
+
+        return 0.5F
     }
 
     /**
@@ -116,6 +139,7 @@ class SoundTestActivity : AppCompatActivity() {
             values.put(HistoryData.FILEPATH, historyData.filePath)
             values.put(HistoryData.MARK, historyData.mark)
             values.put(HistoryData.ISUPLOAD, historyData.isUpload)
+            values.put(HistoryData.OTHER, historyData.other)
             // 插入数据库
             insert(HistoryData.TABLE_NAME, null, values)
         }

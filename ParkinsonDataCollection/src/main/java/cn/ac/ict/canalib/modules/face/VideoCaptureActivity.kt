@@ -28,13 +28,13 @@ import android.os.Handler
 import android.os.Message
 import android.provider.MediaStore.Video.Thumbnails
 import android.util.Log
-import android.view.Display
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import cn.ac.ict.canalib.R
 
 import java.io.File
 import java.util.Timer
@@ -51,13 +51,13 @@ import cn.ac.ict.canalib.modules.face.recorder.VideoRecorder
 import cn.ac.ict.canalib.modules.face.recorder.VideoRecorderInterface
 import cn.ac.ict.canalib.modules.face.view.RecordingButtonInterface
 import cn.ac.ict.canalib.modules.face.view.VideoCaptureView
-import cn.ac.ict.canalib.R
 import cn.ac.ict.canalib.db.bean.HistoryData
 import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.modules.guide.ModelGuideActivity7
 import cn.ac.ict.canalib.utils.FileUtils
 import com.lovearthstudio.duasdk.Dua
 import org.jetbrains.anko.doAsync
+import org.json.JSONObject
 
 class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorderInterface {
 
@@ -127,7 +127,7 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
             }
         }
 
-        mp1 = MediaPlayer.create(applicationContext, R.raw.face_hint_1)
+        mp1 = MediaPlayer.create(this@VideoCaptureActivity, R.raw.face_hint_1)
         mp1?.setOnCompletionListener {
             try {
                 iv_bt.performClick()
@@ -143,7 +143,7 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
                 e.printStackTrace()
             }
         }
-        mp2 = MediaPlayer.create(applicationContext, R.raw.face_hint_2)
+        mp2 = MediaPlayer.create(this@VideoCaptureActivity, R.raw.face_hint_2)
         mp2?.setOnCompletionListener {
             timer = Timer(true)
             tt = object : TimerTask() {
@@ -154,7 +154,7 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
             }
             timer!!.schedule(tt, 0, 1000)
         }
-        mp3 = MediaPlayer.create(applicationContext, R.raw.face_hint_3)
+        mp3 = MediaPlayer.create(this@VideoCaptureActivity, R.raw.face_hint_3)
         mp3?.setOnCompletionListener {
             timer = Timer(true)
             tt = object : TimerTask() {
@@ -173,7 +173,7 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
         tvHint?.text = getString(R.string.face_task_1)
         tvHint?.background?.alpha = 100
         iv_bt.visibility = View.INVISIBLE
-        Handler().postDelayed({ mp1!!.start() }, 1000)
+        Handler().postDelayed({ mp1?.start() }, 1000)
 
 
     }
@@ -355,9 +355,32 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
      */
     private fun writeData() {
         doAsync {
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$path", "0", ModuleHelper.MODULE_DATATYPE_FACE, "", "")
+            val other = JSONObject()
+            val blinkTimes = blinkTimes()
+            val smileAngle = smileAngle()
+            other.put("blinkTimes", blinkTimes)
+            other.put("smileAngle", smileAngle)
+
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$path", "0", ModuleHelper.MODULE_DATATYPE_FACE, "", other.toString())
             insertDB(historyData)
         }
+    }
+
+    /**
+     * 计算嘴角微笑角度
+     */
+    private fun smileAngle(): Float {
+
+        return 30F
+    }
+
+
+    /**
+     * 计算瞬目次数
+     */
+    private fun blinkTimes(): Float {
+
+        return 3F
     }
 
     /**
@@ -373,6 +396,7 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
             values.put(HistoryData.FILEPATH, historyData.filePath)
             values.put(HistoryData.MARK, historyData.mark)
             values.put(HistoryData.ISUPLOAD, historyData.isUpload)
+            values.put(HistoryData.OTHER, historyData.other)
             // 插入数据库
             insert(HistoryData.TABLE_NAME, null, values)
         }

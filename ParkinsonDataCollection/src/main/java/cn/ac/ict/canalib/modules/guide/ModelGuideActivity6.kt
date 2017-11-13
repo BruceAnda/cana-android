@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.View
 import cn.ac.ict.canalib.helpers.ModuleHelper
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.modules.tapper.TapperTestActivity
 import cn.ac.ict.canalib.R
-import cn.ac.ict.canalib.base.ModelGuideBaseActivity
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.Tapping
 import cn.ac.ict.canalib.helpers.MenuHelper
 import cn.ac.ict.canalib.utils.FileUtils
@@ -22,7 +21,24 @@ import kotlin.collections.ArrayList
 /**
  * 手指灵敏
  */
-class ModelGuideActivity6 : ModelGuideBaseActivity() {
+class ModelGuideActivity6 : AudioBaseActivity() {
+
+    override fun onPause() {
+        super.onPause()
+
+        pasue()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        stop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        release()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +73,7 @@ class ModelGuideActivity6 : ModelGuideBaseActivity() {
     override fun onResume() {
         super.onResume()
         handlerFile()
+        play()
     }
 
     private fun handlerFile() {
@@ -70,6 +87,7 @@ class ModelGuideActivity6 : ModelGuideBaseActivity() {
         intent.putExtra("level", 0)
         startActivity(intent)
         finish()*/
+        FileUtils.hasTestSix = true
         startActivity(Intent(this@ModelGuideActivity6, TapperTestActivity::class.java))
         finish()
     }

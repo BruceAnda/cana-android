@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/mainColor"
     android:keepScreenOn="true"
-    tools:context="cn.ac.ict.cana.newversion.pagers.ExamPageFragment">
+    tools:mContext="cn.ac.ict.cana.newversion.pagers.ExamPageFragment">
 
     <!-- 第一层菜单 -->
     <RelativeLayout

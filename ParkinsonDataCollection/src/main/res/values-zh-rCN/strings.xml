@@ -165,7 +165,7 @@
     <!-- tremor -->
     <string name="select_phone_position">请选择那只手拿手机</string>
     <string name="select_feature">请选择测试类别</string>
-    <string name="tremor_tips">点击开始测试后，单手持设备，倒计时5秒钟后，测试正式开始，请保持选择的姿势，等待20秒钟。左手和右手分别完成。</string>
+    <string name="tremor_tips">点击开始测试后，单手持设备，倒计时5秒钟后，测试正式开始，请保持选择的姿势，等待15秒钟。左手和右手分别完成。</string>
     <string name="left_hand">左手</string>
     <string name="right_hand">右手</string>
     <string name="staticed">静止性</string>
@@ -261,5 +261,7 @@
     <string name="dua_action_cancel">取消</string>
     <string name="radio_male">男</string>
     <string name="radio_female">女</string>
+
+
 </resources>
 

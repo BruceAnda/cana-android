@@ -7,7 +7,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import cn.ac.ict.cana.R
-import cn.ac.ict.canalib.base.BaseActivity
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import com.lovearthstudio.duasdk.Dua
 import com.lovearthstudio.duasdk.DuaCallback
 import com.lovearthstudio.duasdk.DuaConfig
@@ -17,7 +17,7 @@ import java.util.regex.Pattern
 /**
  * 注册页面
  */
-class RegisterActivity : BaseActivity() {
+class RegisterActivity : AudioBaseActivity() {
 
     private val TAG = RegisterActivity::class.java.simpleName
 

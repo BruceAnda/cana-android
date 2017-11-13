@@ -1,0 +1,1133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    tools:mContext="cn.ac.ict.canalib.activities.TestingReportNewActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mainColor">
+
+        <ImageView
+            android:id="@+id/iv_exam_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:onClick="back"
+            android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
+        <TextView
+            android:id="@+id/tvMainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="测试报告"
+            android:textColor="@color/material_light_white"
+            android:textSize="40sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/tvMainTitle"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="upload"
+            android:text="上传"
+            android:textColor="@color/material_light_white"
+            android:textSize="30sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_testing_patient_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                android:visibility="gone"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="病人信息"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="姓名：刘美美" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="性别：女" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="年龄：69" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="使用药物：美多芭" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="上次用药时间：2017-11-11上午10:23" />
+
+                        <EditText
+                            android:id="@+id/et_testing_report_remark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="top"
+                            android:hint="备注:点击录入备注信息"
+                            android:lines="3"
+                            android:maxLines="3"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:textAppearance="?android:textAppearanceSmall" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- 数字记忆 -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_testing_report_memory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="数字记忆"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="记忆等级：6" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="主频率：6HZ"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="幅度：3CM"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- 震颤情况 -->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="右手静止性震颤"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="horizontal">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/tremor_chart_rr_acc"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/tremor_chart_rr_gyro"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="主频率：6HZ" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="幅度：3CM" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="左手静止性震颤"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="horizontal">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/tremor_chart_lr_acc"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/tremor_chart_lr_gyro"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="主频率：6HZ" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="幅度：3CM" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="右手动作性震颤"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="horizontal">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/tremor_chart_rp_acc"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/tremor_chart_rp_gyro"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="主频率：6HZ" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="幅度：3CM" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="左手动作性震颤"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="horizontal">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/tremor_chart_lp_acc"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/tremor_chart_lp_gyro"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="主频率：6HZ" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="幅度：3CM" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="语言能力"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="vertical">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/sound_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/testing_report_chart_height" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="音调：929MEL" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="音量：40DB" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="右腿站立平衡"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="horizontal">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/stand_chart_r_acc"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/stand_chart_r_gyro"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="方差：0.7S²" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="时间：9.8S" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="左腿站立平衡"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="horizontal">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/stand_chart_l_acc"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/stand_chart_l_gyro"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="方差：0.7S²" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="时间：9.8S" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="行走平衡"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="horizontal">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/stride_chart_acc"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/stride_chart_gyro"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="步数：20步" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="时间：9.8S"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="右手手指灵敏"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/tv_testing_report_padding"
+                        android:text="食指：50次，中指：49次" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="交替比率：0.7S²" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="平均速度：9.8S" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="左手手指灵敏"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/tv_testing_report_padding"
+                        android:text="食指：50次，中指：49次" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="交替比率：0.7S²" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="平均速度：9.8S" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="面部表情"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <VideoView
+                        android:id="@+id/face_video"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="交替比率：0.7S²" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="平均速度：9.8S" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="右手手臂下垂"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="horizontal">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/arm_droop_r_acc"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/arm_droop_r_gyro"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="下摆次数：6" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="时间：9.8S"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/testReportingMargin"
+                android:layout_marginRight="@dimen/testReportingMargin"
+                android:layout_marginTop="@dimen/testReportingMargin"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="左手手臂下垂"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/testing_report_bg"
+                        android:orientation="horizontal">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/arm_droop_l_acc"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/arm_droop_l_gyro"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/testing_report_chart_height"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="UPDS:3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="下摆次数：10" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="@dimen/tv_testing_report_padding"
+                            android:text="时间：9.8S"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

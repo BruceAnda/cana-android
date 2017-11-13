@@ -376,5 +376,6 @@
     <color name="mainColor5">#FD8080</color>
     <color name="mainColor6">#FFF173</color>
     <color name="mainColor7">#FAFC66</color>
+    <color name="testing_report_bg">#EDE8D8</color>
 
 </resources>

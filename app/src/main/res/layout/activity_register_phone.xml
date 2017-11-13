@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainColor"
-    tools:context="cn.ac.ict.cana.newversion.login.RegisterActivity">
+    tools:mContext="cn.ac.ict.cana.newversion.login.RegisterActivity">
 
     <RelativeLayout
         android:id="@+id/rl_login"

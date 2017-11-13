@@ -32,8 +32,17 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cn.ac.ict.cana.R;
-import cn.ac.ict.canalib.base.BaseActivity;
 import cn.ac.ict.cana.features.activities.login.LandPageActivity;
+import cn.ac.ict.canalib.activities.TestingReportActivity;
+import cn.ac.ict.canalib.activities.TestingReportNewActivity;
+import cn.ac.ict.canalib.base.AudioBaseActivity;
+import cn.ac.ict.canalib.modules.guide.ModelGuideActivity;
+import cn.ac.ict.canalib.modules.guide.ModelGuideActivity2;
+import cn.ac.ict.canalib.modules.guide.ModelGuideActivity4;
+import cn.ac.ict.canalib.modules.guide.ModelGuideActivity8;
+import cn.ac.ict.canalib.modules.modulesnew.sound.SoundTestActivity;
+import cn.ac.ict.canalib.modules.modulesnew.stand.StandTestActivity;
+import cn.ac.ict.canalib.modules.modulesnew.tremor.TremorTestActivity;
 import cn.refactor.lib.colordialog.ColorDialogPermission;
 import cn.refactor.lib.colordialog.ColorDialogPermissionDead;
 import permissions.dispatcher.NeedsPermission;
@@ -53,7 +62,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * </pre>
  */
 @RuntimePermissions
-public class WelcomeActivity extends BaseActivity implements Animation.AnimationListener {
+public class WelcomeActivity extends AudioBaseActivity implements Animation.AnimationListener {
     private final static String TAG = "welcome";
     private AlphaAnimation alphaAnimation = new AlphaAnimation(0.0F, 1.0F);
     private LinearLayout activity_welcome;
@@ -149,12 +158,19 @@ public class WelcomeActivity extends BaseActivity implements Animation.Animation
                 selectPager();
             } else {
                 Toast.makeText(this, "手机没有网络，数据将无法上传！", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-                finish();
+                toMain();
             }
         } else {
             colorDialog.show();
         }
+    }
+
+    /**
+     * 跳转到主界面
+     */
+    private void toMain() {
+        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+        finish();
     }
 
     private void selectPager() {
@@ -163,11 +179,10 @@ public class WelcomeActivity extends BaseActivity implements Animation.Animation
             public void onNoUpdateAvailable() {
                 Dua.DuaUser duaUser = Dua.getInstance().getCurrentDuaUser();
                 if (duaUser.logon) {
-                     startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-                    //startActivity(new Intent(WelcomeActivity.this, CountSimKeyboardActivity.class));
-                    finish();
+                    toMain();
                 } else {
-                    startActivityForResult(new Intent(WelcomeActivity.this, LandPageActivity.class), 10086);
+                    //startActivityForResult(new Intent(WelcomeActivity.this, LandPageActivity.class), 10086);
+                    startActivityForResult(new Intent(WelcomeActivity.this, ModelGuideActivity.class), 10086);
                     finish();
                 }
             }
@@ -275,8 +290,7 @@ public class WelcomeActivity extends BaseActivity implements Animation.Animation
             selectPager();
         } else {
             Toast.makeText(this, "手机没有网络，数据将无法上传！", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-            finish();
+            toMain();
         }
     }
 

@@ -10,16 +10,16 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.AnimationSet
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.modules.guide.ModelGuideActivity
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import kotlinx.android.synthetic.main.activity_count_game.*
 import java.util.*
 
 /**
  * 产生数字的界面
  */
-class CountGameActivity : BaseActivity() {
+class CountGameActivity : AudioBaseActivity() {
 
     private val TAG = CountGameActivity::class.java.simpleName
 

@@ -7,7 +7,7 @@
     android:gravity="center_horizontal"
     android:keepScreenOn="true"
     android:orientation="vertical"
-    tools:context="cn.ac.ict.cana.newversion.modules.tremor.TremorMainActivity">
+    tools:mContext="cn.ac.ict.cana.newversion.modules.tremor.TremorMainActivity">
 
     <TextView
         android:id="@+id/tv_termor_title"

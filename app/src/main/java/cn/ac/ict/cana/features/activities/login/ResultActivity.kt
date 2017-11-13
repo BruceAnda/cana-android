@@ -3,13 +3,13 @@ package cn.ac.ict.cana.features.activities.login
 import android.os.Bundle
 import android.view.View
 import cn.ac.ict.cana.R
-import cn.ac.ict.canalib.base.BaseActivity
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.ParkinsDataCollection
 
 /**
  * 显示结果的页面
  */
-class ResultActivity : BaseActivity() {
+class ResultActivity : AudioBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

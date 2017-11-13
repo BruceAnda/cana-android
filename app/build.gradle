@@ -19,8 +19,8 @@ android {
         minSdkVersion 18
        // useLibrary("com.lovearthstudio.duasdk")
         targetSdkVersion 23
-        versionCode 9
-        versionName "2.0.1"
+        versionCode 10
+        versionName "2.0.2"
     }
 
     buildTypes {
@@ -73,7 +73,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.iarcuschin:simpleratingbar:0.1.3'
     compile 'com.pushlink:pushlink-android:5.5.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.github.hotchemi:permissionsdispatcher:2.3.2'
     compile 'com.alibaba:fastjson:1.1.59.android'
     compile 'com.facebook.fresco:fresco:0.12.0'

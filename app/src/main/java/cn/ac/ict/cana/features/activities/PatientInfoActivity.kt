@@ -9,14 +9,14 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.db.bean.Batch
-import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.modules.guide.*
 import cn.ac.ict.cana.features.pagers.ExamPageFragment
 import cn.ac.ict.canalib.R
 import cn.ac.ict.canalib.utils.FileUtils
 import cn.ac.ict.cana.features.widget.InputDialog
+import cn.ac.ict.canalib.base.AudioBaseActivity
+import cn.ac.ict.canalib.db.database
 import com.lovearthstudio.duasdk.Dua
 import kotlinx.android.synthetic.main.activity_patient_info.*
 import java.util.*
@@ -27,7 +27,7 @@ import java.util.regex.Pattern
  * 思路：
  *      1. 一开始先创建一个UUID
  */
-class PatientInfoActivity : BaseActivity() {
+class PatientInfoActivity : AudioBaseActivity() {
 
     private val sex = arrayOf("M", "F")
     private val open = arrayOf("0", "1")

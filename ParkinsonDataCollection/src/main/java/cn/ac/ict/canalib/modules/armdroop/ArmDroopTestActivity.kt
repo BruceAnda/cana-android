@@ -13,12 +13,11 @@ import android.util.Log
 import android.view.View
 import cn.ac.ict.canalib.helpers.ModuleHelper
 import cn.ac.ict.canalib.activities.ScoreActivity
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.R
-import cn.ac.ict.canalib.common.Acc
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.ArmDroop
 import cn.ac.ict.canalib.common.ArmDroopData
-import cn.ac.ict.canalib.common.Gyro
+import cn.ac.ict.canalib.common.XYZ
 import cn.ac.ict.canalib.db.bean.HistoryData
 import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.utils.FileUtils
@@ -26,11 +25,12 @@ import com.alibaba.fastjson.JSON
 import com.lovearthstudio.duasdk.Dua
 import kotlinx.android.synthetic.main.activity_arm_droop_test.*
 import org.jetbrains.anko.doAsync
+import org.json.JSONObject
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ArmDroopTestActivity : BaseActivity() {
+class ArmDroopTestActivity : AudioBaseActivity() {
 
     private var isRight = true
     private val tips = arrayOf("右手", "预备", "预备", "预备", "开始", "左手", "预备", "预备", "预备", "开始")
@@ -78,7 +78,10 @@ class ArmDroopTestActivity : BaseActivity() {
         }
 
         override fun onSensorChanged(event: SensorEvent) {
-            FileUtils.armDroopData.acc.add(Acc(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
+            val x = event.values[0].toDouble()
+            val y = event.values[1].toDouble()
+            val z = event.values[2].toDouble()
+            FileUtils.armDroopData.acc.add(XYZ(System.currentTimeMillis(), x, y, z, Math.sqrt(x * x + y * y + z * z)))
             /*if (isRight) {
                 FileUtils.accArmDroopRDatalist.add(AccData(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
             } else {
@@ -93,7 +96,10 @@ class ArmDroopTestActivity : BaseActivity() {
         }
 
         override fun onSensorChanged(event: SensorEvent) {
-            FileUtils.armDroopData.gyro.add(Gyro(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
+            val x = event.values[0].toDouble()
+            val y = event.values[1].toDouble()
+            val z = event.values[2].toDouble()
+            FileUtils.armDroopData.gyro.add(XYZ(System.currentTimeMillis(), x, y, z, Math.sqrt(x * x + y * y + z * z)))
             /*if (isRight) {
                 FileUtils.gyroArmDroopRDataList.add(GyroData(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
             } else {
@@ -155,12 +161,24 @@ class ArmDroopTestActivity : BaseActivity() {
      */
     private fun writeData(armDroop: ArmDroop) {
         doAsync {
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", armDroop.type, "", "")
+            val other = JSONObject()
+            val armDroopCount = armDroopCount()
+            other.put("armDroopCount", armDroopCount)
+
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", armDroop.type, "", other.toString())
             val data = JSON.toJSONString(armDroop)
             Log.i("ArmDroop", data)
             FileUtils.writeToFile(data, historyData.filePath)
             insertDB(historyData)
         }
+    }
+
+    /**
+     * 计算手臂下摆次数
+     */
+    private fun armDroopCount(): Float {
+
+        return 10F
     }
 
     /**

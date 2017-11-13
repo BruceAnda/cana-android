@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainColor"
-    tools:context="cn.ac.ict.cana.newversion.login.LandPageActivity">
+    tools:mContext="cn.ac.ict.cana.newversion.login.LandPageActivity">
 
     <RelativeLayout
         android:id="@+id/rl_land"
@@ -63,7 +63,7 @@
             style="@style/LoginEditTextStyle"
             android:layout_above="@id/tv_forgot_password"
             android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
-            android:hint="请输输入密码"
+            android:hint="请输入密码"
             android:inputType="textPassword"
             android:paddingLeft="15dp" />
 
@@ -72,7 +72,7 @@
             style="@style/LoginEditTextStyle"
             android:layout_above="@id/et_password"
             android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
-            android:hint="请输输入手机号"
+            android:hint="请输入手机号"
             android:inputType="phone"
             android:paddingLeft="15dp" />
 

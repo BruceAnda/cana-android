@@ -12,6 +12,68 @@ import java.io.RandomAccessFile
 
 object FileUtils {
 
+    /**
+     * 重置状态
+     */
+    fun resetStats() {
+        hasTestOne = false
+        hasTestTwo = false
+        hasTestThree = false
+        hasTestFour = false
+        hasTestFive = false
+        hasTestSix = false
+        hasTestSeven = false
+        hasTestEight = false
+        isTestingEnter = true
+    }
+
+    /**
+     * 是否生成对应的每项的测试报告
+     */
+    var hasTestOne = false  // 是否测试第一项
+    var hasTestTwo = false
+    var hasTestThree = false
+    var hasTestFour = false
+    var hasTestFive = false
+    var hasTestSix = false
+    var hasTestSeven = false
+    var hasTestEight = false
+    var isTestingEnter = true   // 是否是从测试模块进入
+
+    /**
+     * 测试报告的特征
+     */
+    // 震颤特征
+    var rrFrequency = "未实现"
+    var rrAmplitude = "未实现"
+    var lrFrequency = "未实现"
+    var lrAmplitude = "未实现"
+    var rpFrequency = "未实现"
+    var rpAmplitude = "未实现"
+    var lpFrequency = "未实现"
+    var lpAmplitude = "未实现"
+    // 语言特征
+    var tone = "未实现"
+    var volume = "未实现"
+    // 平衡特征
+    var rVariance = "未实现"
+    var rRime = "未实现"
+    var lVariance = "未实现"
+    var lTime = "未实现"
+    // 行走特征
+    var step = "未实现"
+    // tapping特征
+    var rAlternatingRatio = "未实现"
+    var rAvgspeed = "未实现"
+    var lAlternatingRatio = "未实现"
+    var lAvgspeed = "未实现"
+    // 面具脸特征
+    var blinkTimes = "未实现"
+    var smileAngle = "未实现"
+    // 手臂下垂特征
+    var rArmDroopCount = "未实现"
+    var lArmDroopCount = "未实现"
+
     var batch = ""
     var DOCTOR = ""
     var PATIENT_NAME = ""

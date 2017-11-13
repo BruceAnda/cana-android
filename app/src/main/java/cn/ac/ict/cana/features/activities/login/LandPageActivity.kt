@@ -8,7 +8,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import cn.ac.ict.cana.R
-import cn.ac.ict.canalib.base.BaseActivity
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.ParkinsDataCollection
 import com.lovearthstudio.duasdk.Dua
 import com.lovearthstudio.duasdk.DuaCallback
@@ -20,7 +20,7 @@ import org.json.JSONObject
 /**
  * 登录的开始页面
  */
-class LandPageActivity : BaseActivity() {
+class LandPageActivity : AudioBaseActivity() {
 
     private val TAG = LandPageActivity::class.java.simpleName
 

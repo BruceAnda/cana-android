@@ -1,6 +1,7 @@
 package cn.ac.ict.canalib.common
 
 import android.app.Application
+import cn.ac.ict.canalib.common.audio.audioManager
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.lovearthstudio.duasdk.Dua
 import com.lovearthstudio.duasdk.upload.UploadUtils
@@ -19,5 +20,6 @@ object ParkinsDataCollection {
         Dua.init(context)
         UploadUtils.initOSS()
         Fresco.initialize(context)
+        audioManager.init(context)
     }
 }

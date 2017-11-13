@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainColor"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    tools:mContext="cn.ac.ict.canalib.activities.TestingReportActivity">
+
+    <TextView
+        android:id="@+id/tvMainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:text="测试报告"
+        android:textColor="@color/material_light_white"
+        android:textSize="40sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/user_info_bg"
+        android:keepScreenOn="true"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TestingReportTitleStyle"
+                    android:text="病人信息" />
+
+                <TextView
+                    android:id="@+id/tv_patient_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <!-- 1. 数字记忆 -->
+            <LinearLayout
+                android:id="@+id/ll_memory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/TestingReportTitleStyle"
+                    android:text="数字记忆" />
+
+                <TextView
+                    android:id="@+id/tv_memory_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <!-- 2. 震颤情况 -->
+            <LinearLayout
+                android:id="@+id/ll_tremor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/TestingReportTitleStyle"
+                    android:text="震颤情况" />
+                <!-- 右手静止性震颤加速度 -->
+                <TextView
+                    android:id="@+id/tremor_feature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="右手静止性震颤(频率：未实现，幅度：未实现)\n左手静止性震颤(频率：未实现，幅度：未实现)\n右手动作性震颤(频率：未实现，幅度：未实现)\n左手动作性震颤(频率：未实现，幅度：未实现)\n" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/tremor_chart_rr_acc"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <!-- 右手静止性震颤陀螺仪 -->
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/tremor_chart_rr_gyro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <!-- 左手静止性震颤加速度 -->
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/tremor_chart_lr_acc"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <!-- 左手静止性震颤陀螺仪 -->
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/tremor_chart_lr_gyro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <!-- 右手动作性震颤加速度 -->
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/tremor_chart_rp_acc"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <!-- 右手动作性震颤陀螺仪 -->
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/tremor_chart_rp_gyro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <!-- 左手动作性震颤加速度 -->
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/tremor_chart_lp_acc"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <!-- 左手动作性震颤陀螺仪 -->
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/tremor_chart_lp_gyro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+            </LinearLayout>
+            <!-- 3. 语言能力 -->
+            <LinearLayout
+                android:id="@+id/ll_sound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/TestingReportTitleStyle"
+                    android:text="语言能力" />
+
+                <TextView
+                    android:id="@+id/sound_feature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="音调：未实现\n音量：未实现" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/sound_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+            </LinearLayout>
+            <!-- 4. 站立平衡 -->
+            <LinearLayout
+                android:id="@+id/ll_stand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/TestingReportTitleStyle"
+                    android:text="站立平衡" />
+
+                <TextView
+                    android:id="@+id/stand_feature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="右腿站立(方差：未实现，时间：未实现)\n左腿站立(方差：未实现，时间：未实现)" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/stand_chart_r_acc"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/stand_chart_r_gyro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/stand_chart_l_acc"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/stand_chart_l_gyro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+            </LinearLayout>
+            <!-- 5. 行走平衡 -->
+            <LinearLayout
+                android:id="@+id/ll_stride"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/TestingReportTitleStyle"
+                    android:text="行走平衡" />
+
+                <TextView
+                    android:id="@+id/stride_feature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="步数：未实现" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/stride_chart_acc"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/stride_chart_gyro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+            </LinearLayout>
+            <!-- 6. 手指灵敏 -->
+            <LinearLayout
+                android:id="@+id/ll_tapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/TestingReportTitleStyle"
+                    android:text="手指灵敏" />
+
+                <TextView
+                    android:id="@+id/tapping_feature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="右手(交替比率：未实现，平均速度：未实现)\n左手(交替比率：未实现，平均速度：未实现)" />
+            </LinearLayout>
+            <!-- 7. 面部表情 -->
+            <LinearLayout
+                android:id="@+id/ll_face"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/TestingReportTitleStyle"
+                    android:text="面部表情" />
+
+                <TextView
+                    android:id="@+id/face_feature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="瞬目次数：未实现\n嘴角微笑角度：未实现" />
+            </LinearLayout>
+            <!-- 8. 手臂下垂 -->
+            <LinearLayout
+                android:id="@+id/ll_arm_droop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/TestingReportTitleStyle"
+                    android:text="手臂下垂" />
+
+                <TextView
+                    android:id="@+id/arm_droop_feature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="右手下摆次数：未实现\n左手下摆次数：未实现" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/arm_droop_r_acc"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/arm_droop_r_gyro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/arm_droop_l_acc"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/arm_droop_l_gyro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/BtnControllerOrangeStyle"
+            android:layout_width="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:onClick="cancel"
+            android:text="取消" />
+
+        <TextView
+            android:id="@+id/btn_upload"
+            style="@style/BtnControllerOrangeStyle"
+            android:layout_width="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:onClick="upload"
+            android:text="开始上传" />
+
+    </LinearLayout>
+
+</LinearLayout>

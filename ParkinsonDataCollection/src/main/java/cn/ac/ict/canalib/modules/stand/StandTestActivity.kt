@@ -13,12 +13,11 @@ import android.util.Log
 import android.view.View
 import cn.ac.ict.canalib.helpers.ModuleHelper
 import cn.ac.ict.canalib.activities.ScoreActivity
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.R
-import cn.ac.ict.canalib.common.Acc
-import cn.ac.ict.canalib.common.Gyro
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.Stand
 import cn.ac.ict.canalib.common.StandData
+import cn.ac.ict.canalib.common.XYZ
 import cn.ac.ict.canalib.db.bean.HistoryData
 import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.utils.FileUtils
@@ -26,11 +25,12 @@ import com.alibaba.fastjson.JSON
 import com.lovearthstudio.duasdk.Dua
 import kotlinx.android.synthetic.main.activity_stand_test.*
 import org.jetbrains.anko.doAsync
+import org.json.JSONObject
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 
-class StandTestActivity : BaseActivity() {
+class StandTestActivity : AudioBaseActivity() {
 
     private var isRight = true
     private val tips = arrayOf("右腿", "预备", "预备", "预备", "开始", "左腿", "预备", "预备", "预备", "开始")
@@ -78,7 +78,10 @@ class StandTestActivity : BaseActivity() {
         }
 
         override fun onSensorChanged(event: SensorEvent) {
-            FileUtils.standData.acc.add(Acc(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
+            val x = event.values[0].toDouble()
+            val y = event.values[1].toDouble()
+            val z = event.values[2].toDouble()
+            FileUtils.standData.acc.add(XYZ(System.currentTimeMillis(), x, y, z, Math.sqrt(x * x + y * y + z * z)))
             /*if (isRight) {
                 FileUtils.accRDatalist.add(AccData(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
             } else {
@@ -93,7 +96,10 @@ class StandTestActivity : BaseActivity() {
         }
 
         override fun onSensorChanged(event: SensorEvent) {
-            FileUtils.standData.gyro.add(Gyro(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
+            val x = event.values[0].toDouble()
+            val y = event.values[1].toDouble()
+            val z = event.values[2].toDouble()
+            FileUtils.standData.gyro.add(XYZ(System.currentTimeMillis(), x, y, z,Math.sqrt(x * x + y * y + z * z)))
             /*if (isRight) {
                 FileUtils.gyroRDataList.add(GyroData(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
             } else {
@@ -155,12 +161,48 @@ class StandTestActivity : BaseActivity() {
      */
     private fun writeData(stand: Stand) {
         doAsync {
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", stand.type, "", "")
+            val other = JSONObject()
+            val variance = variance()
+            val time = time()
+            other.put("variance", variance)
+            other.put("time", time)
+
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", stand.type, "", other.toString())
             val data = JSON.toJSONString(stand)
             Log.i("Stand", data)
             FileUtils.writeToFile(data, historyData.filePath)
             insertDB(historyData)
         }
+    }
+
+    /**
+     * 计算时间
+     */
+    private fun time(): Float {
+
+        return 66F
+    }
+
+    private fun variance(): Double {
+        return 55.5
+    }
+
+    /**
+     * 计算方差
+     * 方差s^2=[(x1-x)^2 +...(xn-x)^2]/n
+     */
+    private fun variance(x: DoubleArray): Double {
+        val m = x.size
+        var sum = 0.0
+        for (i in 0 until m) {//求和
+            sum += x[i]
+        }
+        val dAve = sum / m//求平均值
+        var dVar = 0.0
+        for (i in 0 until m) {//求方差
+            dVar += (x[i] - dAve) * (x[i] - dAve)
+        }
+        return dVar / m
     }
 
     /**
@@ -176,6 +218,7 @@ class StandTestActivity : BaseActivity() {
             values.put(HistoryData.FILEPATH, historyData.filePath)
             values.put(HistoryData.MARK, historyData.mark)
             values.put(HistoryData.ISUPLOAD, historyData.isUpload)
+            values.put(HistoryData.OTHER, historyData.other)
             // 插入数据库
             insert(HistoryData.TABLE_NAME, null, values)
         }

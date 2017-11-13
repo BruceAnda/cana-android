@@ -18,15 +18,15 @@ import android.widget.GridLayout
 import android.widget.TextView
 import android.widget.Toast
 import cn.ac.ict.canalib.helpers.ModuleHelper
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.constant.GlobleData
-import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.modules.guide.ModelGuideActivity
 import cn.ac.ict.canalib.modules.guide.ModelGuideActivity2
-import cn.ac.ict.canalib.modules.upload.UploadActivity
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.db.bean.HistoryData
 import cn.ac.ict.canalib.common.MemoryData
+import cn.ac.ict.canalib.common.extensions.toReport
+import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.helpers.MenuHelper
 import cn.ac.ict.canalib.utils.FileUtils
 import com.alibaba.fastjson.JSON
@@ -39,7 +39,7 @@ import java.util.*
 /**
  * 数字记忆录入模块
  */
-open class CountSimKeyboardActivity : BaseActivity() {
+open class CountSimKeyboardActivity : AudioBaseActivity() {
 
     private lateinit var randomStr: String
     private var version: String? = null
@@ -302,6 +302,7 @@ open class CountSimKeyboardActivity : BaseActivity() {
             values.put(HistoryData.FILEPATH, FileUtils.filePath)
             values.put(HistoryData.MARK, mark)
             values.put(HistoryData.ISUPLOAD, "0")
+            values.put(HistoryData.OTHER, "{}")
             // 插入数据库
             insert(HistoryData.TABLE_NAME, null, values)
         }
@@ -370,7 +371,8 @@ open class CountSimKeyboardActivity : BaseActivity() {
      * 记忆模块单项测试完成
      */
     private fun countSingleTestFinish(filePath: String) {
-        startActivity(Intent(this@CountSimKeyboardActivity, UploadActivity::class.java))
+        //startActivity(Intent(this@CountSimKeyboardActivity, UploadActivity::class.java))
+        toReport()
         writeData(filePath)
         finish()
     }

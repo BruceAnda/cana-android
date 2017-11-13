@@ -5,16 +5,15 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.View
 import cn.ac.ict.canalib.helpers.ModuleHelper
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
-import cn.ac.ict.canalib.modules.armdroop.ArmDroopTestActivity
-import cn.ac.ict.canalib.modules.upload.UploadActivity
 import cn.ac.ict.canalib.R
-import cn.ac.ict.canalib.base.ModelGuideBaseActivity
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.ArmDroop
 import cn.ac.ict.canalib.common.ArmDroopData
+import cn.ac.ict.canalib.common.extensions.toReport
 import cn.ac.ict.canalib.helpers.MenuHelper
+import cn.ac.ict.canalib.modules.modulesnew.armdroop.ArmDroopTestActivity
 import cn.ac.ict.canalib.utils.FileUtils
 import kotlinx.android.synthetic.main.activity_model_guide4.*
 import java.util.ArrayList
@@ -22,7 +21,24 @@ import java.util.ArrayList
 /**
  * 手臂下垂
  */
-class ModelGuideActivity8 : ModelGuideBaseActivity() {
+class ModelGuideActivity8 : AudioBaseActivity() {
+
+    override fun onPause() {
+        super.onPause()
+
+        pasue()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        stop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        release()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +67,7 @@ class ModelGuideActivity8 : ModelGuideBaseActivity() {
     override fun onResume() {
         super.onResume()
         handlerFile()
+        play()
     }
 
     private fun handlerFile() {
@@ -61,6 +78,7 @@ class ModelGuideActivity8 : ModelGuideBaseActivity() {
     }
 
     fun start(view: View) {
+        FileUtils.hasTestEight = true
         val intent = Intent(this@ModelGuideActivity8, ArmDroopTestActivity::class.java)
         startActivity(intent)
         finish()
@@ -74,7 +92,8 @@ class ModelGuideActivity8 : ModelGuideBaseActivity() {
     }
 
     fun next(view: View) {
-        startActivity(Intent(this, UploadActivity::class.java))
+        //startActivity(Intent(this, UploadActivity::class.java))
+        toReport()
         finish()
     }
 

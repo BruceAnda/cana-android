@@ -5,16 +5,16 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.View
 import cn.ac.ict.canalib.helpers.ModuleHelper
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.modules.tremor.TremorMainActivity
 import cn.ac.ict.canalib.R
-import cn.ac.ict.canalib.base.ModelGuideBaseActivity
-import cn.ac.ict.canalib.common.Memory
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.Tremor
 import cn.ac.ict.canalib.common.TremorData
+import cn.ac.ict.canalib.common.audio.audioManager
 import cn.ac.ict.canalib.helpers.MenuHelper
+import cn.ac.ict.canalib.modules.modulesnew.tremor.TremorTestActivity
 import cn.ac.ict.canalib.utils.FileUtils
 import kotlinx.android.synthetic.main.activity_model_guide2.*
 import kotlin.collections.ArrayList
@@ -22,7 +22,23 @@ import kotlin.collections.ArrayList
 /**
  * 震颤测试
  */
-class ModelGuideActivity2 : ModelGuideBaseActivity() {
+class ModelGuideActivity2 : AudioBaseActivity() {
+
+    override fun onPause() {
+        super.onPause()
+        audioManager.pasueSound()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        audioManager.stopSound()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        handlerFile()
+        audioManager.mSoundID[audioManager.mGuideAudioId[1]]?.let { audioManager.playSound(it) }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +63,6 @@ class ModelGuideActivity2 : ModelGuideBaseActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        handlerFile()
-    }
-
     /**
      * 处理文件
      */
@@ -66,7 +77,8 @@ class ModelGuideActivity2 : ModelGuideBaseActivity() {
 
 
     fun start(view: View) {
-        val intent = Intent(this@ModelGuideActivity2, TremorMainActivity::class.java)
+        FileUtils.hasTestTwo = true
+        val intent = Intent(this@ModelGuideActivity2, TremorTestActivity::class.java)
         intent.putExtra("grade", 0)
         startActivity(intent)
         finish()

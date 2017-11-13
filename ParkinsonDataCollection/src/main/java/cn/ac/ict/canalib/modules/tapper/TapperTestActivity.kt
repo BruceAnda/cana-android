@@ -8,13 +8,13 @@ import android.util.Log
 import android.view.View
 import cn.ac.ict.canalib.helpers.ModuleHelper
 import cn.ac.ict.canalib.activities.ScoreActivity
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.modules.guide.ModelGuideActivity6
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.db.bean.HistoryData
-import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.common.Tapping
 import cn.ac.ict.canalib.common.TappingData
+import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.utils.FileUtils
 import com.alibaba.fastjson.JSON
 import com.lovearthstudio.duasdk.Dua
@@ -27,7 +27,7 @@ import java.util.*
 /**
  * 手指灵敏测试
  */
-class TapperTestActivity : BaseActivity() {
+class TapperTestActivity : AudioBaseActivity() {
     private val TAG = TapperTestActivity::class.java.simpleName
     val tips = arrayOf("右手", "预备", "开始", "左手", "预备", "开始")
     var index = 0
@@ -164,7 +164,7 @@ class TapperTestActivity : BaseActivity() {
                     }
                 }
             }
-            val trueall = successNum / totalNum
+            val alternatingRatio = successNum / totalNum
 
             // 计算平均速率
             val firstTime = tapper.data[0].time
@@ -173,10 +173,10 @@ class TapperTestActivity : BaseActivity() {
             val avgspeed = totalNum / (lastTime - firstTime)
 
             val other = JSONObject()
-            other.put("tureall", trueall)
-            other.put("abgspeed", avgspeed)
+            other.put("alternatingRatio", alternatingRatio)
+            other.put("avgspeed", avgspeed)
 
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", tapper.type, "", other.toString())
+            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$filesDir${File.separator}${UUID.randomUUID()}.txt", "0", tapper.type, "", other.toString())
             val data = JSON.toJSONString(tapper)
             Log.i("Tapper", data)
             FileUtils.writeToFile(data, historyData.filePath)
@@ -198,6 +198,7 @@ class TapperTestActivity : BaseActivity() {
             values.put(HistoryData.FILEPATH, historyData.filePath)
             values.put(HistoryData.MARK, historyData.mark)
             values.put(HistoryData.ISUPLOAD, historyData.isUpload)
+            values.put(HistoryData.OTHER, historyData.other)
             // 插入数据库
             insert(HistoryData.TABLE_NAME, null, values)
         }

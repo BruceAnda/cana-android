@@ -10,7 +10,7 @@ import org.jetbrains.anko.db.*
 /**
  * 使用 anko 重新设计的Sqlite
  */
-class CanaDBOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "cananew", null, 2) {
+class CanaDBOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "cananew", null, 3) {
 
     companion object {
         private var instance: CanaDBOpenHelper? = null
@@ -38,7 +38,7 @@ class CanaDBOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "cananew", n
                 Batch.PATIENT_SEX to TEXT,
                 Batch.PATIENT_MEDICINE to TEXT,
                 Batch.PATIENT_OPEN to TEXT
-        )
+                )
 
         // 创建历史数据表
         db.createTable(HistoryData.TABLE_NAME, true,
@@ -47,7 +47,8 @@ class CanaDBOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "cananew", n
                 HistoryData.FILEPATH to TEXT,
                 HistoryData.ISUPLOAD to TEXT,
                 HistoryData.TYPE to TEXT,
-                HistoryData.MARK to TEXT
+                HistoryData.MARK to TEXT,
+                HistoryData.OTHER to TEXT
         )
     }
 

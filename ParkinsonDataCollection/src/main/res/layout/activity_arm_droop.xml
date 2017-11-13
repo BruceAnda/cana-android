@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/freebie_9">
+
+    <LinearLayout
+        android:id="@+id/ll_tremor_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_tremor_title"
+            style="@style/GuideTitle"
+            android:text="静止性震颤" />
+
+        <TextView
+            android:id="@+id/tv_tremor_tips"
+            style="@style/GuideContentStyle"
+            android:layout_marginTop="20dp"
+            android:text="@string/tremor_tips" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn_tremor_operator"
+        android:layout_below="@id/ll_tremor_tips"
+        android:contentDescription="@string/stand_image_description"
+        android:src="@mipmap/guide8" />
+
+    <TextView
+        android:id="@+id/btn_tremor_operator"
+        style="@style/BtnControllerOrangeStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:onClick="tremorOperator"
+        android:text="@string/btn_begin" />
+
+    <LinearLayout
+        android:id="@+id/ll_tremor_count_down"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_tremor_count_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="5"
+            android:textColor="@color/mainColor"
+            android:textSize="100sp" />
+
+        <TextView
+            android:id="@+id/tv_tremor_count_down_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="右手"
+            android:textColor="@color/mainColor"
+            android:textSize="100sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tremor_test_count_down"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.bcgdv.asia.lib.ticktock.TickTockView
+            android:id="@+id/ll_tremor_test_count_down_ttv"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:tickAutoFitText="false"
+            app:tickCircleDuration="total_time"
+            app:tickDotRadius="6dp"
+            app:tickEmptyRingColor="@color/freebie_6"
+            app:tickFillRingColor="@color/mainColor"
+            app:tickMiddleColor="@color/freebie_1"
+            app:tickMoveCounterClockwise="true"
+            app:tickRingThickness="3dp"
+            app:tickTextColor="@color/freebie_6" />
+
+        <TextView
+            android:id="@+id/ll_tremor_test_count_down_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="右手"
+            android:textColor="@color/mainColor"
+            android:textSize="50sp" />
+    </LinearLayout>
+</RelativeLayout>

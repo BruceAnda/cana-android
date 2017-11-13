@@ -14,13 +14,13 @@ import java.util.TimerTask
 
 import cn.ac.ict.cana.features.adapter.MainAdapter
 import cn.ac.ict.canalib.R
-import cn.ac.ict.canalib.base.BaseActivity
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * 程序的主界面
  */
-open class MainActivity : BaseActivity() {
+open class MainActivity : AudioBaseActivity() {
 
     private val TAG = MainActivity::class.java.simpleName
 

@@ -200,16 +200,16 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">40dp</item>
-        <item name="android:textSize">36sp</item>
+        <item name="android:textSize">@dimen/test_title_text_size</item>
     </style>
 
     <!-- 引导页内容样式 -->
     <style name="GuideContentStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingLeft">30dp</item>
-        <item name="android:paddingRight">30dp</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:textSize">@dimen/test_tip_text_size</item>
     </style>
 
     <!-- 数字记忆键盘 -->
@@ -236,4 +236,15 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="TestingReportTitleStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">@dimen/btn_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/btn_margin_right</item>
+        <item name="android:background">@drawable/btn_controller_white_bg</item>
+        <item name="android:textColor">@color/mainColor</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

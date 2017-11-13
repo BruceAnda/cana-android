@@ -5,12 +5,11 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.View
 import cn.ac.ict.canalib.helpers.ModuleHelper
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.modules.face.VideoCaptureActivity
 import cn.ac.ict.canalib.R
-import cn.ac.ict.canalib.base.ModelGuideBaseActivity
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.helpers.MenuHelper
 import cn.ac.ict.canalib.utils.FileUtils
 import kotlinx.android.synthetic.main.activity_model_guide7.*
@@ -18,7 +17,24 @@ import kotlinx.android.synthetic.main.activity_model_guide7.*
 /**
  * 面部表情
  */
-class ModelGuideActivity7 : ModelGuideBaseActivity() {
+class ModelGuideActivity7 : AudioBaseActivity() {
+
+    override fun onPause() {
+        super.onPause()
+
+        pasue()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        stop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        release()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +62,7 @@ class ModelGuideActivity7 : ModelGuideBaseActivity() {
     override fun onResume() {
         super.onResume()
         handlerFile()
+        play()
     }
 
     private fun handlerFile() {
@@ -53,6 +70,7 @@ class ModelGuideActivity7 : ModelGuideBaseActivity() {
     }
 
     fun start(view: View) {
+        FileUtils.hasTestSeven = true
         val intent = Intent(this@ModelGuideActivity7, VideoCaptureActivity::class.java)
         startActivity(intent)
         finish()

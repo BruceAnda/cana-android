@@ -14,15 +14,13 @@ import android.util.Log
 import android.view.View
 import cn.ac.ict.canalib.helpers.ModuleHelper
 import cn.ac.ict.canalib.activities.ScoreActivity
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
 import cn.ac.ict.canalib.R
-import cn.ac.ict.canalib.base.ModelGuideBaseActivity
-import cn.ac.ict.canalib.common.Acc
-import cn.ac.ict.canalib.common.Gyro
+import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.Stride
 import cn.ac.ict.canalib.common.StrideData
+import cn.ac.ict.canalib.common.XYZ
 import cn.ac.ict.canalib.db.bean.HistoryData
 import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.helpers.MenuHelper
@@ -39,7 +37,24 @@ import kotlin.collections.ArrayList
 /**
  * 行走平衡
  */
-class ModelGuideActivity5 : ModelGuideBaseActivity() {
+class ModelGuideActivity5 : AudioBaseActivity() {
+
+    override fun onPause() {
+        super.onPause()
+
+        pasue()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        stop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        release()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +82,7 @@ class ModelGuideActivity5 : ModelGuideBaseActivity() {
     override fun onResume() {
         super.onResume()
         handlerFile()
+        play()
     }
 
     private fun handlerFile() {
@@ -95,6 +111,7 @@ class ModelGuideActivity5 : ModelGuideBaseActivity() {
      * 开始测试
      */
     fun start(view: View) {
+        FileUtils.hasTestFive = true
         // 启动倒计时
         stop()
         ll_controller_button.visibility = View.GONE
@@ -110,8 +127,10 @@ class ModelGuideActivity5 : ModelGuideBaseActivity() {
         }
 
         override fun onSensorChanged(event: SensorEvent) {
-            FileUtils.strideData.acc.add(Acc(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
-            // FileUtils.accSDatalist.add(AccData(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
+            val x = event.values[0].toDouble()
+            val y = event.values[1].toDouble()
+            val z = event.values[2].toDouble()
+            FileUtils.strideData.acc.add(XYZ(System.currentTimeMillis(), x, y, z, Math.sqrt(x * x + y * y + z * z)))
         }
     }
 
@@ -121,8 +140,10 @@ class ModelGuideActivity5 : ModelGuideBaseActivity() {
         }
 
         override fun onSensorChanged(event: SensorEvent) {
-            FileUtils.strideData.gyro.add(Gyro(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
-            // FileUtils.gyroSDataList.add(GyroData(System.currentTimeMillis(), event.values[0].toDouble(), event.values[1].toDouble(), event.values[2].toDouble()))
+            val x = event.values[0].toDouble()
+            val y = event.values[1].toDouble()
+            val z = event.values[2].toDouble()
+            FileUtils.strideData.gyro.add(XYZ(System.currentTimeMillis(), x, y, z, Math.sqrt(x * x + y * y + z * z)))
         }
     }
 
@@ -200,6 +221,7 @@ class ModelGuideActivity5 : ModelGuideBaseActivity() {
             values.put(HistoryData.FILEPATH, historyData.filePath)
             values.put(HistoryData.MARK, historyData.mark)
             values.put(HistoryData.ISUPLOAD, historyData.isUpload)
+            values.put(HistoryData.OTHER, historyData.other)
             // 插入数据库
             insert(HistoryData.TABLE_NAME, null, values)
         }

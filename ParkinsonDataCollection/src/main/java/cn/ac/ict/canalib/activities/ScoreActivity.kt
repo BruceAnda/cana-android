@@ -8,18 +8,17 @@ import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
-import cn.ac.ict.canalib.base.BaseActivity
 import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.db.bean.HistoryData
-import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.helpers.ModuleHelper
 import cn.ac.ict.canalib.modules.guide.*
-import cn.ac.ict.canalib.modules.upload.UploadActivity
 import cn.ac.ict.canalib.R
+import cn.ac.ict.canalib.base.AudioBaseActivity
+import cn.ac.ict.canalib.common.extensions.toReport
+import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.helpers.MenuHelper
 import cn.ac.ict.canalib.utils.FileUtils
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.lovearthstudio.duasdk.Dua
 import com.lovearthstudio.duasdk.util.encryption.MD5
 import kotlinx.android.synthetic.main.activity_feed_back_v2.*
 import java.util.*
@@ -28,7 +27,7 @@ import java.util.*
  * 打分的Activity
  */
 
-class ScoreActivity : BaseActivity(), View.OnClickListener {
+class ScoreActivity : AudioBaseActivity(), View.OnClickListener {
 
     private val TAG = ScoreActivity::class.java.simpleName
 
@@ -97,7 +96,8 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                             "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_TREMOR_RR, datarr)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        // startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        toReport()
                         finish()
                     } else {
                         AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("即将进入声音检测").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
@@ -121,7 +121,8 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
 
                     updataHistory(ModuleHelper.MODULE_DATATYPE_SOUND, data)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        //startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        toReport()
                         finish()
                     } else {
                         AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("即将进入站立平衡检测").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
@@ -143,7 +144,7 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                             "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_STAND_L, datal)
 
-                    var datar = "{\"score\":\"${score2}\"," +
+                    var datar = "{\"score\":\"${score}\"," +
                             "\"doctor\":\"${FileUtils.DOCTOR}\"," +
                             "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
                             "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
@@ -154,7 +155,8 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                             "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_STAND_R, datar)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        // startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        toReport()
                         finish()
                     } else {
 
@@ -179,7 +181,8 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
 
                     updataHistory(ModuleHelper.MODULE_DATATYPE_STRIDE, data)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        // startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        toReport()
                         finish()
                     } else {
                         AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("即将进入手指灵敏测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
@@ -212,7 +215,8 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                             "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_TAPPING_R, datar)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        //startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        toReport()
                         finish()
                     } else {
                         AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("即将进入面部表情测试。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
@@ -235,7 +239,8 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
 
                     updataHistory(ModuleHelper.MODULE_DATATYPE_FACE, data)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        //startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        toReport()
                         finish()
                     } else {
                         AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("即将进入手臂下垂测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
@@ -267,11 +272,13 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
                             "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
                     updataHistory(ModuleHelper.MODULE_DATATYPE_ARMDROOP_R, datar)
                     if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        //  startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
+                        toReport()
                         finish()
                     } else {
                         AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("恭喜你完成了测试，请上传数据我们会对您的康复情况进行分析。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                            startActivity(Intent(this, UploadActivity::class.java))
+                            // startActivity(Intent(this, UploadActivity::class.java))
+                            toReport()
                             finish()
                         }).setCancelable(false).show()
                     }
@@ -348,9 +355,7 @@ class ScoreActivity : BaseActivity(), View.OnClickListener {
             tv_score_tip3.text = "右手运动性震颤"
             tv_score_tip4.text = "左手运动性震颤"
         } else if (modelName.equals(ModuleHelper.MODULE_STAND)) {
-            ll_score2.visibility = View.VISIBLE
-            tv_score_tip.text = "右腿站立平衡"
-            tv_score_tip2.text = "左腿站立平衡"
+            tv_score_tip.text = "站立平衡"
         } else if (modelName.equals(ModuleHelper.MODULE_TAPPER)) {
             ll_score2.visibility = View.VISIBLE
             tv_score_tip.text = "右手灵敏"
