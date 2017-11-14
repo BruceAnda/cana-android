@@ -115,7 +115,8 @@
         <activity android:name=".modules.modulesnew.stand.StandTestActivity" />
         <activity android:name=".modules.modulesnew.armdroop.ArmDroopTestActivity" />
         <activity android:name=".modules.modulesnew.sound.SoundTestActivity" />
-        <activity android:name=".activities.TestingReportNewActivity"></activity>
+        <activity android:name=".activities.TestingReportNewActivity" />
+        <activity android:name=".modules.modulesnew.memory.MemoryTestActivity"></activity>
     </application>
 
 </manifest>

@@ -38,7 +38,11 @@ import cn.ac.ict.canalib.activities.TestingReportNewActivity;
 import cn.ac.ict.canalib.base.AudioBaseActivity;
 import cn.ac.ict.canalib.modules.guide.ModelGuideActivity;
 import cn.ac.ict.canalib.modules.guide.ModelGuideActivity2;
+import cn.ac.ict.canalib.modules.guide.ModelGuideActivity3;
 import cn.ac.ict.canalib.modules.guide.ModelGuideActivity4;
+import cn.ac.ict.canalib.modules.guide.ModelGuideActivity5;
+import cn.ac.ict.canalib.modules.guide.ModelGuideActivity6;
+import cn.ac.ict.canalib.modules.guide.ModelGuideActivity7;
 import cn.ac.ict.canalib.modules.guide.ModelGuideActivity8;
 import cn.ac.ict.canalib.modules.modulesnew.sound.SoundTestActivity;
 import cn.ac.ict.canalib.modules.modulesnew.stand.StandTestActivity;
@@ -181,8 +185,8 @@ public class WelcomeActivity extends AudioBaseActivity implements Animation.Anim
                 if (duaUser.logon) {
                     toMain();
                 } else {
-                    //startActivityForResult(new Intent(WelcomeActivity.this, LandPageActivity.class), 10086);
-                    startActivityForResult(new Intent(WelcomeActivity.this, ModelGuideActivity.class), 10086);
+                    startActivityForResult(new Intent(WelcomeActivity.this, LandPageActivity.class), 10086);
+                    //  startActivityForResult(new Intent(WelcomeActivity.this, ModelGuideActivity.class), 10086);
                     finish();
                 }
             }

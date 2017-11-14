@@ -1,33 +1,21 @@
 package cn.ac.ict.canalib.modules.modulesnew.armdroop
 
-import android.content.ContentValues
 import android.content.Context
-import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.View
 import cn.ac.ict.canalib.R
-import cn.ac.ict.canalib.activities.ScoreActivity
 import cn.ac.ict.canalib.base.AudioBaseActivity
-import cn.ac.ict.canalib.common.ArmDroop
 import cn.ac.ict.canalib.common.ArmDroopData
-import cn.ac.ict.canalib.common.TremorData
 import cn.ac.ict.canalib.common.XYZ
-import cn.ac.ict.canalib.db.bean.HistoryData
-import cn.ac.ict.canalib.db.database
+import cn.ac.ict.canalib.common.extensions.toScore
 import cn.ac.ict.canalib.helpers.ModuleHelper
 import cn.ac.ict.canalib.utils.FileUtils
-import com.alibaba.fastjson.JSON
-import com.lovearthstudio.duasdk.Dua
 import kotlinx.android.synthetic.main.activity_tremor_test.*
-import org.jetbrains.anko.doAsync
-import org.json.JSONObject
-import java.io.File
 import java.util.*
 
 class ArmDroopTestActivity : AudioBaseActivity() {
@@ -130,7 +118,9 @@ class ArmDroopTestActivity : AudioBaseActivity() {
             updateUI(View.INVISIBLE, View.VISIBLE, View.INVISIBLE, View.GONE)
             startCountDown()
         } else {
-            toScore()
+            toScore(ModuleHelper.MODULE_ARM_DROOP)
+            FileUtils.hasTestEight = true
+            finish()
         }
     }
 
@@ -280,64 +270,5 @@ class ArmDroopTestActivity : AudioBaseActivity() {
             sm.unregisterListener(mAccEventListener)
             sm.unregisterListener(mGyroEventListener)
         }
-    }
-
-    /**
-     * 写入Stand数据
-     */
-    private fun writeArmDroopData() {
-        writeData(FileUtils.armDroopL)
-        writeData(FileUtils.armDroopR)
-    }
-
-    /**
-     * 把数据写入文件
-     */
-    private fun writeData(armDroop: ArmDroop) {
-        doAsync {
-            val other = JSONObject()
-            val armDroopCount = armDroopCount()
-            other.put("armDroopCount", armDroopCount)
-
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", armDroop.type, "", other.toString())
-            val data = JSON.toJSONString(armDroop)
-            Log.i("ArmDroop", data)
-            FileUtils.writeToFile(data, historyData.filePath)
-            insertDB(historyData)
-        }
-    }
-
-    /**
-     * 计算手臂下摆次数
-     */
-    private fun armDroopCount(): Float {
-
-        return 10F
-    }
-
-    /**
-     * 把数据文件路径插入到数据库
-     */
-    private fun insertDB(historyData: HistoryData) {
-        database.use {
-            // 历史数据
-            val values = ContentValues()
-            values.put(HistoryData.BATCH, historyData.batch)
-            values.put(HistoryData.USERID, historyData.userID)
-            values.put(HistoryData.TYPE, historyData.type)
-            values.put(HistoryData.FILEPATH, historyData.filePath)
-            values.put(HistoryData.MARK, historyData.mark)
-            values.put(HistoryData.ISUPLOAD, historyData.isUpload)
-            // 插入数据库
-            insert(HistoryData.TABLE_NAME, null, values)
-        }
-    }
-
-    fun toScore() {
-        writeArmDroopData()
-        val intent = Intent(this@ArmDroopTestActivity, ScoreActivity::class.java)
-        intent.putExtra("modelName", ModuleHelper.MODULE_ARM_DROOP)
-        startActivity(intent)
-        finish()
     }
 }

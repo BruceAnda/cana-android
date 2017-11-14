@@ -334,73 +334,20 @@ class VideoCaptureActivity : Activity(), RecordingButtonInterface, VideoRecorder
         return returnFile
     }
 
-    lateinit var path: String
 
     fun saveToStorage() {
         // SharedPreferences sharedPreferences = getSharedPreferences("Cana", Context.MODE_PRIVATE);
         //String filePath = HistoryData.getFilePath(this, ModuleHelper.MODULE_FACE);
         // mVideoFile.saveTo(FileUtils.INSTANCE.getFilePath());
-        path = "${filesDir}${File.separator}${UUID.randomUUID()}.mp4"
-        mVideoFile!!.saveTo(path)
-        writeData()
-
+        FileUtils.faceFilePath = "${filesDir}${File.separator}${UUID.randomUUID()}.mp4"
+        mVideoFile!!.saveTo(FileUtils.faceFilePath)
 
         // SharedPreferences.Editor editor = sharedPreferences.edit();
         // editor.putString("HistoryFilePath", filePath);
         // editor.apply();
     }
 
-    /**
-     * 把数据写入文件
-     */
-    private fun writeData() {
-        doAsync {
-            val other = JSONObject()
-            val blinkTimes = blinkTimes()
-            val smileAngle = smileAngle()
-            other.put("blinkTimes", blinkTimes)
-            other.put("smileAngle", smileAngle)
 
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$path", "0", ModuleHelper.MODULE_DATATYPE_FACE, "", other.toString())
-            insertDB(historyData)
-        }
-    }
-
-    /**
-     * 计算嘴角微笑角度
-     */
-    private fun smileAngle(): Float {
-
-        return 30F
-    }
-
-
-    /**
-     * 计算瞬目次数
-     */
-    private fun blinkTimes(): Float {
-
-        return 3F
-    }
-
-    /**
-     * 把数据文件路径插入到数据库
-     */
-    private fun insertDB(historyData: HistoryData) {
-        database.use {
-            // 历史数据
-            val values = ContentValues()
-            values.put(HistoryData.BATCH, historyData.batch)
-            values.put(HistoryData.USERID, historyData.userID)
-            values.put(HistoryData.TYPE, historyData.type)
-            values.put(HistoryData.FILEPATH, historyData.filePath)
-            values.put(HistoryData.MARK, historyData.mark)
-            values.put(HistoryData.ISUPLOAD, historyData.isUpload)
-            values.put(HistoryData.OTHER, historyData.other)
-            // 插入数据库
-            insert(HistoryData.TABLE_NAME, null, values)
-        }
-    }
 
     override fun onBackPressed() {
         startActivity(Intent(this, ModelGuideActivity7::class.java))

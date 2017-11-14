@@ -21,6 +21,7 @@ import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.Stride
 import cn.ac.ict.canalib.common.StrideData
 import cn.ac.ict.canalib.common.XYZ
+import cn.ac.ict.canalib.common.extensions.toScore
 import cn.ac.ict.canalib.db.bean.HistoryData
 import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.helpers.MenuHelper
@@ -38,6 +39,21 @@ import kotlin.collections.ArrayList
  * 行走平衡
  */
 class ModelGuideActivity5 : AudioBaseActivity() {
+
+    // audio资源id
+    private val mAudioId = arrayOf(
+            R.raw.stride_count_down
+    )
+
+    /**
+     * 加载语音
+     */
+    private fun loadAudio() {
+        createSoundPool(mAudioId.size)
+        for (i in 0 until mAudioId.size) {
+            soundID.put(i, mSoundPool?.load(this, mAudioId[i], 1)!!)
+        }
+    }
 
     override fun onPause() {
         super.onPause()
@@ -64,6 +80,7 @@ class ModelGuideActivity5 : AudioBaseActivity() {
     }
 
     private fun init() {
+        loadAudio()
         handlerMenu()
         handlerSound()
     }
@@ -111,9 +128,9 @@ class ModelGuideActivity5 : AudioBaseActivity() {
      * 开始测试
      */
     fun start(view: View) {
-        FileUtils.hasTestFive = true
         // 启动倒计时
         stop()
+        soundID[0]?.let { playSound(it) }
         ll_controller_button.visibility = View.GONE
         tv_count_down.visibility = View.VISIBLE
         CountDown(5000, 1000).start()
@@ -184,58 +201,12 @@ class ModelGuideActivity5 : AudioBaseActivity() {
     }
 
     /**
-     * 写入Stride数据
-     */
-    private fun writeStrideData() {
-        writeData(FileUtils.stride)
-    }
-
-    /**
-     * 把数据写入文件
-     */
-    private fun writeData(stride: Stride) {
-        doAsync {
-            val other = JSONObject()
-            other.put("step", mDetector)
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", stride.type, "", other.toString())
-            val data = JSON.toJSONString(stride)
-            Log.i("Stride", data)
-            FileUtils.writeToFile(data, historyData.filePath)
-            insertDB(historyData)
-        }
-    }
-
-    private val TAG = ModelGuideActivity5::class.java.simpleName
-
-    /**
-     * 把数据文件路径插入到数据库
-     */
-    private fun insertDB(historyData: HistoryData) {
-        Log.i(TAG, "$historyData")
-        database.use {
-            // 历史数据
-            val values = ContentValues()
-            values.put(HistoryData.BATCH, historyData.batch)
-            values.put(HistoryData.USERID, historyData.userID)
-            values.put(HistoryData.TYPE, historyData.type)
-            values.put(HistoryData.FILEPATH, historyData.filePath)
-            values.put(HistoryData.MARK, historyData.mark)
-            values.put(HistoryData.ISUPLOAD, historyData.isUpload)
-            values.put(HistoryData.OTHER, historyData.other)
-            // 插入数据库
-            insert(HistoryData.TABLE_NAME, null, values)
-        }
-    }
-
-    /**
      * 完成测试
      */
     fun toScore(view: View) {
         stopSensors()
-        writeStrideData()
-        val intent = Intent(this@ModelGuideActivity5, ScoreActivity::class.java)
-        intent.putExtra("modelName", ModuleHelper.MODULE_STRIDE)
-        startActivity(intent)
+        toScore(ModuleHelper.MODULE_STRIDE)
+        FileUtils.hasTestFive = true
         finish()
     }
 

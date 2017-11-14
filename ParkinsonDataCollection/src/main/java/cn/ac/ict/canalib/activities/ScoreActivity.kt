@@ -49,254 +49,88 @@ class ScoreActivity : AudioBaseActivity(), View.OnClickListener {
                         }.show()
             }
             R.id.btn_save -> {
-                var fileName: String
                 if (ModuleHelper.MODULE_TREMOR.equals(modelName)) {
-                    Log.i(TAG, "插入${modelName}数据")
-                    val datalp = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_TREMOR_LP, datalp)
+                    FileUtils.tremorRRScore = "${score}"
+                    FileUtils.tremorLRScore = "${score2}"
+                    FileUtils.tremorRPScore = "${score3}"
+                    FileUtils.tremorLPScore = "${score4}"
 
-                    val datalr = "{\"score\":\"${score2}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_TREMOR_LR, datalr)
-
-                    val datarp = "{\"score\":\"${score3}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_TREMOR_RP, datarp)
-
-                    val datarr = "{\"score\":\"${score4}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_TREMOR_RR, datarr)
-                    if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        // startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
-                        toReport()
-                        finish()
-                    } else {
-                        AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("即将进入声音检测").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                            // 进入下一项测试，保存数据
-                            startActivity(Intent(this, ModelGuideActivity3::class.java))
-                            finish()
-                        }).setCancelable(false).show()
-                    }
+                    toNext("即将进入声音检测")
                     // 语言能力
                 } else if (ModuleHelper.MODULE_SOUND.equals(modelName)) {
-                    Log.i(TAG, "插入${modelName}数据")
-                    var data = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.wav\"}"
+                    FileUtils.soundScore = "$score"
+                    toNext("即将进入站立平衡检测")
 
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_SOUND, data)
-                    if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        //startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
-                        toReport()
-                        finish()
-                    } else {
-                        AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("即将进入站立平衡检测").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                            startActivity(Intent(this, ModelGuideActivity4::class.java))
-                            finish()
-                        }).setCancelable(false).show()
-                    }
                     // 单腿站立
                 } else if (ModuleHelper.MODULE_STAND.equals(modelName)) {
+                    FileUtils.standScore = "$score"
+                    toNext("即将进入行走平衡测试")
 
-                    var datal = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_STAND_L, datal)
-
-                    var datar = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_STAND_R, datar)
-                    if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        // startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
-                        toReport()
-                        finish()
-                    } else {
-
-                        AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("即将进入行走平衡测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                            startActivity(Intent(this, ModelGuideActivity5::class.java))
-                            finish()
-                        }).setCancelable(false).show()
-                    }
                     // 行走平衡
                 } else if (ModuleHelper.MODULE_STRIDE.equals(modelName)) {
-                    Log.i(TAG, "插入${modelName}数据")
+                    FileUtils.strideScore = "$score"
+                    toNext("即将进入手指灵敏测试")
 
-                    var data = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
-
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_STRIDE, data)
-                    if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        // startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
-                        toReport()
-                        finish()
-                    } else {
-                        AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("即将进入手指灵敏测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                            startActivity(Intent(this, ModelGuideActivity6::class.java))
-                            finish()
-                        }).setCancelable(false).show()
-                    }
                     // 手指灵敏
                 } else if (ModuleHelper.MODULE_TAPPER.equals(modelName)) {
+                    FileUtils.tappingRScore = "$score"
+                    FileUtils.tappingLScore = "$score2"
+                    toNext("即将进入面部表情测试")
 
-                    var datal = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_TAPPING_L, datal)
-
-                    var datar = "{\"score\":\"${score2}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_TAPPING_R, datar)
-                    if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        //startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
-                        toReport()
-                        finish()
-                    } else {
-                        AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("即将进入面部表情测试。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                            startActivity(Intent(this, ModelGuideActivity7::class.java))
-                            finish()
-                        }).setCancelable(false).show()
-                    }
                     // 面部表情
                 } else if (ModuleHelper.MODULE_FACE.equals(modelName)) {
+                    FileUtils.faceScore = "$score"
+                    toNext("即将进入手臂下垂测试")
 
-                    var data = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.mp4\"}"
-
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_FACE, data)
-                    if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        //startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
-                        toReport()
-                        finish()
-                    } else {
-                        AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("即将进入手臂下垂测试").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                            startActivity(Intent(this, ModelGuideActivity8::class.java))
-                            finish()
-                        }).setCancelable(false).show()
-                    }
+                    // 手臂下垂
                 } else if (ModuleHelper.MODULE_ARM_DROOP.equals(modelName)) {
-
-                    var datal = "{\"score\":\"${score}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_ARMDROOP_L, datal)
-
-                    var datar = "{\"score\":\"${score2}\"," +
-                            "\"doctor\":\"${FileUtils.DOCTOR}\"," +
-                            "\"patient\":\"${FileUtils.PATIENT_NAME}\"," +
-                            "\"patient_age\":\"${FileUtils.PATIENT_AGE}\"," +
-                            "\"patient_sex\":\"${FileUtils.PATIENT_SEX}\"," +
-                            "\"patient_med\":\"${FileUtils.PATIENT_MEDICINE}\"," +
-                            "\"onoff\":\"${FileUtils.SWITCHING_PERIOD}\"," +
-                            "\"filever\":\"${1}\"," +
-                            "\"file\":\"Parkins/${MD5.md5("${System.currentTimeMillis()}${UUID.randomUUID()}")}.txt\"}"
-                    updataHistory(ModuleHelper.MODULE_DATATYPE_ARMDROOP_R, datar)
-                    if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
-                        //  startActivity(Intent(this@ScoreActivity, UploadActivity::class.java))
-                        toReport()
-                        finish()
-                    } else {
-                        AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage("恭喜你完成了测试，请上传数据我们会对您的康复情况进行分析。").setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
-                            // startActivity(Intent(this, UploadActivity::class.java))
-                            toReport()
-                            finish()
-                        }).setCancelable(false).show()
-                    }
+                    FileUtils.armDroopRScore = "$score"
+                    FileUtils.armDroopLScore = "$score2"
+                    toNext("恭喜你完成了测试，请上传数据我们会对您的康复情况进行分析。")
                 }
             }
         }
     }
 
     /**
-     * 把数据文件路径插入到数据库
+     * 确定按钮操作，进入下一步测试或跳转到报告页面
      */
-    fun updataHistory(type: String, mark: String) {
-        Log.i(TAG, "updataHistory$mark")
-        database.use {
-            // 历史数据
-            val values = ContentValues()
-            values.put(HistoryData.MARK, mark)
-            update(HistoryData.TABLE_NAME, values, "${HistoryData.BATCH} = ? and ${HistoryData.TYPE} = ?", arrayOf(FileUtils.batch, type))
+    private fun toNext(msg: String) {
+        if (GlobleData.menu_type == MenuHelper.MENU_TYPE_SINGLE) {
+            toReport()
+            finish()
+        } else {
+            AlertDialog.Builder(this@ScoreActivity).setTitle("提示").setMessage(msg).setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                // 进入下一项测试，保存数据
+                when (modelName) {
+                    ModuleHelper.MODULE_COUNT -> {
+                        startActivity(Intent(this, ModelGuideActivity2::class.java))
+                    }
+                    ModuleHelper.MODULE_TREMOR -> {
+                        startActivity(Intent(this, ModelGuideActivity3::class.java))
+                    }
+                    ModuleHelper.MODULE_SOUND -> {
+                        startActivity(Intent(this, ModelGuideActivity4::class.java))
+                    }
+                    ModuleHelper.MODULE_STAND -> {
+                        startActivity(Intent(this, ModelGuideActivity5::class.java))
+                    }
+                    ModuleHelper.MODULE_STRIDE -> {
+                        startActivity(Intent(this, ModelGuideActivity6::class.java))
+                    }
+                    ModuleHelper.MODULE_TAPPER -> {
+                        startActivity(Intent(this, ModelGuideActivity7::class.java))
+                    }
+                    ModuleHelper.MODULE_FACE -> {
+                        startActivity(Intent(this, ModelGuideActivity8::class.java))
+                    }
+                    ModuleHelper.MODULE_ARM_DROOP -> {
+                       toReport()
+                    }
+                }
+
+                finish()
+            }).setCancelable(false).show()
         }
     }
 

@@ -7,14 +7,15 @@ import android.view.View
 import cn.ac.ict.canalib.helpers.ModuleHelper
 import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
-import cn.ac.ict.canalib.modules.count.CountGameActivity
 import cn.ac.ict.canalib.R
 import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.Memory
-import cn.ac.ict.canalib.common.audio.audioManager
 import cn.ac.ict.canalib.helpers.MenuHelper
+import cn.ac.ict.canalib.modules.modulesnew.memory.MemoryTestActivity
 import cn.ac.ict.canalib.utils.FileUtils
 import kotlinx.android.synthetic.main.activity_model_guide.*
+import java.io.File
+import java.util.*
 import kotlin.collections.ArrayList
 
 /**
@@ -24,23 +25,25 @@ class ModelGuideActivity : AudioBaseActivity() {
 
     override fun onPause() {
         super.onPause()
-        audioManager.pasueSound()
+
+        pasue()
     }
 
     override fun onStop() {
         super.onStop()
-        audioManager.stopSound()
+
+        stop()
     }
 
-    override fun onResume() {
-        super.onResume()
-        handlerFile()
-        audioManager.mSoundID[audioManager.mGuideAudioId[0]]?.let { audioManager.playSound(it) }
+    override fun onDestroy() {
+        super.onDestroy()
+        release()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_model_guide)
+
         init()
     }
 
@@ -49,6 +52,7 @@ class ModelGuideActivity : AudioBaseActivity() {
      */
     private fun init() {
         handlerMenu()
+        handlerSound()
     }
 
     /**
@@ -64,8 +68,17 @@ class ModelGuideActivity : AudioBaseActivity() {
      * 处理文件
      */
     private fun handlerFile() {
-        FileUtils.filePath = History.getFilePath(this, ModuleHelper.MODULE_COUNT)
-        FileUtils.memory = Memory("Memory", ArrayList())
+        FileUtils.memory = Memory("Memory", 0, ArrayList())
+    }
+
+    private fun handlerSound() {
+        createMediaPlayer(R.raw.guide)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        handlerFile()
+        play()
     }
 
     /**
@@ -73,7 +86,7 @@ class ModelGuideActivity : AudioBaseActivity() {
      */
     fun start(view: View) {
         FileUtils.hasTestOne = true
-        val intent = Intent(this@ModelGuideActivity, CountGameActivity::class.java)
+        val intent = Intent(this@ModelGuideActivity, MemoryTestActivity::class.java)
         intent.putExtra("grade", 3)
         startActivity(intent)
         finish()

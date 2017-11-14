@@ -14,6 +14,7 @@ import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.db.bean.HistoryData
 import cn.ac.ict.canalib.common.Tapping
 import cn.ac.ict.canalib.common.TappingData
+import cn.ac.ict.canalib.common.extensions.toScore
 import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.utils.FileUtils
 import com.alibaba.fastjson.JSON
@@ -121,94 +122,8 @@ class TapperTestActivity : AudioBaseActivity() {
         }
     }
 
-    /**
-     * 写入Stride数据
-     */
-    private fun writeTapperData() {
-        writeData(FileUtils.tappingL)
-        writeData(FileUtils.tappingR)
-    }
-
-    /**
-     * 把数据写入文件
-     */
-    private fun writeData(tapper: Tapping) {
-        doAsync {
-            var successNum: Float = 0F
-            var firstBtn = ""
-            var secondBtn = ""
-            var totalNum: Float = 0F
-            // 计算交替比率
-            totalNum = tapper.data.size.toFloat()
-            val first = tapper.data[0].btn
-            // 判断第一个是L的话，后面每个奇数都是L
-            if ("L" == first) {
-                firstBtn = "L"
-                secondBtn = "R"
-            } else {
-                firstBtn = "R"
-                secondBtn = "L"
-            }
-
-            for (i in 0 until totalNum.toInt()) {
-                val item = tapper.data[i]
-                if (i % 2 == 0) {
-                    // 偶数 0 2 4 位置的都是L
-                    if (item.btn == firstBtn) {
-                        successNum++
-                    }
-                } else {
-                    // 奇数 1 3 5 位置的都是R
-                    if (item.btn == secondBtn) {
-                        successNum++
-                    }
-                }
-            }
-            val alternatingRatio = successNum / totalNum
-
-            // 计算平均速率
-            val firstTime = tapper.data[0].time
-            val lastTime = tapper.data[totalNum.toInt() - 1].time
-
-            val avgspeed = totalNum / (lastTime - firstTime)
-
-            val other = JSONObject()
-            other.put("alternatingRatio", alternatingRatio)
-            other.put("avgspeed", avgspeed)
-
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$filesDir${File.separator}${UUID.randomUUID()}.txt", "0", tapper.type, "", other.toString())
-            val data = JSON.toJSONString(tapper)
-            Log.i("Tapper", data)
-            FileUtils.writeToFile(data, historyData.filePath)
-            insertDB(historyData)
-        }
-    }
-
-    /**
-     * 把数据文件路径插入到数据库
-     */
-    private fun insertDB(historyData: HistoryData) {
-        Log.i(TAG, "$historyData")
-        database.use {
-            // 历史数据
-            val values = ContentValues()
-            values.put(HistoryData.BATCH, historyData.batch)
-            values.put(HistoryData.USERID, historyData.userID)
-            values.put(HistoryData.TYPE, historyData.type)
-            values.put(HistoryData.FILEPATH, historyData.filePath)
-            values.put(HistoryData.MARK, historyData.mark)
-            values.put(HistoryData.ISUPLOAD, historyData.isUpload)
-            values.put(HistoryData.OTHER, historyData.other)
-            // 插入数据库
-            insert(HistoryData.TABLE_NAME, null, values)
-        }
-    }
-
     fun toScore(view: View) {
-        writeTapperData()
-        val intent = Intent(this, ScoreActivity::class.java)
-        intent.putExtra("modelName", ModuleHelper.MODULE_TAPPER)
-        startActivity(intent)
+        toScore(ModuleHelper.MODULE_TAPPER)
         finish()
     }
 

@@ -4,8 +4,9 @@ package cn.ac.ict.canalib.common
  * 记忆模块数据模型
  */
 class Memory(
-        var type: String,
-        var data: ArrayList<MemoryData>
+        var type: String,   // 数据类型
+        var level: Int,     // 达到的等级
+        var data: ArrayList<MemoryData>     // 记忆模块数据
 )
 
 class MemoryData(

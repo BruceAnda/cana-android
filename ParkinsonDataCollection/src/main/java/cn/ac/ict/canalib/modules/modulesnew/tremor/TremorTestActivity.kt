@@ -17,6 +17,7 @@ import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.Tremor
 import cn.ac.ict.canalib.common.TremorData
 import cn.ac.ict.canalib.common.XYZ
+import cn.ac.ict.canalib.common.extensions.toScore
 import cn.ac.ict.canalib.db.bean.HistoryData
 import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.helpers.ModuleHelper
@@ -140,7 +141,9 @@ class TremorTestActivity : AudioBaseActivity() {
             updateUI(View.INVISIBLE, View.VISIBLE, View.INVISIBLE, View.GONE)
             startCountDown()
         } else {
-            toScore()
+            toScore(ModuleHelper.MODULE_TREMOR)
+            FileUtils.hasTestTwo = true
+            finish()
         }
     }
 
@@ -299,81 +302,4 @@ class TremorTestActivity : AudioBaseActivity() {
             sm.unregisterListener(mGyroEventListener)
         }
     }
-
-    /**
-     * 跳转到评分界面
-     */
-    fun toScore() {
-        writeTremorData()
-        val intent = Intent(this@TremorTestActivity, ScoreActivity::class.java)
-        intent.putExtra("modelName", ModuleHelper.MODULE_TREMOR)
-        startActivity(intent)
-        finish()
-    }
-
-    /**
-     * 写入tremor数据
-     */
-    private fun writeTremorData() {
-        writeData(FileUtils.tremorLR)
-        writeData(FileUtils.tremorLP)
-        writeData(FileUtils.tremorRR)
-        writeData(FileUtils.tremorRP)
-    }
-
-    /**
-     * 把数据写入文件
-     */
-    private fun writeData(tremor: Tremor) {
-        doAsync {
-
-            val other = JSONObject()
-            val frequency = frequency()
-            val amplitude = amplitude()
-            other.put("frequency", frequency)
-            other.put("amplitude", amplitude)
-
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "$filesDir${File.separator}${UUID.randomUUID()}.txt", "0", tremor.type, "", other.toString())
-            val data = JSON.toJSONString(tremor)
-            Log.i("Tremor", data)
-            FileUtils.writeToFile(data, historyData.filePath)
-            insertDB(historyData)
-        }
-    }
-
-    /**
-     * 计算振幅
-     */
-    private fun amplitude(): Float {
-
-        return 33F
-    }
-
-    /**
-     * 计算频率
-     */
-    private fun frequency(): Float {
-
-        return 44F
-    }
-
-    /**
-     * 把数据文件路径插入到数据库
-     */
-    private fun insertDB(historyData: HistoryData) {
-        database.use {
-            // 历史数据
-            val values = ContentValues()
-            values.put(HistoryData.BATCH, historyData.batch)
-            values.put(HistoryData.USERID, historyData.userID)
-            values.put(HistoryData.TYPE, historyData.type)
-            values.put(HistoryData.FILEPATH, historyData.filePath)
-            values.put(HistoryData.MARK, historyData.mark)
-            values.put(HistoryData.ISUPLOAD, historyData.isUpload)
-            values.put(HistoryData.OTHER, historyData.other)
-            // 插入数据库
-            insert(HistoryData.TABLE_NAME, null, values)
-        }
-    }
-
 }

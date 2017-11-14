@@ -81,33 +81,52 @@ object FileUtils {
     var PATIENT_AGE = ""
     var PATIENT_MEDICINE = ""
     var SWITCHING_PERIOD = ""
+    var REMARTK = ""
 
     // 记忆模块数据
     lateinit var memory: Memory
 
     // 震颤数据
     lateinit var tremorRR: Tremor   // 右手静止震颤
+    var tremorRRScore = "-1"
     lateinit var tremorLR: Tremor   // 左手静止震颤
+    var tremorLRScore = "-1"
     lateinit var tremorRP: Tremor   // 右手运动震颤
+    var tremorRPScore = "-1"
     lateinit var tremorLP: Tremor   // 左手运动震颤
+    var tremorLPScore = "-1"
     lateinit var tremorData: TremorData
+
+    // 语言能力
+    lateinit var soundFilePath: String
+    lateinit var soundScore: String
 
     // 站立平衡
     lateinit var standL: Stand
     lateinit var standR: Stand
     lateinit var standData: StandData
+    lateinit var standScore: String
 
     // 行走平衡
     lateinit var stride: Stride
+    lateinit var strideScore: String
     lateinit var strideData: StrideData
 
     // 手指灵敏
     lateinit var tappingL: Tapping
+    lateinit var tappingLScore: String
     lateinit var tappingR: Tapping
+    lateinit var tappingRScore: String
+
+    // 面部表情
+    lateinit var faceFilePath:String
+    lateinit var faceScore: String
 
     // 手臂下垂
     lateinit var armDroopL: ArmDroop
+    lateinit var armDroopLScore: String
     lateinit var armDroopR: ArmDroop
+    lateinit var armDroopRScore: String
     lateinit var armDroopData: ArmDroopData
 
 

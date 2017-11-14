@@ -17,6 +17,7 @@ import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.Stand
 import cn.ac.ict.canalib.common.StandData
 import cn.ac.ict.canalib.common.XYZ
+import cn.ac.ict.canalib.common.extensions.toScore
 import cn.ac.ict.canalib.db.bean.HistoryData
 import cn.ac.ict.canalib.db.database
 import cn.ac.ict.canalib.helpers.ModuleHelper
@@ -122,14 +123,16 @@ class StandTestActivity : AudioBaseActivity() {
     }
 
     /**
-     * 震颤检测操作
+     * 站立平衡检测操作
      */
     fun tremorOperator(view: View) {
         if (mLevel <= mMaxLevel) {
             updateUI(View.INVISIBLE, View.VISIBLE, View.INVISIBLE, View.GONE)
             startCountDown()
         } else {
-            toScore()
+            toScore(ModuleHelper.MODULE_STAND)
+            FileUtils.hasTestFour = true
+            finish()
         }
     }
 
@@ -277,89 +280,5 @@ class StandTestActivity : AudioBaseActivity() {
             sm.unregisterListener(mAccEventListener)
             sm.unregisterListener(mGyroEventListener)
         }
-    }
-
-    /**
-     * 写入Stand数据
-     */
-    private fun writeStandData() {
-        writeData(FileUtils.standL)
-        writeData(FileUtils.standR)
-    }
-
-    /**
-     * 把数据写入文件
-     */
-    private fun writeData(stand: Stand) {
-        doAsync {
-            val other = JSONObject()
-            val variance = variance()
-            val time = time()
-            other.put("variance", variance)
-            other.put("time", time)
-
-            val historyData = HistoryData(FileUtils.batch, "${Dua.getInstance().currentDuaId}", "${filesDir}${File.separator}${UUID.randomUUID()}.txt", "0", stand.type, "", other.toString())
-            val data = JSON.toJSONString(stand)
-            Log.i("Stand", data)
-            FileUtils.writeToFile(data, historyData.filePath)
-            insertDB(historyData)
-        }
-    }
-
-    /**
-     * 计算时间
-     */
-    private fun time(): Float {
-
-        return 66F
-    }
-
-    private fun variance(): Double {
-        return 55.5
-    }
-
-    /**
-     * 计算方差
-     * 方差s^2=[(x1-x)^2 +...(xn-x)^2]/n
-     */
-    private fun variance(x: DoubleArray): Double {
-        val m = x.size
-        var sum = 0.0
-        for (i in 0 until m) {//求和
-            sum += x[i]
-        }
-        val dAve = sum / m//求平均值
-        var dVar = 0.0
-        for (i in 0 until m) {//求方差
-            dVar += (x[i] - dAve) * (x[i] - dAve)
-        }
-        return dVar / m
-    }
-
-    /**
-     * 把数据文件路径插入到数据库
-     */
-    private fun insertDB(historyData: HistoryData) {
-        database.use {
-            // 历史数据
-            val values = ContentValues()
-            values.put(HistoryData.BATCH, historyData.batch)
-            values.put(HistoryData.USERID, historyData.userID)
-            values.put(HistoryData.TYPE, historyData.type)
-            values.put(HistoryData.FILEPATH, historyData.filePath)
-            values.put(HistoryData.MARK, historyData.mark)
-            values.put(HistoryData.ISUPLOAD, historyData.isUpload)
-            values.put(HistoryData.OTHER, historyData.other)
-            // 插入数据库
-            insert(HistoryData.TABLE_NAME, null, values)
-        }
-    }
-
-    fun toScore() {
-        writeStandData()
-        val intent = Intent(this@StandTestActivity, ScoreActivity::class.java)
-        intent.putExtra("modelName", ModuleHelper.MODULE_STAND)
-        startActivity(intent)
-        finish()
     }
 }

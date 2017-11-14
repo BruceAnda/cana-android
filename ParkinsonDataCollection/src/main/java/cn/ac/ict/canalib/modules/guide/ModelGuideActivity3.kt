@@ -7,10 +7,10 @@ import android.view.View
 import cn.ac.ict.canalib.helpers.ModuleHelper
 import cn.ac.ict.canalib.constant.GlobleData
 import cn.ac.ict.canalib.mode.History
-import cn.ac.ict.canalib.modules.sound.SoundTestActivity
 import cn.ac.ict.canalib.R
 import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.helpers.MenuHelper
+import cn.ac.ict.canalib.modules.modulesnew.sound.SoundTestActivity
 import cn.ac.ict.canalib.utils.FileUtils
 import kotlinx.android.synthetic.main.activity_model_guide3.*
 

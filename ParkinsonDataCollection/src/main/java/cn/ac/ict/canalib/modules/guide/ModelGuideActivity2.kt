@@ -12,7 +12,6 @@ import cn.ac.ict.canalib.R
 import cn.ac.ict.canalib.base.AudioBaseActivity
 import cn.ac.ict.canalib.common.Tremor
 import cn.ac.ict.canalib.common.TremorData
-import cn.ac.ict.canalib.common.audio.audioManager
 import cn.ac.ict.canalib.helpers.MenuHelper
 import cn.ac.ict.canalib.modules.modulesnew.tremor.TremorTestActivity
 import cn.ac.ict.canalib.utils.FileUtils
@@ -26,18 +25,19 @@ class ModelGuideActivity2 : AudioBaseActivity() {
 
     override fun onPause() {
         super.onPause()
-        audioManager.pasueSound()
+
+        pasue()
     }
 
     override fun onStop() {
         super.onStop()
-        audioManager.stopSound()
+
+        stop()
     }
 
-    override fun onResume() {
-        super.onResume()
-        handlerFile()
-        audioManager.mSoundID[audioManager.mGuideAudioId[1]]?.let { audioManager.playSound(it) }
+    override fun onDestroy() {
+        super.onDestroy()
+        release()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +61,12 @@ class ModelGuideActivity2 : AudioBaseActivity() {
             btn_pre.visibility = View.GONE
             btn_skip.visibility = View.GONE
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        handlerFile()
+        play()
     }
 
     /**

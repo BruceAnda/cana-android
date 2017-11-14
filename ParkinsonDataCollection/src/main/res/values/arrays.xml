@@ -78,6 +78,12 @@
     </string-array>
 
     <string-array name="pd_open">
+        <item>请选择</item>
+        <item>关</item>
+        <item>开</item>
+    </string-array>
+    <string-array name="pdnew_open">
+        <item>请选择</item>
         <item>关</item>
         <item>开</item>
     </string-array>

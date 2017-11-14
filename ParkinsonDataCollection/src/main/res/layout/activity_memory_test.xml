@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:keepScreenOn="true">
+
+    <ScrollView
+        android:id="@+id/sv_memory_keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:textColor="@color/mainColor"
+                android:textSize="26sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/count_simkeyboard_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="3pt"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textSize="100sp" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="20dp"
+                    android:onClick="deleteText"
+                    android:src="@drawable/ic_backspace_black_24dp" />
+
+                <Button
+                    android:id="@+id/count_voice"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="top"
+                    android:background="@drawable/count_keymusic_open"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/count_simkeyboard_height"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_count_1"
+                        style="@style/CountSimkeyboardStyle"
+                        android:text="1" />
+
+                    <TextView
+                        android:id="@+id/tv_count_2"
+                        style="@style/CountSimkeyboardStyle"
+                        android:text="2" />
+
+                    <TextView
+                        android:id="@+id/tv_count_3"
+                        style="@style/CountSimkeyboardStyle"
+                        android:text="3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/count_simkeyboard_height"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_count_4"
+                        style="@style/CountSimkeyboardStyle"
+                        android:text="4" />
+
+                    <TextView
+                        android:id="@+id/tv_count_5"
+                        style="@style/CountSimkeyboardStyle"
+                        android:text="5" />
+
+                    <TextView
+                        android:id="@+id/tv_count_6"
+                        style="@style/CountSimkeyboardStyle"
+                        android:text="6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/count_simkeyboard_height"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_count_7"
+                        style="@style/CountSimkeyboardStyle"
+                        android:text="7" />
+
+                    <TextView
+                        android:id="@+id/tv_count_8"
+                        style="@style/CountSimkeyboardStyle"
+                        android:text="8" />
+
+                    <TextView
+                        android:id="@+id/tv_count_9"
+                        style="@style/CountSimkeyboardStyle"
+                        android:text="9" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/count_simkeyboard_height"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_count_0"
+                        style="@style/CountSimkeyboardStyle"
+                        android:text="0" />
+
+                    <TextView
+                        android:id="@+id/tv_count_clear"
+                        style="@style/CountSimkeyboardStyle"
+                        android:onClick="clearText"
+                        android:text="清空" />
+
+                    <TextView
+                        android:id="@+id/tv_count_delete"
+                        style="@style/CountSimkeyboardStyle"
+                        android:onClick="deleteText"
+                        android:text="删除" />
+                </LinearLayout>
+
+
+                <!-- 定义一个横跨4列的按钮 -->
+                <TextView
+                    android:id="@+id/count_simkeyboard_confirmBtn"
+                    style="@style/BtnControllerOrangeStyle"
+                    android:layout_marginLeft="@dimen/count_sim_key_margin"
+                    android:layout_marginRight="@dimen/count_sim_key_margin"
+                    android:text="确定" />
+
+                <TextView
+                    android:id="@+id/btn_continue"
+                    style="@style/BtnControllerOrangeStyle"
+                    android:layout_marginBottom="@dimen/margin_bottom"
+                    android:layout_marginLeft="@dimen/count_sim_key_margin"
+                    android:layout_marginRight="@dimen/count_sim_key_margin"
+                    android:onClick="next"
+                    android:text="无法记住,跳过本项测试" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fl_memory_num"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/freebie_9">
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/mainColor"
+            android:textSize="300sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+</FrameLayout>
+
